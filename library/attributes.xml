@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features>
+  <featureitem>
+    <id>1</id>
+    <featurename>Форма</featurename>
+    <valuename>Квадрат</valuename>
+    <valuename>Круг</valuename>
+    <valuename>Треугольник</valuename>
+  </featureitem>
+  <featureitem>
+    <id>2</id>
+    <featurename>Цвет</featurename>
+    <valuename>Красный</valuename>
+    <valuename>Синий</valuename>
+    <valuename>Зелёный</valuename>
+  </featureitem>
+  <featureitem>
+    <id>3</id>
+    <featurename>Размер</featurename>
+    <valuename>Большой</valuename>
+    <valuename>Средний</valuename>
+    <valuename>Маленький</valuename>
+  </featureitem>
+  <featureitem>
+    <id>4</id>
+    <featurename>Количество углов</featurename>
+    <valuename>3</valuename>
+    <valuename>4</valuename>
+    <valuename>5</valuename>
+  </featureitem>
+  <featureitem>
+    <id>5</id>
+    <featurename>Фон</featurename>
+  </featureitem>
+</features>

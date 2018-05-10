@@ -1,0 +1,36 @@
+.value-item a {
+    margin: 0;
+    padding: 0;
+    color: rgb(3, 3, 33);
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+}
+
+.value-item input {
+    margin: 0;
+    padding: 3px 0 3px 5px;
+    width: 50%;
+    color: rgb(3, 3, 33);
+    background-color: #FFFFFF;
+    font-size: 12pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border: rgba(3, 3, 33, .5) .5px solid;
+    border-radius: 2px;
+}
+
+.value-edit {
+    float: right;
+    margin-right: 30px;
+}
+
+.value-edit svg {
+    margin: 0 0 2px 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.value-edit path:hover {
+    fill: #1492E6;
+}
