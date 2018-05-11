@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-import reducer from '../reducers/index';
+import reducer from '../reducers';
 import createExperiment from './createExperiment';
 import switchingTabs from './switchingTabs';
 import featureEditor from './featureEditor';
@@ -9,13 +9,31 @@ import hypothesis from './hypothesis';
 
 function main() {
 
-    const store = createStore(reducer);
-
     createExperiment();
-    switchingTabs();
-    featureEditor();
-    figureEditor(store);
-    hypothesis();
+
+    fetch("/api/attributes", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
+
+            const initialState = {
+                features: result,
+                values: { id: result[0].id, valuename: result[0].valuename },
+            };
+            const store = createStore(reducer, initialState);
+
+            switchingTabs();
+            featureEditor(store);
+            figureEditor(store);
+            hypothesis();
+        })
+        .catch();
 }
 
 export {

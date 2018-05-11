@@ -11,7 +11,7 @@ const jsonParser = bodyParser.json();
 
 app.use(Express.static(__dirname + "/public"));
 
-/////FEATURE EDITOR!!!\\\\\
+/////CREATE EXPERIMENT!!!\\\\\
 
 app.get(
     "/api/attributes",
@@ -22,6 +22,10 @@ app.get(
         const featureList = xmlParser(data);
         res.send(featureList.features.featureitem);
     });
+
+/////EDIT EXPERIMENT!!!\\\\\
+
+/////FEATURE EDITOR!!!\\\\\
 
 app.post(
     "/api/attributes",

@@ -13,7 +13,6 @@
     <valuename>Красный</valuename>
     <valuename>Синий</valuename>
     <valuename>Жёлтый</valuename>
-    <valuename>Зелёный</valuename>
   </featureitem>
   <featureitem>
     <id>3</id>
@@ -28,10 +27,5 @@
     <valuename>3</valuename>
     <valuename>4</valuename>
     <valuename>5</valuename>
-  </featureitem>
-  <featureitem>
-    <id>5</id>
-    <featurename>Фон</featurename>
-    <valuename>Круглый</valuename>
   </featureitem>
 </features>

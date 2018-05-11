@@ -1,6 +1,6 @@
-import getFeatures from './getFeatures';
+import featureEditorApi from './featureEditorApi';
 
-function main() {
+function main(store) {
 
     const button = document.getElementById("btn-editor");
 
@@ -12,7 +12,7 @@ function main() {
         const modal_window = document.getElementById("edit-window");
         modal_window.style.display = 'block';
 
-        getFeatures();
+        featureEditorApi(store);
 
         modal_shadow.addEventListener('click', () => {
 
