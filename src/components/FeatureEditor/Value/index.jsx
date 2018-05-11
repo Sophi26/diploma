@@ -43,7 +43,7 @@ class Value extends Component {
 
     delValue() {
 
-        fetch("/api/values/" + this.props.featureId + this.props.value, {
+        fetch("/api/values/" + this.props.featureId + "/" + this.props.value, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -54,7 +54,7 @@ class Value extends Component {
             })
             .then((data) => {
 
-                this.props.actions.onDeleteValue(data.valuename);
+                this.props.actions.onDeleteValue(this.props.featureId, data.valuename);
             })
             .catch();
     }
@@ -92,7 +92,7 @@ class Value extends Component {
             })
             .then((data) => {
 
-                this.props.actions.onRenameValue(prev, data.valuename);
+                this.props.actions.onRenameValue(this.props.featureId, prev, data.valuename);
                 this.setState({
                     isRename: false,
                 });

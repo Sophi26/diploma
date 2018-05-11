@@ -12,6 +12,7 @@
     <featurename>Цвет</featurename>
     <valuename>Красный</valuename>
     <valuename>Синий</valuename>
+    <valuename>Жёлтый</valuename>
     <valuename>Зелёный</valuename>
   </featureitem>
   <featureitem>
@@ -31,5 +32,6 @@
   <featureitem>
     <id>5</id>
     <featurename>Фон</featurename>
+    <valuename>Круглый</valuename>
   </featureitem>
 </features>

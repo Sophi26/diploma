@@ -28,23 +28,23 @@ export function showValues(id, values = []) {
     };
 }
 
-export function addValue(name) {
+export function addValue(fname, name) {
     return {
         type: EditorTypes.ADD_VALUE,
-        payload: name,
+        payload: { featurename: fname, valuename: name },
     };
 }
 
-export function deleteValue(name) {
+export function deleteValue(featureid, name) {
     return {
         type: EditorTypes.DELETE_VALUE,
-        payload: name,
+        payload: { id: featureid, valuename: name },
     };
 }
 
-export function renameValue(prevname, newname) {
+export function renameValue(featureid, prevname, newname) {
     return {
         type: EditorTypes.RENAME_VALUE,
-        payload: { prevname: prevname, valuename: newname },
+        payload: { id: featureid, prevname: prevname, valuename: newname },
     };
 }

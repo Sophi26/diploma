@@ -109,7 +109,7 @@ function main() {
                         })
                         .then((data) => {
 
-                            const value_action = addValue(data.valuename);
+                            const value_action = addValue(document.querySelector(".active-feature").textContent, data.valuename);
                             store.dispatch(value_action);
                         })
                         .catch();

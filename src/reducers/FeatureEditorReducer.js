@@ -33,9 +33,12 @@ export default function featureList(state, action = {}) {
             }
 
         case EditorTypes.ADD_VALUE:
-            const new_value = action.payload;
+            const new_value = action.payload.valuename;
             return {
                 ...state,
+                features: state.features.map(feature => {
+                    return feature.featurename[0] !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                }),
                 values: {
                     ...state.values,
                     valuename: state.values.valuename.concat(new_value),
@@ -45,15 +48,21 @@ export default function featureList(state, action = {}) {
         case EditorTypes.DELETE_VALUE:
             return {
                 ...state,
+                features: state.features.map(feature => {
+                    return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                }),
                 values: {
                     ...state.values,
-                    valuename: state.values.valuename.filter(value => value !== action.payload),
+                    valuename: state.values.valuename.filter(value => value !== action.payload.valuename),
                 },
             }
 
         case EditorTypes.RENAME_VALUE:
             return {
                 ...state,
+                features: state.features.map(feature => {
+                    return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                }),
                 values: {
                     ...state.values,
                     valuename: state.values.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }),

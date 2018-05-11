@@ -11,10 +11,10 @@ class ValueList extends React.Component {
 
     render() {
 
-        console.log("VALUELIST:");
-        console.log(this.props.valueList);
         const valueElements = this.props.valueList.valuename.map((value, key) => {
-            return <li key={key} actions={this.props.actions} featureId={this.props.valueList.id[0]}><Value value={value} /></li>;
+            return <li key={key}>
+                        <Value value={value} actions={this.props.actions} featureId={this.props.valueList.id[0]} />
+                    </li>;
         });
     
         return(
@@ -34,12 +34,12 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                onDeleteValue: (name) => {
-                    const action = deleteValue(name);
+                onDeleteValue: (featureid, name) => {
+                    const action = deleteValue(featureid, name);
                     dispatch(action);
                 },
-                onRenameValue: (prevname, newname) => {
-                    const action = renameValue(prevname, newname);
+                onRenameValue: (featureid, prevname, newname) => {
+                    const action = renameValue(featureid, prevname, newname);
                     dispatch(action);
                 },
             }

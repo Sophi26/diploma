@@ -103,7 +103,12 @@ app.post(
         const result = xmlParser(data);
         for (let i = 0; i < result.features.featureitem.length; ++i) {
             if (result.features.featureitem[i].featurename[0] === featureName) {
+                if (result.features.featureitem[i].valuename === undefined) {
+                    result.features.featureitem[i].valuename = [newValue.valuename];
+                    break;
+                }
                 result.features.featureitem[i].valuename.push(newValue.valuename);
+                break;
             }
         }
         const xml = builder.buildObject(result);
@@ -122,7 +127,7 @@ app.delete(
         const result = xmlParser(data);
         for (let i = 0; result.features.featureitem.length; i++) {
             if (result.features.featureitem[i].id[0] === featureId) {
-                for (let j = 0; j < result.features.featureitem[i].valuename.length; ++i) {
+                for (let j = 0; j < result.features.featureitem[i].valuename.length; ++j) {
                     if (result.features.featureitem[i].valuename[j] === valueName) {
                         const value = { valuename: result.features.featureitem[i].valuename.splice(j, 1)[0] };
                         const xml = builder.buildObject(result);
@@ -151,7 +156,7 @@ app.put(
         const result = xmlParser(data);
         for (let i = 0; i < result.features.featureitem.length; i++) {
             if (result.features.featureitem[i].id[0] === featureId) {
-                for (let j = 0; j < result.features.featureitem[i].valuename.length; ++i) {
+                for (let j = 0; j < result.features.featureitem[i].valuename.length; ++j) {
                     if (result.features.featureitem[i].valuename[j] === prevValue) {
                         result.features.featureitem[i].valuename[j] = newValue;
                         const xml = builder.buildObject(result);
@@ -164,6 +169,10 @@ app.put(
             }
         }
     });
+
+/////FIGURE EDITOR!!!\\\\\
+
+
 
 app.listen(8081, () => {    
     console.log("Сервер ожидает подключения...");
