@@ -14,16 +14,17 @@ app.use(fileUpload());
 app.use(Express.static(__dirname + "/public"));
 
 app.post(
-    "api/upload",
-    jsonParser,
+    "/api/upload",
+    //jsonParser,
     (req, res) => {
 
-        let svgFile = req.files.svgFile;
+        console.log(req.body);
+        let svgFile = req.body;
         const svgFolder = Path.join(__dirname, 'public', 'figures', 'figure.svg');
         svgFile.mv(svgFolder, (err) => {
             if (err)
                 return res.status(500).send(err);
-            res.send('File uploaded!');
+            res.send({letter: 'File uploaded!'});
         });
     });
 

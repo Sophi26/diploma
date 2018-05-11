@@ -9,19 +9,9 @@ import { addValue } from '../actions/FeatureEditorActions';
 
 function main(store) {
 
-    render( < Provider store = { store } >
-        <
-        FeatureList / >
-        <
-        /Provider>,
-        document.getElementById("feature-ul"));
+    render( <Provider store={store}><FeatureList /></Provider>, document.getElementById("feature-ul"));
 
-    render( < Provider store = { store } >
-        <
-        ValueList / >
-        <
-        /Provider>,
-        document.getElementById("value-ul"));
+    render( <Provider store={store}><ValueList /></Provider>, document.getElementById("value-ul"));
 
     const input = document.getElementById("f-add-feature");
     input.addEventListener('focus', () => {
