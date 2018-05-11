@@ -4,12 +4,28 @@ const bodyParser = require("body-parser");
 const xml2js = require("xml2js");
 const fs = require("fs");
 const Path = require("path");
+const fileUpload = require("express-fileupload");
 
 const app = Express();
 const builder = new xml2js.Builder();
 const jsonParser = bodyParser.json();
 
+app.use(fileUpload());
 app.use(Express.static(__dirname + "/public"));
+
+app.post(
+    "api/upload",
+    jsonParser,
+    (req, res) => {
+
+        let svgFile = req.files.svgFile;
+        const svgFolder = Path.join(__dirname, 'public', 'figures', 'figure.svg');
+        svgFile.mv(svgFolder, (err) => {
+            if (err)
+                return res.status(500).send(err);
+            res.send('File uploaded!');
+        });
+    });
 
 /////CREATE EXPERIMENT!!!\\\\\
 

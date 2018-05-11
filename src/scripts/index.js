@@ -4,7 +4,7 @@ import reducer from '../reducers';
 import createExperiment from './createExperiment';
 import switchingTabs from './switchingTabs';
 import featureEditor from './featureEditor';
-import figureEditor from './figureEditor';
+import figureEditorApi from './figureEditorApi';
 import hypothesis from './hypothesis';
 
 function main() {
@@ -23,6 +23,7 @@ function main() {
         .then((result) => {
 
             const initialState = {
+                figures: [],
                 features: result,
                 values: { id: result[0].id, valuename: result[0].valuename },
             };
@@ -30,7 +31,7 @@ function main() {
 
             switchingTabs();
             featureEditor(store);
-            figureEditor(store);
+            figureEditorApi(store);
             hypothesis();
         })
         .catch();

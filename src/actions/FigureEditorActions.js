@@ -21,10 +21,10 @@ export function renameFigure(id, name) {
     };
 }
 
-export function openFigure(id) {
+export function openFigure(id, features) {
     return {
         type: EditorTypes.OPEN_FIGURE,
-        payload: id,
+        payload: { figureid: id, importantfeatures: features },
     };
 }
 
@@ -35,16 +35,9 @@ export function selectFeature(id, feature) {
     };
 }
 
-export function deleteValue(featureid, name) {
+export function onlyImportantFeatures(features) {
     return {
-        type: EditorTypes.DELETE_VALUE,
-        payload: { id: featureid, valuename: name },
-    };
-}
-
-export function renameValue(featureid, prevname, newname) {
-    return {
-        type: EditorTypes.RENAME_VALUE,
-        payload: { id: featureid, prevname: prevname, valuename: newname },
+        type: EditorTypes.ONLY_IMPORTANT_FEATURES,
+        payload: features,
     };
 }
