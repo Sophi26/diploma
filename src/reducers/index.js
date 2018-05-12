@@ -82,13 +82,25 @@ export default function featureList(state, action = {}) {
                 ...state,
                 figures: state.figures.map(figure => {
                     return figure.id !== action.payload.id ? figure : {...figure, figurename: action.payload.figurename };
-                })
+                }),
+                figureinfo: state.figureinfo.id !== action.payload.id ? state.figureinfo : {...state.figureinfo, figurename: action.payload.figurename },
             }
 
         case FigureTypes.DELETE_FIGURE:
+            console.log(state.figureinfo.id);
+            console.log(action.payload);
             return {
                 ...state,
                 figures: state.figures.filter(figure => figure.id !== action.payload),
+                figureinfo: state.figureinfo.id !== action.payload ? state.figureinfo : {},
+                figureimg: state.figureimg.id !== action.payload ? state.figureimg : {},
+            }
+
+        case FigureTypes.OPEN_FIGURE:
+            return {
+                ...state,
+                figureinfo: { id: action.payload.figureid, figurename: action.payload.figurename },
+                figureimg: { id: action.payload.figureid, figureimg: action.payload.figureimg },
             }
 
         default:

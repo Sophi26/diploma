@@ -1,0 +1,12 @@
+#important-feature-list {
+    margin: 0;
+    list-style: none;
+}
+
+#important-feature-list li {
+    padding: 10px 0 0 0;
+}
+
+#important-feature-list li:first-child {
+    padding: 0;
+}

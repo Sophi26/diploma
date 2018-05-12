@@ -24,7 +24,7 @@ class FigureList extends React.Component {
 
         const figureElements = this.props.figureList.map((figure, key) => {
             return <li key={key}>
-                        <Figure figure={figure} actions={this.props.actions} isOpenFigure={this.state.openFigureId === figure.id} onFigureClick={this.openFig.bind(this, figure.id)} />
+                        <Figure figure={figure} allFeatureList={this.props.featureList} actions={this.props.actions} isOpenFigure={this.state.openFigureId === figure.id} onFigureClick={this.openFig.bind(this, figure.id)} />
                     </li>;
         });
     
@@ -38,12 +38,12 @@ class FigureList extends React.Component {
     openFig(openFigureId) {
         
         this.setState({ openFigureId });
-        /*for(let i = 0; i < this.props.figureList.length; ++i) {
+        for(let i = 0; i < this.props.figureList.length; ++i) {
             if(this.props.figureList[i].id === openFigureId) {
-                this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].importantfeatures);
+                this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].figurename, this.props.figureList[i].icon);
                 break;
             }
-        }*/
+        }
     }
 }
 
@@ -65,11 +65,11 @@ export default connect(
                     const action = renameFigure(id, name);
                     dispatch(action);
                 },
-                /*onOpenFigure: (id, features) => {
-                    const action = openFigure(id, features);
+                onOpenFigure: (id, name, img) => {
+                    const action = openFigure(id, name, img);
                     dispatch(action);
                 },
-                onSelectFeature: (id, feature) => {
+                /*onSelectFeature: (id, feature) => {
                     const action = selectFeature(id, feature);
                     dispatch(action);
                 },*/

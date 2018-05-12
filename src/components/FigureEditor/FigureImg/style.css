@@ -1,0 +1,9 @@
+#figure-fullopen {
+    width: 100%;
+    text-align: center;
+    line-height: 794px;
+}
+
+#figure-fullopen svg {
+    vertical-align: middle;
+}

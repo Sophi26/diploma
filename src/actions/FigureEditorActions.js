@@ -21,10 +21,10 @@ export function renameFigure(id, name) {
     };
 }
 
-export function openFigure(id, features) {
+export function openFigure(id, name, img) {
     return {
         type: EditorTypes.OPEN_FIGURE,
-        payload: { figureid: id, importantfeatures: features },
+        payload: { figureid: id, figurename: name, figureimg: img },
     };
 }
 

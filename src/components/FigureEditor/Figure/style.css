@@ -58,3 +58,7 @@
 .figure-edit path:hover {
     fill: #1492E6;
 }
+
+#feature-li {
+    margin: 10px 0 0 50px;
+}
