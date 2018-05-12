@@ -19,13 +19,20 @@ function main(store) {
 
     const input = document.getElementById("upload");
     input.addEventListener('change', () => {
-        let data = new FormData();
+        /*let data = new FormData();
         data.append('file', input.files[0]);
-        const file = data.getAll('file')[0];
+        const file = data.getAll('file')[0];*/
+        let myData = {
+            svgShape: input.files[0],
+        };
+        myData = JSON.stringify(myData);
+        console.log(myData);
         fetch("/api/upload", {
                 method: "POST",
-                body: data,
-                //headers: data.getHeaders()
+                body: myData,
+                headers: {
+                    "Content-Type": "application/json"
+                }
             })
             .then((response) => {
                 return response.json();
