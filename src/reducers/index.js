@@ -70,6 +70,13 @@ export default function featureList(state, action = {}) {
                 },
             }
 
+        case FigureTypes.ADD_FIGURE:
+        const new_figure = action.payload;
+        return {
+            ...state,
+            figures: state.figures.concat(new_figure),
+        }
+
         default:
             return state;
     }

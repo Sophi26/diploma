@@ -16,15 +16,15 @@ class FigureList extends React.Component {
         super(props);
 
         this.state = {
-            openFigureId: this.props.figureList[0].id,
+            openFigureId: null/*this.props.figureList[0].id*/,
         }
     }
 
     render() {
 
         const figureElements = this.props.figureList.map((figure, key) => {
-            return <li key={figure.id} onClick={this.openFig.bind(this, figure.id)}>
-                        <Figure figure={figure} actions={this.props.actions} isOpenFigure={this.state.openFigureId === figure.id} />
+            return <li key={key} /*onClick={this.openFig.bind(this, figure.id)}*/>
+                        <Figure figure={figure} /*actions={this.props.actions}*/ isOpenFigure={this.state.openFigureId === key} />
                     </li>;
         });
     
@@ -35,7 +35,7 @@ class FigureList extends React.Component {
         );
     }
 
-    openFig(openFigureId) {
+    /*openFig(openFigureId) {
         
         this.setState({ openFigureId });
         for(let i = 0; i < this.props.figureList.length; ++i) {
@@ -44,16 +44,17 @@ class FigureList extends React.Component {
                 break;
             }
         }
-    }
+    }*/
 }
 
 export default connect(
     state => {
         return {
+            featureList: state.features,
             figureList: state.figures,
         };
     },
-    dispatch => {
+    /*dispatch => {
         return {
             actions: {
                 onDeleteFigure: (id) => {
@@ -74,5 +75,5 @@ export default connect(
                 },
             }
         }
-    }
+    }*/
 )(FigureList);

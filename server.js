@@ -5,6 +5,7 @@ const xml2js = require("xml2js");
 const fs = require("fs");
 const Path = require("path");
 const fileUpload = require("express-fileupload");
+const svgson = require("svgson");
 
 const app = Express();
 const builder = new xml2js.Builder();
@@ -17,13 +18,13 @@ app.post(
     "/api/upload",
     (req, res) => {
 
-        console.log(req.body);
-        let svgFile = req.body;
-        const svgFolder = Path.join(__dirname, 'public', 'figures', 'figure.svg');
-        svgFile.mv(svgFolder, (err) => {
+        let svgFile = req.files.file;
+        const svgOnServer = Path.join(__dirname, 'public', 'figures', 'figure.svg');
+        svgFile.mv(svgOnServer, (err) => {
             if (err)
                 return res.status(500).send(err);
-            res.send({ letter: 'File uploaded!' });
+            const data = fs.readFileSync(svgOnServer, "utf8");
+            svgson(data, {}, result => res.send(result));
         });
     });
 

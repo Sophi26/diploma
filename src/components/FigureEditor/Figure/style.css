@@ -1,0 +1,52 @@
+.figure-item a {
+    margin: 0 0 0 8px;
+    padding: 0;
+    color: rgb(3, 3, 33);
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+.figure-item a.active-feature {
+    color: #1492E6;
+}
+
+.figure-item a:hover {
+    color: #1492E6;
+}
+
+.figure-item input {
+    margin: 0;
+    padding: 3px 0 3px 5px;
+    width: 50%;
+    color: rgb(3, 3, 33);
+    background-color: #FAFAFF;
+    font-size: 12pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border: rgba(3, 3, 33, .5) .5px solid;
+    border-radius: 2px;
+}
+
+.fig {
+    float: left;
+}
+
+.fig svg {
+    vertical-align: middle;
+}
+
+.figure-edit {
+    float: right;
+}
+
+.figure-edit svg {
+    margin: 0 0 2px 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.figure-edit path:hover {
+    fill: #1492E6;
+}
