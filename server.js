@@ -15,7 +15,6 @@ app.use(Express.static(__dirname + "/public"));
 
 app.post(
     "/api/upload",
-    //jsonParser,
     (req, res) => {
 
         console.log(req.body);
@@ -24,7 +23,7 @@ app.post(
         svgFile.mv(svgFolder, (err) => {
             if (err)
                 return res.status(500).send(err);
-            res.send({letter: 'File uploaded!'});
+            res.send({ letter: 'File uploaded!' });
         });
     });
 

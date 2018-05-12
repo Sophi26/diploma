@@ -10,29 +10,16 @@ import { onlyImportantFeatures } from '../actions/FigureEditorActions';*/
 
 function main(store) {
 
-    /*render( < Provider store = { store } >
-        <
-        FigureList / >
-        <
-        /Provider>,
-        document.getElementById("shape-ul"));*/
+    /*render( <Provider store = {store}><FigureList /></Provider>, document.getElementById("shape-ul"));*/
 
     const input = document.getElementById("upload");
     input.addEventListener('change', () => {
-        /*let data = new FormData();
+        let data = new FormData();
         data.append('file', input.files[0]);
-        const file = data.getAll('file')[0];*/
-        let myData = {
-            svgShape: input.files[0],
-        };
-        myData = JSON.stringify(myData);
-        console.log(myData);
+        const file = data.getAll('file')[0];
         fetch("/api/upload", {
                 method: "POST",
-                body: myData,
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                body: file,
             })
             .then((response) => {
                 return response.json();
