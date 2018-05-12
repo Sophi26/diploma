@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.figure-item a.active-feature {
+.figure-item a.active-figure {
     color: #1492E6;
 }
 
@@ -35,11 +35,12 @@
 }
 
 .fig svg {
-    margin: 0 0 2px 0;
+    margin: 0 0 2px 5px;
     vertical-align: middle;
 }
 
 .fig svg:first-child {
+    margin-left: 0;
     cursor: pointer;
 }
 

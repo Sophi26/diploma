@@ -16,15 +16,15 @@ class FigureList extends React.Component {
         super(props);
 
         this.state = {
-            openFigureId: null/*this.props.figureList[0].id*/,
+            openFigureId: null,
         }
     }
 
     render() {
 
         const figureElements = this.props.figureList.map((figure, key) => {
-            return <li key={key} /*onClick={this.openFig.bind(this, figure.id)}*/>
-                        <Figure figure={figure} /*actions={this.props.actions}*/ isOpenFigure={this.state.openFigureId === key} />
+            return <li key={key}>
+                        <Figure figure={figure} actions={this.props.actions} isOpenFigure={this.state.openFigureId === figure.id} onFigureClick={this.openFig.bind(this, figure.id)} />
                     </li>;
         });
     
@@ -35,16 +35,16 @@ class FigureList extends React.Component {
         );
     }
 
-    /*openFig(openFigureId) {
+    openFig(openFigureId) {
         
         this.setState({ openFigureId });
-        for(let i = 0; i < this.props.figureList.length; ++i) {
+        /*for(let i = 0; i < this.props.figureList.length; ++i) {
             if(this.props.figureList[i].id === openFigureId) {
                 this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].importantfeatures);
                 break;
             }
-        }
-    }*/
+        }*/
+    }
 }
 
 export default connect(
@@ -54,7 +54,7 @@ export default connect(
             figureList: state.figures,
         };
     },
-    /*dispatch => {
+    dispatch => {
         return {
             actions: {
                 onDeleteFigure: (id) => {
@@ -65,15 +65,15 @@ export default connect(
                     const action = renameFigure(id, name);
                     dispatch(action);
                 },
-                onOpenFigure: (id, features) => {
+                /*onOpenFigure: (id, features) => {
                     const action = openFigure(id, features);
                     dispatch(action);
                 },
                 onSelectFeature: (id, feature) => {
                     const action = selectFeature(id, feature);
                     dispatch(action);
-                },
+                },*/
             }
         }
-    }*/
+    }
 )(FigureList);

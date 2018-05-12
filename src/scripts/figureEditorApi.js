@@ -16,7 +16,9 @@ function main(store) {
         <
         /Provider>, document.getElementById("shape-ul"));
 
+        let figId = 1;
         const input = document.getElementById("upload"); input.addEventListener('change', () => {
+            const file_name = input.files[0].name.substr(0, input.files[0].name.length - 4);
             let data = new FormData();
             data.append('file', input.files[0]);
             fetch("/api/upload", {
@@ -27,9 +29,9 @@ function main(store) {
                     return response.json();
                 })
                 .then((result) => {
-                    console.log(result);
-                    const action = addFigure(result, 'Фигура');
+                    const action = addFigure(figId, result, file_name);
                     store.dispatch(action);
+                    ++figId;
                 })
                 .catch();
         });

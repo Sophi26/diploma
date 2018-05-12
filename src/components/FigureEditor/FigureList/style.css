@@ -5,7 +5,8 @@
 }
 
 #figure-list li {
-    padding: 0;
+    padding: 10px 0 0 0;
+    clear: both;
 }
 
 #figure-list li:first-child {

@@ -6,25 +6,103 @@ const fs = require("fs");
 const Path = require("path");
 const fileUpload = require("express-fileupload");
 const svgson = require("svgson");
+const SVGO = require("svgo");
 
 const app = Express();
 const builder = new xml2js.Builder();
 const jsonParser = bodyParser.json();
+const svgo = new SVGO({
+    plugins: [{
+        cleanupAttrs: true,
+    }, {
+        removeDoctype: true,
+    }, {
+        removeXMLProcInst: true,
+    }, {
+        removeComments: true,
+    }, {
+        removeMetadata: true,
+    }, {
+        removeTitle: true,
+    }, {
+        removeDesc: true,
+    }, {
+        removeUselessDefs: true,
+    }, {
+        removeEditorsNSData: true,
+    }, {
+        removeEmptyAttrs: true,
+    }, {
+        removeHiddenElems: true,
+    }, {
+        removeEmptyText: true,
+    }, {
+        removeEmptyContainers: true,
+    }, {
+        removeViewBox: false,
+    }, {
+        cleanUpEnableBackground: true,
+    }, {
+        convertStyleToAttrs: true,
+    }, {
+        convertColors: true,
+    }, {
+        convertPathData: true,
+    }, {
+        convertTransform: true,
+    }, {
+        removeUnknownsAndDefaults: true,
+    }, {
+        removeNonInheritableGroupAttrs: true,
+    }, {
+        removeUselessStrokeAndFill: true,
+    }, {
+        removeUnusedNS: true,
+    }, {
+        cleanupIDs: true,
+    }, {
+        cleanupNumericValues: true,
+    }, {
+        moveElemsAttrsToGroup: true,
+    }, {
+        moveGroupAttrsToElems: true,
+    }, {
+        collapseGroups: true,
+    }, {
+        removeRasterImages: false,
+    }, {
+        mergePaths: true,
+    }, {
+        convertShapeToPath: true,
+    }, {
+        sortAttrs: true,
+    }, {
+        transformsWithOnePath: false,
+    }, {
+        removeDimensions: false,
+    }, {
+        removeAttrs: false,
+    }]
+});
 
 app.use(fileUpload());
 app.use(Express.static(__dirname + "/public"));
+
+/////UPLOAD SVG!!!\\\\\
 
 app.post(
     "/api/upload",
     (req, res) => {
 
         let svgFile = req.files.file;
-        const svgOnServer = Path.join(__dirname, 'public', 'figures', 'figure.svg');
+        const svgOnServer = Path.join(__dirname, 'public', 'figures', req.files.file.name);
         svgFile.mv(svgOnServer, (err) => {
             if (err)
                 return res.status(500).send(err);
             const data = fs.readFileSync(svgOnServer, "utf8");
-            svgson(data, {}, result => res.send(result));
+            svgo.optimize(data, { path: svgOnServer }).then(result => {
+                svgson(result.data, {}, result => res.send(result));
+            });
         });
     });
 

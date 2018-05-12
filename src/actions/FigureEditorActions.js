@@ -1,9 +1,9 @@
 import * as EditorTypes from '../constants/FigureEditorActionTypes';
 
-export function addFigure(icon, name) {
+export function addFigure(id, icon, name) {
     return {
         type: EditorTypes.ADD_FIGURE,
-        payload: { icon: icon, figurename: name },
+        payload: { id: id, icon: icon, figurename: name },
     };
 }
 
