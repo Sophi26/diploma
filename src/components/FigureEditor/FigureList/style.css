@@ -1,11 +1,11 @@
 #figure-list {
-    margin: 20px 20px 0 20px;
+    margin: 30px 20px 0 20px;
     padding: 0;
     list-style: none;
 }
 
 #figure-list li {
-    padding: 10px 0 0 0;
+    padding: 0;
 }
 
 #figure-list li:first-child {

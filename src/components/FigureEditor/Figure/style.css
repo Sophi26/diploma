@@ -17,7 +17,7 @@
 }
 
 .figure-item input {
-    margin: 0;
+    margin: 0 0 0 8px;
     padding: 3px 0 3px 5px;
     width: 50%;
     color: rgb(3, 3, 33);
@@ -30,19 +30,26 @@
 }
 
 .fig {
+    margin: 0 0 0 -5px;
     float: left;
 }
 
 .fig svg {
+    margin: 0 0 2px 0;
     vertical-align: middle;
 }
 
+.fig svg:first-child {
+    cursor: pointer;
+}
+
 .figure-edit {
+    margin: 0 10px 0 0;
     float: right;
 }
 
 .figure-edit svg {
-    margin: 0 0 2px 5px;
+    margin: 0;
     vertical-align: middle;
     cursor: pointer;
 }
