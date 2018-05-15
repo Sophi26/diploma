@@ -8,6 +8,7 @@ import { deleteFigure } from '../../../actions/FigureEditorActions';
 import { renameFigure } from '../../../actions/FigureEditorActions';
 import { openFigure } from '../../../actions/FigureEditorActions';
 import { selectFeature } from '../../../actions/FigureEditorActions';
+import { deselectFeature } from '../../../actions/FigureEditorActions';
 
 class FigureList extends React.Component {
 
@@ -22,9 +23,12 @@ class FigureList extends React.Component {
 
     render() {
 
-        const figureElements = this.props.figureList.map((figure, key) => {
+        const figureElements = this.props.figureList.map((figure, key) => { 
             return <li key={key}>
-                        <Figure figure={figure} allFeatureList={this.props.featureList} actions={this.props.actions} isOpenFigure={this.state.openFigureId === figure.id} onFigureClick={this.openFig.bind(this, figure.id)} />
+                        <Figure figure={figure}  
+                                actions={this.props.actions} 
+                                isOpenFigure={this.state.openFigureId === figure.id} 
+                                onFigureClick={this.openFig.bind(this, figure.id)} />
                     </li>;
         });
     
@@ -50,7 +54,6 @@ class FigureList extends React.Component {
 export default connect(
     state => {
         return {
-            featureList: state.features,
             figureList: state.figures,
         };
     },
@@ -69,10 +72,14 @@ export default connect(
                     const action = openFigure(id, name, img);
                     dispatch(action);
                 },
-                /*onSelectFeature: (id, feature) => {
-                    const action = selectFeature(id, feature);
+                onSelectFeature: (id, fid) => {
+                    const action = selectFeature(id, fid);
                     dispatch(action);
-                },*/
+                },
+                onDeselectFeature: (id, fid) => {
+                    const action = deselectFeature(id, fid);
+                    dispatch(action);
+                },
             }
         }
     }

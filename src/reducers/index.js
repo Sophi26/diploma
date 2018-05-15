@@ -71,7 +71,10 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.ADD_FIGURE:
-            const new_figure = action.payload;
+            const allFeatures = state.features.map(feature => {
+                return {...feature, important: false };
+            });
+            const new_figure = Object.assign(action.payload, { features: allFeatures });
             return {
                 ...state,
                 figures: state.figures.concat(new_figure),
@@ -87,8 +90,6 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.DELETE_FIGURE:
-            console.log(state.figureinfo.id);
-            console.log(action.payload);
             return {
                 ...state,
                 figures: state.figures.filter(figure => figure.id !== action.payload),
@@ -101,6 +102,30 @@ export default function featureList(state, action = {}) {
                 ...state,
                 figureinfo: { id: action.payload.figureid, figurename: action.payload.figurename },
                 figureimg: { id: action.payload.figureid, figureimg: action.payload.figureimg },
+            }
+
+        case FigureTypes.SELECT_FEATURE:
+            return {
+                ...state,
+                figures: state.figures.map(figure => {
+                    return figure.id !== action.payload.figureid ? figure : {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.featureid ? feature : {...feature, important: true };
+                        })
+                    };
+                }),
+            }
+
+        case FigureTypes.DESELECT_FEATURE:
+            return {
+                ...state,
+                figures: state.figures.map(figure => {
+                    return figure.id !== action.payload.figureid ? figure : {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.featureid ? feature : {...feature, important: false };
+                        })
+                    };
+                }),
             }
 
         default:

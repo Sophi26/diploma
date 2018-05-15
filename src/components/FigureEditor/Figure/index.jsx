@@ -19,7 +19,7 @@ class Figure extends React.Component {
 
     render() {
 
-        const {figure, allFeatureList, isOpenFigure, onFigureClick} = this.props;
+        const {figure, isOpenFigure, onFigureClick} = this.props;
         const activeClass = classNames({
             "active-figure": isOpenFigure,
         });
@@ -28,7 +28,7 @@ class Figure extends React.Component {
         const name = <a className={activeClass}>{figure.figurename}</a>;
         const input = <input type="text" autoFocus="true" value={this.state.value_name} onChange={this.handleChange.bind(this)} onKeyDown={this.renFigure.bind(this)} />;
         const icon = <svg width="21px" height="21px" viewBox={figure.icon.attrs.viewBox}><path fill={figure.icon.childs[0].attrs.fill} d={figure.icon.childs[0].attrs.d} /></svg>;
-        const allFeatures = isOpenFigure && <ImportantFeatureList features={allFeatureList} />;
+        const allFeatures = isOpenFigure && <ImportantFeatureList figId={figure.id} features={figure.features} actions={this.props.actions} />;
 
         return (
             <div className="figure-item">
