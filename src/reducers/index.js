@@ -100,11 +100,18 @@ export default function featureList(state, action = {}) {
         case FigureTypes.OPEN_FIGURE:
             return {
                 ...state,
-                figureinfo: { id: action.payload.figureid, figurename: action.payload.figurename },
+                figureinfo: { id: action.payload.figureid, figurename: action.payload.figurename, impfeatures: action.payload.impfeatures },
                 figureimg: { id: action.payload.figureid, figureimg: action.payload.figureimg },
             }
 
         case FigureTypes.SELECT_FEATURE:
+            let val = [];
+            state.features.forEach(feature => {
+                if (feature.id[0] === action.payload.featureid) {
+                    val = feature.valuename;
+                }
+            });
+            const newFeat = { name: action.payload.name, values: val };
             return {
                 ...state,
                 figures: state.figures.map(figure => {
@@ -114,6 +121,7 @@ export default function featureList(state, action = {}) {
                         })
                     };
                 }),
+                figureinfo: state.figureinfo.id !== action.payload.figureid ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.concat(newFeat), },
             }
 
         case FigureTypes.DESELECT_FEATURE:

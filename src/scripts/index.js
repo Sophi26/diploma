@@ -24,7 +24,7 @@ function main() {
 
             const initialState = {
                 figures: [],
-                figureinfo: {},
+                figureinfo: { impfeatures: [] },
                 figureimg: {},
                 features: result,
                 values: { id: result[0].id, valuename: result[0].valuename },

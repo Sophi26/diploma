@@ -21,17 +21,17 @@ export function renameFigure(id, name) {
     };
 }
 
-export function openFigure(id, name, img) {
+export function openFigure(id, name, img, features) {
     return {
         type: EditorTypes.OPEN_FIGURE,
-        payload: { figureid: id, figurename: name, figureimg: img },
+        payload: { figureid: id, figurename: name, figureimg: img, impfeatures: features },
     };
 }
 
-export function selectFeature(id, fid) {
+export function selectFeature(id, fid, fname) {
     return {
         type: EditorTypes.SELECT_FEATURE,
-        payload: { figureid: id, featureid: fid },
+        payload: { figureid: id, featureid: fid, name: fname },
     };
 }
 

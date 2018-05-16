@@ -44,7 +44,12 @@ class FigureList extends React.Component {
         this.setState({ openFigureId });
         for(let i = 0; i < this.props.figureList.length; ++i) {
             if(this.props.figureList[i].id === openFigureId) {
-                this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].figurename, this.props.figureList[i].icon);
+                let impfeatlist = [];
+                this.props.figureList[i].features.forEach(feature => {
+                    if(feature.important)
+                        impfeatlist.push({ name: feature.featurename[0] });
+                });
+                this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].figurename, this.props.figureList[i].icon, impfeatlist);
                 break;
             }
         }
@@ -68,12 +73,12 @@ export default connect(
                     const action = renameFigure(id, name);
                     dispatch(action);
                 },
-                onOpenFigure: (id, name, img) => {
-                    const action = openFigure(id, name, img);
+                onOpenFigure: (id, name, img, impfeatures) => {
+                    const action = openFigure(id, name, img, impfeatures);
                     dispatch(action);
                 },
-                onSelectFeature: (id, fid) => {
-                    const action = selectFeature(id, fid);
+                onSelectFeature: (id, fid, fname) => {
+                    const action = selectFeature(id, fid, fname);
                     dispatch(action);
                 },
                 onDeselectFeature: (id, fid) => {
