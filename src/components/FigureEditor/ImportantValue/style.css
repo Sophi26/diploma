@@ -1,4 +1,18 @@
 .imp-feature-item p {
     margin: 0;
     padding: 0;
+    font-size: 14pt;
+    float: left;
+}
+
+#select-value {
+    float: right;
+    width: 155px;
+    height: 30px;
+    font-size: 13pt;
+    cursor: pointer;
+}
+
+#select-value option {
+    cursor: pointer;
 }

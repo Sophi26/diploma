@@ -5,7 +5,8 @@
 }
 
 #important-list li {
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
+    clear: both;
 }
 
 #important-list li:first-child {

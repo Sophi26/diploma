@@ -93,7 +93,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 figures: state.figures.filter(figure => figure.id !== action.payload),
-                figureinfo: state.figureinfo.id !== action.payload ? state.figureinfo : {},
+                figureinfo: state.figureinfo.id !== action.payload ? state.figureinfo : { impfeatures: [] },
                 figureimg: state.figureimg.id !== action.payload ? state.figureimg : {},
             }
 
@@ -105,13 +105,7 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.SELECT_FEATURE:
-            let val = [];
-            state.features.forEach(feature => {
-                if (feature.id[0] === action.payload.featureid) {
-                    val = feature.valuename;
-                }
-            });
-            const newFeat = { name: action.payload.name, values: val };
+            const newFeat = { id: action.payload.featureid, name: action.payload.name, values: action.payload.values };
             return {
                 ...state,
                 figures: state.figures.map(figure => {

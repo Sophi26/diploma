@@ -28,10 +28,10 @@ export function openFigure(id, name, img, features) {
     };
 }
 
-export function selectFeature(id, fid, fname) {
+export function selectFeature(id, fid, fname, fvalues) {
     return {
         type: EditorTypes.SELECT_FEATURE,
-        payload: { figureid: id, featureid: fid, name: fname },
+        payload: { figureid: id, featureid: fid, name: fname, values: fvalues },
     };
 }
 

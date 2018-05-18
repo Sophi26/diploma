@@ -2,6 +2,7 @@
     margin: 0;
     vertical-align: middle;
     float: left;
+    cursor: pointer;
 }
 
 .feature-li p {

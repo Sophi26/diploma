@@ -32,7 +32,7 @@ class ImportantFeature extends React.Component {
         this.setState({
             isSelect: true,
         });
-        this.props.actions.onSelectFeature(this.props.figId, this.props.feature.id[0], this.props.feature.featurename[0]);
+        this.props.actions.onSelectFeature(this.props.figId, this.props.feature.id[0], this.props.feature.featurename[0], this.props.feature.valuename);
     }
 
     deselectFeature() {
