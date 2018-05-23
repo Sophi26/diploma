@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<concepts>
+  <conceptitem>
+    <id>1</id>
+    <conceptname>Бат</conceptname>
+    <value>Квадрат</value>
+    <value>Красный</value>
+  </conceptitem>
+  <conceptitem>
+    <id>2</id>
+    <conceptname>Дек</conceptname>
+    <value>Синий</value>
+    <value>4</value>
+  </conceptitem>
+</concepts>

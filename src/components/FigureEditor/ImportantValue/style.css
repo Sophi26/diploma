@@ -5,7 +5,7 @@
     float: left;
 }
 
-#select-value {
+.select-value {
     float: right;
     width: 155px;
     height: 30px;
@@ -13,6 +13,6 @@
     cursor: pointer;
 }
 
-#select-value option {
+.select-value option {
     cursor: pointer;
 }

@@ -118,6 +118,16 @@ app.get(
         res.send(featureList.features.featureitem);
     });
 
+app.get(
+    "/api/concepts",
+    (req, res) => {
+
+        const xmlFile = Path.join(__dirname, 'library', 'concepts.xml');
+        const data = fs.readFileSync(xmlFile, "utf8");
+        const concepts = xmlParser(data);
+        res.send(concepts.concepts.conceptitem);
+    });
+
 /////EDIT EXPERIMENT!!!\\\\\
 
 /////FEATURE EDITOR!!!\\\\\

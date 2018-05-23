@@ -12,11 +12,10 @@ class ImportantValue extends React.Component {
             return <option value={key}>{value}</option>;
         });   
 
-        console.log(this.props.feature);
         return (
             <div className="imp-feature-item">
                 <p>{this.props.feature === undefined ? "" : this.props.feature.name}</p>
-                <select name="imp-value" id="select-value">
+                <select name="imp-value" className="select-value">
                     {options}
                 </select>
             </div>
