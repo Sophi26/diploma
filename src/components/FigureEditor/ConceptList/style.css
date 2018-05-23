@@ -1,0 +1,39 @@
+#concept-ul {
+    margin: 15px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+#concept-ul li {
+    padding: 10px 0 0 0;
+    line-height: 21px;
+}
+
+#concept-ul li:first-child {
+    padding: 0;
+}
+
+#concept-ul li svg {
+    margin: 0;
+    vertical-align: middle;
+    float: left;
+    cursor: pointer;
+}
+
+#concept-ul li p {
+    margin: 0 0 0 30px;
+    font-size: 14pt;
+}
+
+#concept-ul li input {
+    margin: 10px 0 0 30px;
+    width: 120px;
+    padding: 1px 0 1px 5px;
+    color: rgb(3, 3, 33);
+    background-color: #FFFFFF;
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border: rgba(3, 3, 33, .5) .5px solid;
+    border-radius: 2px;
+}

@@ -77,8 +77,8 @@ export default connect(
                     const action = openFigure(id, name, img, impfeatures);
                     dispatch(action);
                 },
-                onSelectFeature: (id, fid, fname) => {
-                    const action = selectFeature(id, fid, fname);
+                onSelectFeature: (id, fid, fname, fvalues) => {
+                    const action = selectFeature(id, fid, fname, fvalues);
                     dispatch(action);
                 },
                 onDeselectFeature: (id, fid) => {

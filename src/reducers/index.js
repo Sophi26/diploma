@@ -128,6 +128,7 @@ export default function featureList(state, action = {}) {
                         })
                     };
                 }),
+                figureinfo: state.figureinfo.id !== action.payload.figureid ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.filter(feature => feature.id !== action.payload.featureid), },
             }
 
         default:
