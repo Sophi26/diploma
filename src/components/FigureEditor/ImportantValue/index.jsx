@@ -15,11 +15,19 @@ class ImportantValue extends React.Component {
         return (
             <div className="imp-feature-item">
                 <p>{this.props.feature === undefined ? "" : this.props.feature.name}</p>
-                <select name="imp-value" className="select-value">
+                <select name="imp-value" className="select-value" onChange={this.selValue.bind(this)}>
                     {options}
                 </select>
             </div>
         );
+    }
+
+    selValue(e) {
+        this.props.actions.onSelectValue(this.props.feature.id, e.target.options[e.target.selectedIndex].text);
+        /*let tmp = this.props.feature.values[0];
+        this.props.feature.values[0] = this.props.feature.values[e.target.selectedIndex];
+        this.props.feature.values[e.target.selectedIndex] = 
+        e.target.options[e.target.selectedIndex];*/
     }
 
 }

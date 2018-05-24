@@ -48,3 +48,17 @@ export function onlyImportantFeatures(features) {
         payload: features,
     };
 }
+
+export function conceptOptions(concepts) {
+    return {
+        type: EditorTypes.CONCEPT_OPTIONS,
+        payload: concepts,
+    };
+}
+
+export function selectValue(featureid, value) {
+    return {
+        type: EditorTypes.SELECT_VALUE,
+        payload: { id: featureid, value: value },
+    };
+}

@@ -105,7 +105,7 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.SELECT_FEATURE:
-            const newFeat = { id: action.payload.featureid, name: action.payload.name, values: action.payload.values };
+            const newFeat = { id: action.payload.featureid, name: action.payload.name, values: action.payload.values, selvalue: action.payload.values[0] };
             return {
                 ...state,
                 figures: state.figures.map(figure => {
@@ -129,6 +129,18 @@ export default function featureList(state, action = {}) {
                     };
                 }),
                 figureinfo: state.figureinfo.id !== action.payload.figureid ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.filter(feature => feature.id !== action.payload.featureid), },
+            }
+
+        case FigureTypes.CONCEPT_OPTIONS:
+            return {
+                ...state,
+                figureinfo: Object.assign(state.figureinfo, { concepts: action.payload }),
+            }
+
+        case FigureTypes.SELECT_VALUE:
+            return {
+                ...state,
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => feature.id === action.payload.id ? {...feature, selvalue: action.payload.value } : feature) },
             }
 
         default:
