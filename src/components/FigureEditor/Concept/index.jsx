@@ -13,7 +13,7 @@ class Concept extends React.Component {
     
         return(
             <div>
-                {selectOther}
+                {this.props.isSelect ? selectOther : notSelectOther}
                 <p>{this.props.concept.conceptname}</p>
             </div>
         );

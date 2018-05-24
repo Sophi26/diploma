@@ -71,7 +71,8 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.ADD_FIGURE:
-            const allFeatures = state.features.map(feature => {
+            const tmp_feat = state.features.slice();
+            const allFeatures = tmp_feat.map(feature => {
                 return {...feature, important: false };
             });
             const new_figure = Object.assign(action.payload, { features: allFeatures });
@@ -138,9 +139,36 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.SELECT_VALUE:
+            let val = [];
+            for (let i = 0; i < state.figures.length; ++i) {
+                if (state.figures[i].id === action.payload.figId) {
+                    for (let j = 0; j < state.figures[i].features.length; ++j) {
+                        if (state.figures[i].features[j].id[0] === action.payload.id) {
+                            val = state.figures[i].features[j].valuename.slice();
+                            for (let k = 0; k < val.length; ++k) {
+                                if (val[k] === action.payload.value) {
+                                    let tmp = val[0];
+                                    val[0] = val[k];
+                                    val[k] = tmp;
+                                    console.log(val);
+                                    console.log(state.figures[i].features[j].valuename);
+                                    console.log(state.features);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return {
                 ...state,
-                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => feature.id === action.payload.id ? {...feature, selvalue: action.payload.value } : feature) },
+                figures: state.figures.map(figure => {
+                    return figure.id !== action.payload.figId ? figure : {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: val };
+                        })
+                    };
+                }),
+                figureinfo: state.figureinfo.id !== action.payload.figId ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => feature.id === action.payload.id ? {...feature, selvalue: action.payload.value } : feature) },
             }
 
         default:

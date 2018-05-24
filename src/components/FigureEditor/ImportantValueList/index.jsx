@@ -11,7 +11,7 @@ class ImportantValueList extends React.Component {
 
         const elements = this.props.features.map((feature, key) => {
             return <li key={key}>
-                        <ImportantValue feature={feature} actions={this.props.actions} />
+                        <ImportantValue figId={this.props.figId} feature={feature} actions={this.props.actions} />
                     </li>;
         });
     

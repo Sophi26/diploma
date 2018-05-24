@@ -47,7 +47,7 @@ class FigureList extends React.Component {
                 let impfeatlist = [];
                 this.props.figureList[i].features.forEach(feature => {
                     if(feature.important)
-                        impfeatlist.push({ id: feature.id[0], name: feature.featurename[0], values: feature.valuename });
+                        impfeatlist.push({ id: feature.id[0], name: feature.featurename[0], values: feature.valuename, selvalue: feature.valuename[0] });
                 });
                 this.props.actions.onOpenFigure(openFigureId, this.props.figureList[i].figurename, this.props.figureList[i].icon, impfeatlist);
                 break;

@@ -16,7 +16,6 @@ class FigureInfo extends React.Component {
         let concept = null;
         if(this.props.figInfo.impfeatures[0] !== undefined) {
 
-            console.log(this.props.figInfo.impfeatures);
             let conceptsArray = [];
             $.ajax({
                 url: "/api/concepts",
@@ -50,7 +49,7 @@ class FigureInfo extends React.Component {
         return(
             <div id="fig-info">
                 <h2>{this.props.figInfo.figurename}</h2>
-                <ImportantValueList features={this.props.figInfo.impfeatures} actions={this.props.actions} />
+                <ImportantValueList figId={this.props.figInfo.id} features={this.props.figInfo.impfeatures} actions={this.props.actions} />
                 {concept}
             </div>
         );
@@ -70,8 +69,8 @@ export default connect(
                     const action = conceptOptions(concepts);
                     dispatch(action);
                 },
-                onSelectValue: (id, value) => {
-                    const action = selectValue(id, value);
+                onSelectValue: (figId, id, value) => {
+                    const action = selectValue(figId, id, value);
                     dispatch(action);
                 },
             }

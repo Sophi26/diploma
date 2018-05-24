@@ -56,9 +56,9 @@ export function conceptOptions(concepts) {
     };
 }
 
-export function selectValue(featureid, value) {
+export function selectValue(figureId, featureid, value) {
     return {
         type: EditorTypes.SELECT_VALUE,
-        payload: { id: featureid, value: value },
+        payload: { figId: figureId, id: featureid, value: value },
     };
 }
