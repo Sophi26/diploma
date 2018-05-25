@@ -1,0 +1,36 @@
+.c-item a {
+    margin: 0 0 0 8px;
+    padding: 0;
+    color: rgb(3, 3, 33);
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+.c-item a.active-conc {
+    color: #1492E6;
+}
+
+.c-item a:hover {
+    color: #1492E6;
+}
+
+.conc {
+    margin: 0 0 0 -5px;
+    float: left;
+}
+
+.conc svg {
+    margin: 0 0 2px 5px;
+    vertical-align: middle;
+}
+
+.conc svg:first-child {
+    margin-left: 0;
+    cursor: pointer;
+}
+
+#v-li {
+    margin: 0 0 0 50px;
+}

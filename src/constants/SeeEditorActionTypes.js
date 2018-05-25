@@ -1,0 +1,1 @@
+export const OPEN_CONCEPT = 'OPEN_CONCEPT';

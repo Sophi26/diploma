@@ -1,0 +1,32 @@
+#c-list {
+    margin: 30px 20px 0 20px;
+    padding: 0;
+    list-style: none;
+}
+
+#c-list li {
+    padding: 10px 0 0 0;
+    clear: both;
+}
+
+#c-list li:first-child {
+    padding: 0;
+}
+
+#c-list a {
+    margin: 0 0 0 8px;
+    padding: 0;
+    color: rgb(3, 3, 33);
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+#c-list a.active-conc {
+    color: #1492E6;
+}
+
+#c-list a:hover {
+    color: #1492E6;
+}

@@ -5,6 +5,8 @@ import createExperiment from './createExperiment';
 import switchingTabs from './switchingTabs';
 import featureEditor from './featureEditor';
 import figureEditorApi from './figureEditorApi';
+import seeMaterialApi from './seeMaterialApi';
+import poleApi from './poleApi';
 import hypothesis from './hypothesis';
 
 function main() {
@@ -25,6 +27,7 @@ function main() {
             const initialState = {
                 figures: [],
                 selconcept: [],
+                seeconceptshapes: { shapes: [] },
                 figureinfo: { impfeatures: [], concepts: [] },
                 figureimg: {},
                 features: result,
@@ -35,6 +38,8 @@ function main() {
             switchingTabs();
             featureEditor(store);
             figureEditorApi(store);
+            seeMaterialApi(store);
+            poleApi(store);
             hypothesis();
         })
         .catch();

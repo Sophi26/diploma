@@ -1,5 +1,6 @@
 import * as EditorTypes from '../constants/FeatureEditorActionTypes';
 import * as FigureTypes from '../constants/FigureEditorActionTypes';
+import * as SeeTypes from '../constants/SeeEditorActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -10,6 +11,9 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 features: state.features.concat(new_feature),
+                figures: state.figures.map(figure => {
+                    return {...figure, features: figure.features.concat(new_feature), };
+                }),
             }
 
         case EditorTypes.DELETE_FEATURE:
@@ -17,6 +21,9 @@ export default function featureList(state, action = {}) {
                 ...state,
                 features: state.features.filter(feature => feature.id[0] !== action.payload[0]),
                 values: state.values.id[0] === action.payload[0] ? { id: [], valuename: [] } : state.values,
+                figures: state.figures.map(figure => {
+                    return {...figure, features: figure.features.filter(feature => feature.id[0] !== action.payload[0]), };
+                }),
             }
 
         case EditorTypes.RENAME_FEATURE:
@@ -24,7 +31,14 @@ export default function featureList(state, action = {}) {
                 ...state,
                 features: state.features.map(feature => {
                     return feature.id[0] !== action.payload.id[0] ? feature : {...feature, featurename: action.payload.featurename };
-                })
+                }),
+                figures: state.figures.map(figure => {
+                    return {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.id[0] ? feature : {...feature, featurename: action.payload.featurename };
+                        }),
+                    };
+                }),
             }
 
         case EditorTypes.OPEN_FEATURE:
@@ -44,6 +58,13 @@ export default function featureList(state, action = {}) {
                     ...state.values,
                     valuename: state.values.valuename.concat(new_value),
                 },
+                figures: state.figures.map(figure => {
+                    return {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.featurename[0] !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                        }),
+                    };
+                }),
             }
 
         case EditorTypes.DELETE_VALUE:
@@ -56,6 +77,13 @@ export default function featureList(state, action = {}) {
                     ...state.values,
                     valuename: state.values.valuename.filter(value => value !== action.payload.valuename),
                 },
+                figures: state.figures.map(figure => {
+                    return {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                        }),
+                    };
+                }),
             }
 
         case EditorTypes.RENAME_VALUE:
@@ -68,6 +96,13 @@ export default function featureList(state, action = {}) {
                     ...state.values,
                     valuename: state.values.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }),
                 },
+                figures: state.figures.map(figure => {
+                    return {...figure,
+                        features: figure.features.map(feature => {
+                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                        }),
+                    };
+                }),
             }
 
         case FigureTypes.ADD_FIGURE:
@@ -175,6 +210,12 @@ export default function featureList(state, action = {}) {
                     return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
                 }),
                 selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
+            }
+
+        case SeeTypes.OPEN_CONCEPT:
+            return {
+                ...state,
+                seeconceptshapes: action.payload,
             }
 
         default:

@@ -666,7 +666,6 @@ input.cmn-toggle-round-flat:checked+label:after {
     font-size: 18pt;
     font-weight: normal;
     letter-spacing: 0.1em;
-    float: left;
 }
 
 .switch {
