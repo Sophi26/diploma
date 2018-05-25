@@ -150,9 +150,6 @@ export default function featureList(state, action = {}) {
                                     let tmp = val[0];
                                     val[0] = val[k];
                                     val[k] = tmp;
-                                    console.log(val);
-                                    console.log(state.figures[i].features[j].valuename);
-                                    console.log(state.features);
                                 }
                             }
                         }
@@ -168,7 +165,16 @@ export default function featureList(state, action = {}) {
                         })
                     };
                 }),
-                figureinfo: state.figureinfo.id !== action.payload.figId ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => feature.id === action.payload.id ? {...feature, selvalue: action.payload.value } : feature) },
+                figureinfo: state.figureinfo.id !== action.payload.figId ? state.figureinfo : {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => feature.id === action.payload.id ? {...feature, values: val, selvalue: action.payload.value } : feature) },
+            }
+
+        case FigureTypes.SELECT_CONCEPT:
+            return {
+                ...state,
+                figures: state.figures.map(figure => {
+                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
+                }),
+                selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
             }
 
         default:

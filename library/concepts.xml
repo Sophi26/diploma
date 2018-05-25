@@ -9,7 +9,13 @@
   <conceptitem>
     <id>2</id>
     <conceptname>Дек</conceptname>
-    <value>Синий</value>
-    <value>4</value>
+    <value>Треугольник</value>
+    <value>Красный</value>
+  </conceptitem>
+  <conceptitem>
+    <id>3</id>
+    <conceptname>Пак</conceptname>
+    <value>Круг</value>
+    <value>Красный</value>
   </conceptitem>
 </concepts>

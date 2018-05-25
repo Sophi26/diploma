@@ -62,3 +62,10 @@ export function selectValue(figureId, featureid, value) {
         payload: { figId: figureId, id: featureid, value: value },
     };
 }
+
+export function selectConcept(figId, concept) {
+    return {
+        type: EditorTypes.SELECT_CONCEPT,
+        payload: { figId: figId, concept: concept },
+    };
+}

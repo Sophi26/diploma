@@ -24,6 +24,7 @@ function main() {
 
             const initialState = {
                 figures: [],
+                selconcept: [],
                 figureinfo: { impfeatures: [], concepts: [] },
                 figureimg: {},
                 features: result,

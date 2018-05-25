@@ -23,11 +23,8 @@ class ImportantValue extends React.Component {
     }
 
     selValue(e) {
-        let tmp = e.target.options[e.target.selectedIndex].text;
-        e.target.options[e.target.selectedIndex].text = e.target.options[0].text;
-        e.target.options[0].text = tmp;
+        this.props.actions.onSelectValue(this.props.figId, this.props.feature.id, e.target.options[e.target.selectedIndex].text);
         e.target.options[0].selected = true;
-        this.props.actions.onSelectValue(this.props.figId, this.props.feature.id, e.target.options[0].text);
     }
 
 }

@@ -28,4 +28,8 @@
     <valuename>4</valuename>
     <valuename>5</valuename>
   </featureitem>
+  <featureitem>
+    <id>5</id>
+    <featurename>Фон</featurename>
+  </featureitem>
 </features>

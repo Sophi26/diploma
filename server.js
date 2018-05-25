@@ -152,6 +152,27 @@ app.post(
         res.send(newFeature);
     });
 
+app.post(
+    "/api/concepts",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        let conceptName = req.body.conceptname;
+        let valueList = req.body.value
+        let newConcept = { id: [], conceptname: [conceptName], value: valueList };
+        const xmlFile = Path.join(__dirname, 'library', 'concepts.xml');
+        const data = fs.readFileSync(xmlFile, "utf8");
+        const result = xmlParser(data);
+        let id = Math.max.apply(Math, result.concepts.conceptitem.map((o) => { return o.id[0]; }));
+        newConcept.id[0] = id + 1;
+        result.concepts.conceptitem.push(newConcept);
+        const xml = builder.buildObject(result);
+        fs.writeFileSync(xmlFile, xml);
+        res.send(newConcept);
+    });
+
 app.delete(
     "/api/attributes/:id",
     (req, res) => {
