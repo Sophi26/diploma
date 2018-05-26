@@ -9,7 +9,7 @@ class ConceptValueList extends React.Component {
     render() {
 
         const valueElements = this.props.values.map((value, key) => {
-            return <li key={key}>{value}</li>;
+            return <li key={key}><p>{value}</p></li>;
         });
     
         return(

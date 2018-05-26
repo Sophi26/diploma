@@ -10,6 +10,10 @@
     margin-left: 30px;
 }
 
+.conc-shape-flex-block:first-child {
+    margin: 0;
+}
+
 #c-shape h2 {
     margin: 20px 20px 0 20px;
     padding: 0;

@@ -1,14 +1,19 @@
 #important-v-list {
     margin: 0;
-    padding: 40px 0 0 0;
+    padding: 0;
     list-style: none;
 }
 
 #important-v-list li {
     padding: 10px 0 0 0;
-    line-height: 21px;
 }
 
 #important-v-list li:first-child {
     padding: 0;
+}
+
+#important-v-list p {
+    margin: 0;
+    padding: 0;
+    font-size: 14pt;
 }

@@ -9,3 +9,7 @@
 .shape-flex-block {
     margin-left: 30px;
 }
+
+.shape-flex-block:first-child {
+    margin: 0;
+}

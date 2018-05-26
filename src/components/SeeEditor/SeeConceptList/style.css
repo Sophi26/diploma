@@ -1,7 +1,10 @@
 #c-list {
-    margin: 30px 20px 0 20px;
+    margin: 0;
     padding: 0;
     list-style: none;
+    clear: both;
+    position: relative;
+    top: 20px;
 }
 
 #c-list li {
@@ -21,6 +24,10 @@
     font-weight: normal;
     letter-spacing: 0.1em;
     cursor: pointer;
+}
+
+#c-list li:last-child a {
+    margin: 0;
 }
 
 #c-list a.active-conc {
