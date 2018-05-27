@@ -1,4 +1,5 @@
 #all-shapes-ul-flex-container {
+    margin: 0 20px 0 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -7,16 +8,12 @@
     top: 30px;
 }
 
-.draggable {
+.shape-flex-box {
     margin-bottom: 30px;
 }
 
-.draggable svg text {
+.shape-flex-box svg text {
     position: absolute;
     fill: rgb(3, 3, 33);
     font-size: 18pt;
-}
-
-.heading path:hover {
-    fill: none;
 }
