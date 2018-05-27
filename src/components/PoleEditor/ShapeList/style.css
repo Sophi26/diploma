@@ -1,13 +1,18 @@
 #all-shapes-ul-flex-container {
     display: flex;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
     flex-direction: column;
     flex-wrap: wrap;
     clear: both;
+    position: relative;
+    top: 30px;
 }
 
 .shape-li-flex-block {
-    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.shape-li-flex-block svg text {
+    position: absolute;
+    fill: rgb(3, 3, 33);
+    font-size: 18pt;
 }

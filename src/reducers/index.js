@@ -1,6 +1,7 @@
 import * as EditorTypes from '../constants/FeatureEditorActionTypes';
 import * as FigureTypes from '../constants/FigureEditorActionTypes';
 import * as SeeTypes from '../constants/SeeEditorActionTypes';
+import * as PoleTypes from '../constants/PoleEditorAtionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -216,6 +217,12 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 seeconceptshapes: action.payload,
+            }
+
+        case PoleTypes.CREATE_FIELD:
+            return {
+                ...state,
+                field: Object.assign(state.field, { width: action.payload.width, height: action.payload.height }),
             }
 
         default:

@@ -432,6 +432,10 @@ h1 {
     float: left;
 }
 
+#sh-li {
+    clear: both;
+}
+
 #links {
     margin-top: 3px;
     float: right;
