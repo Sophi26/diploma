@@ -11,7 +11,7 @@ class FlexAllShapes extends React.Component {
 
         const figElements = this.props.figList.map((figure, key) => { 
             return <div className="shape-flex-block" key={key}>
-                        <svg width="100px" height="100px" viewBox={figure.icon.attrs.viewBox}>
+                        <svg width={figure.icon.attrs.width} height={figure.icon.attrs.height} viewBox={figure.icon.attrs.viewBox}>
                             <path fill={figure.icon.childs[0].attrs.fill} d={figure.icon.childs[0].attrs.d} />
                         </svg>
                     </div>;
