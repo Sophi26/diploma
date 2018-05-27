@@ -32,7 +32,7 @@ function main() {
                 figureimg: {},
                 features: result,
                 values: { id: result[0].id, valuename: result[0].valuename },
-                field: { placement: [] },
+                field: { width: 0, height: 0, placement: [] },
             };
             const store = createStore(reducer, initialState);
 

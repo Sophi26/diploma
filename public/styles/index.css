@@ -436,6 +436,13 @@ h1 {
     clear: both;
 }
 
+#f-table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 745px;
+}
+
 #links {
     margin-top: 3px;
     float: right;
