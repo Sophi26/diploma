@@ -11,10 +11,10 @@ class FieldTable extends React.Component {
 
         const table = [];
 
-        for(let i = 0; i < this.props.fieldTab.width; ++i) {
+        for(let i = 0; i < this.props.fieldTab.height; ++i) {
             let columns = [];
-            for(let j = 0; j < this.props.fieldTab.height; ++j) {
-                const column = <td></td>;
+            for(let j = 0; j < this.props.fieldTab.width; ++j) {
+                const column = <td className="droppable"></td>;
                 columns.push(column);
             }
             const row = <tr>{columns}</tr>;

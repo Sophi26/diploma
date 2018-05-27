@@ -7,12 +7,16 @@
     top: 30px;
 }
 
-.shape-li-flex-block {
+.draggable {
     margin-bottom: 30px;
 }
 
-.shape-li-flex-block svg text {
+.draggable svg text {
     position: absolute;
     fill: rgb(3, 3, 33);
     font-size: 18pt;
+}
+
+.heading path:hover {
+    fill: none;
 }
