@@ -7,6 +7,7 @@ import featureEditor from './featureEditor';
 import figureEditorApi from './figureEditorApi';
 import seeMaterialApi from './seeMaterialApi';
 import poleApi from './poleApi';
+import openingApi from './openingApi';
 import hypothesis from './hypothesis';
 
 function main() {
@@ -33,6 +34,7 @@ function main() {
                 features: result,
                 values: { id: result[0].id, valuename: result[0].valuename },
                 field: { width: 0, height: 0, placement: [] },
+                opening: { sequence: [] },
             };
             const store = createStore(reducer, initialState);
 
@@ -41,6 +43,7 @@ function main() {
             figureEditorApi(store);
             seeMaterialApi(store);
             poleApi(store);
+            openingApi(store);
             hypothesis();
         })
         .catch();

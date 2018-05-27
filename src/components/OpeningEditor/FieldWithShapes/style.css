@@ -1,0 +1,21 @@
+#f-s-tab {
+    margin: 0;
+    padding: 0;
+    border: rgba(3, 3, 33, .5) .5px solid;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    left: 43%;
+    top: 228px
+}
+
+#f-s-tab th {
+    border: rgba(3, 3, 33, .5) .5px solid;
+}
+
+#f-s-tab td {
+    border: rgba(3, 3, 33, .5) .5px solid;
+    width: 100px;
+    height: 100px;
+}

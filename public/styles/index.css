@@ -443,6 +443,14 @@ h1 {
     height: 745px;
 }
 
+
+#s-table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 604px;
+}
+
 #links {
     margin-top: 3px;
     float: right;
@@ -802,7 +810,6 @@ input#cmn-toggle-round-flat:checked+label:after {
     font-size: 17px;
     font-weight: normal;
     letter-spacing: 0.1em;
-    clear: both;
 }
 
 input#cmn-toggle-round-flat-1+label {

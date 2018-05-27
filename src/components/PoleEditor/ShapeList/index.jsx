@@ -124,11 +124,14 @@ class ShapeList extends React.Component {
     endDrag(e) {
 
         console.log("END!!!");
+        console.log(this.state);
 
         if(this.state.dragObject.avatar !== undefined) {
 
+            console.log("TABLE!!!");
             this.state.dragObject.avatar.hidden = true;
             let elem = document.elementFromPoint(e.clientX, e.clientY);
+            console.log(elem);
             this.state.dragObject.avatar.hidden = false;
         
             if (elem == null) return null;

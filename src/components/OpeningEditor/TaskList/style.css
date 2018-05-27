@@ -1,0 +1,30 @@
+#task-l {
+    margin: 0 20px 0 20px;
+    padding: 0;
+    list-style: none;
+    clear: both;
+    position: relative;
+    top: 20px;
+}
+
+#task-l li {
+    padding: 10px 0 0 0;
+    clear: both;
+    line-height: 21px;
+}
+
+#task-l li:first-child {
+    padding: 0;
+}
+
+#task-l li svg {
+    margin: 0;
+    vertical-align: middle;
+    float: left;
+    cursor: pointer;
+}
+
+#task-l li p {
+    margin: 0 0 0 30px;
+    font-size: 12pt;
+}
