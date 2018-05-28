@@ -229,8 +229,8 @@ export default function featureList(state, action = {}) {
         case PoleTypes.DRAG_N_DROP:
             return {
                 ...state,
-                dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.id),
-                dropshapelist: state.dragshapelist.concat(action.payload),
+                dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.shape.id),
+                dropshapelist: state.dropshapelist.concat(action.payload),
             }
 
         default:

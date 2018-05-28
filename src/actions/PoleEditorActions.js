@@ -7,9 +7,9 @@ export function createField(w, h) {
     };
 }
 
-export function shapePlace(shape) {
+export function shapePlace(x, y, shape) {
     return {
         type: EditorTypes.DRAG_N_DROP,
-        payload: shape,
+        payload: {x: x, y: y, shape: shape},
     };
 }
