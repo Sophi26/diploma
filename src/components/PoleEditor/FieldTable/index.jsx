@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 
 import './style.css';
+import { shapePlace } from '../../../actions/PoleEditorActions';
 
 class FieldTable extends React.Component {
 
@@ -14,10 +14,10 @@ class FieldTable extends React.Component {
         for(let i = 0; i < this.props.fieldTab.height; ++i) {
             let columns = [];
             for(let j = 0; j < this.props.fieldTab.width; ++j) {
-                const column = <td className="droppable"></td>;
+                const column = <td key={j} className="droppable" onDragOver={e => this.onDragOver(e)} onDrop={e => this.onDrop(e)}></td>;
                 columns.push(column);
             }
-            const row = <tr>{columns}</tr>;
+            const row = <tr key={i}>{columns}</tr>;
             table.push(row);
         }
 
@@ -27,18 +27,33 @@ class FieldTable extends React.Component {
             </table>
         );
     }
+
+    onDragOver(e) {
+
+        e.preventDefault();
+    }
+
+    onDrop(e) {
+
+        let fig = e.dataTransfer.getData("figure");
+        this.props.actions.onShapePlace(JSON.parse(fig));
+    }
 }
 
 export default connect(
     state => {
         return {
             fieldTab: state.field,
+            shapes: state.dropshapelist,
         };
     },
     dispatch => {
         return {
             actions: {
-                
+                onShapePlace: (fig) => {
+                    const action = shapePlace(fig);
+                    dispatch(action);
+                },
             }
         }
     }

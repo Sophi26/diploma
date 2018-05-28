@@ -8,11 +8,12 @@
     top: 30px;
 }
 
-.shape-flex-box {
+.draggable {
+    margin-right: auto;
     margin-bottom: 30px;
 }
 
-.shape-flex-box svg text {
+.draggable text {
     position: absolute;
     fill: rgb(3, 3, 33);
     font-size: 18pt;

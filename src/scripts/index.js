@@ -35,6 +35,8 @@ function main() {
                 values: { id: result[0].id, valuename: result[0].valuename },
                 field: { width: 0, height: 0, placement: [] },
                 opening: { sequence: [] },
+                dragshapelist: [],
+                dropshapelist: [],
             };
             const store = createStore(reducer, initialState);
 

@@ -14,7 +14,7 @@ export default function featureList(state, action = {}) {
                 features: state.features.concat(new_feature),
                 figures: state.figures.map(figure => {
                     return {...figure, features: figure.features.concat(new_feature), };
-                }),
+                }), 
             }
 
         case EditorTypes.DELETE_FEATURE:
@@ -115,6 +115,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 figures: state.figures.concat(new_figure),
+                dragshapelist: state.dragshapelist.concat(new_figure),
             }
 
         case FigureTypes.RENAME_FIGURE:
@@ -223,6 +224,13 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 field: {...state.field, width: action.payload.width, height: action.payload.height },
+            }
+
+        case PoleTypes.DRAG_N_DROP:
+            return {
+                ...state,
+                dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.id),
+                dropshapelist: state.dragshapelist.concat(action.payload),
             }
 
         default:
