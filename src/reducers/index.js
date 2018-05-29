@@ -247,8 +247,16 @@ export default function featureList(state, action = {}) {
         case OpeningTypes.SELECT_EXPERIMENT_CONCEPT:
             return {
                 ...state,
-                opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload},
+                opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload, sequence: []},
+                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false})}),
             }
+
+        case OpeningTypes.DRAG_N_DROP_OPENING:
+            return {
+                ...state,
+                opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload)},
+                
+            }            
 
         default:
             return state;

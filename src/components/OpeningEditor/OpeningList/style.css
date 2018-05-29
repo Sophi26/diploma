@@ -1,17 +1,19 @@
 #open-shapes-ul-flex-container {
-    margin: auto 20px auto 20px;
+    margin: 0 20px 0 20px;
     display: flex;
     flex-wrap: wrap;
+    clear: both;
+    position: relative;
+    top: 20px;
 }
 
 .open-cell {
     margin-left: 15px;
     width: 100px;
     height: 100px;
-    border: #1492E6 1px solid;
+    border: #1492E6 .2px solid;
     text-align: center;
     vertical-align: middle;
-    opacity: .6;
 }
 
 .open-cell:first-child {
