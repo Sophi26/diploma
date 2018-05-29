@@ -9,7 +9,6 @@ class FieldTable extends React.Component {
 
     render() {
 
-        console.log(this.props.shapes);
         const table = [];
 
         for(let i = 0; i < this.props.fieldTab.height; ++i) {

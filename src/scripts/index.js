@@ -37,6 +37,7 @@ function main() {
                 opening: { sequence: [] },
                 dragshapelist: [],
                 dropshapelist: [],
+                openingdragfieldshapes: [],
             };
             const store = createStore(reducer, initialState);
 

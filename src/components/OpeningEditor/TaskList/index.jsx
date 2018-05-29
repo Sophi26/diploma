@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import './style.css';
 import TaskConcept from '../TaskConcept';
+import { experimentConcept } from '../../../actions/OpeningEditorActions';
 
 class TaskList extends React.Component {
 
@@ -23,7 +24,7 @@ class TaskList extends React.Component {
             return <li key={key}>
                         <TaskConcept concept={concept}   
                                 isSelectConcept={this.state.selectId === concept.id[0]} 
-                                onTaskConceptClick={this.selectTaskConcept.bind(this, concept.id[0])} />
+                                onTaskConceptClick={this.selectTaskConcept.bind(this, concept.id[0], concept)} />
                     </li>;
         });
 
@@ -34,11 +35,10 @@ class TaskList extends React.Component {
         );
     }
 
-    selectTaskConcept(selectId) {
+    selectTaskConcept(selectId, concept) {
         
         this.setState({ selectId });
-
-        //this.props.actions.onOpenConcept(openConceptId, conceptname, sh);   
+        this.props.actions.onExperimentConcept(concept);   
     }
 }
 
@@ -51,7 +51,10 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                
+                onExperimentConcept: (concept) => {
+                    const action = experimentConcept(concept);
+                    dispatch(action);
+                },
             }
         }
     }

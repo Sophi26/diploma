@@ -1,0 +1,19 @@
+#open-shapes-ul-flex-container {
+    margin: auto 20px auto 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.open-cell {
+    margin-left: 15px;
+    width: 100px;
+    height: 100px;
+    border: #1492E6 1px solid;
+    text-align: center;
+    vertical-align: middle;
+    opacity: .6;
+}
+
+.open-cell:first-child {
+    margin-left: 0;
+}

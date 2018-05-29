@@ -2,6 +2,7 @@ import * as EditorTypes from '../constants/FeatureEditorActionTypes';
 import * as FigureTypes from '../constants/FigureEditorActionTypes';
 import * as SeeTypes from '../constants/SeeEditorActionTypes';
 import * as PoleTypes from '../constants/PoleEditorAtionTypes';
+import * as OpeningTypes from '../constants/OpeningEditorActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -217,6 +218,9 @@ export default function featureList(state, action = {}) {
                 dropshapelist: state.dropshapelist.map(figure => {
                     return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
                 }),
+                openingdragfieldshapes: state.openingdragfieldshapes.map(figure => {
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                }),
                 selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
             }
 
@@ -237,6 +241,13 @@ export default function featureList(state, action = {}) {
                 ...state,
                 dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.shape.id),
                 dropshapelist: state.dropshapelist.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
+                openingdragfieldshapes: state.openingdragfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
+            }
+
+        case OpeningTypes.SELECT_EXPERIMENT_CONCEPT:
+            return {
+                ...state,
+                opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload},
             }
 
         default:
