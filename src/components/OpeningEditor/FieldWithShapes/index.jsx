@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import './style.css';
+import { returnPlace } from '../../../actions/OpeningEditorActions';
 
 class FieldWithShapes extends React.Component {
 
@@ -21,7 +22,7 @@ class FieldWithShapes extends React.Component {
                         const view = this.props.shapes[k].shape.icon.attrs.viewBox.split(' ');
                         const x = Number(view[0]) + Number(view[2]) / 2;
                         const y = Number(view[1]) + Number(view[3]) / 2;
-                        svg = <div className="draggable-table" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
+                        svg = <div style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-table" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
                                 <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
                                     <path fill={this.props.shapes[k].shape.icon.childs[0].attrs.fill} d={this.props.shapes[k].shape.icon.childs[0].attrs.d} />
                                     <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.shapes[k].shape.concept !== undefined ? this.props.shapes[k].shape.concept : ''}</text>
@@ -31,7 +32,7 @@ class FieldWithShapes extends React.Component {
                     }
                 }
 
-                const column = <td key={j}>{svg}</td>;
+                const column = <td key={j} className="droppable" onDragOver={e => this.onDragOver(e)} onDrop={e => this.onDrop(e)}>{svg}</td>;
                 columns.push(column);
             }
             const row = <tr key={i}>{columns}</tr>;
@@ -49,6 +50,17 @@ class FieldWithShapes extends React.Component {
 
         e.dataTransfer.setData("figure", JSON.stringify(shape));
     }
+
+    onDragOver(e) {
+
+        e.preventDefault();
+    }
+
+    onDrop(e) {
+
+        let fig = e.dataTransfer.getData("figure");
+        this.props.actions.onReturnPlace(JSON.parse(fig));
+    }
 }
 
 export default connect(
@@ -61,7 +73,10 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                
+                onReturnPlace: (fig) => {
+                    const action = returnPlace(fig);
+                    dispatch(action);
+                },
             }
         }
     }

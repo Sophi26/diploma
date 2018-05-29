@@ -7,9 +7,16 @@ export function experimentConcept(concept) {
     };
 }
 
-export function openingPlace(id, shape) {
+export function openingPlace(shape) {
     return {
         type: EditorTypes.DRAG_N_DROP_OPENING,
-        payload: {id: id, shape: shape},
+        payload: shape,
+    };
+}
+
+export function returnPlace(shape) {
+    return {
+        type: EditorTypes.RETURN_SHAPE,
+        payload: shape,
     };
 }

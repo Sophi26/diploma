@@ -248,15 +248,22 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload, sequence: []},
-                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false})}),
+                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
             }
 
         case OpeningTypes.DRAG_N_DROP_OPENING:
             return {
                 ...state,
-                opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload)},
-                
-            }            
+                opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
+                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
+            }
+            
+        case OpeningTypes.RETURN_SHAPE:
+            return {
+                ...state,
+                opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id)},
+                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
+            }
 
         default:
             return state;
