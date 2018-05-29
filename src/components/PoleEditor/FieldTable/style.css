@@ -23,3 +23,9 @@
 #f-tab td svg {
     vertical-align: middle;
 }
+
+.draggable-table text {
+    position: absolute;
+    fill: rgb(3, 3, 33);
+    font-size: 14pt;
+}

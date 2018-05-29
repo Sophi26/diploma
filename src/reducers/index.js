@@ -211,6 +211,12 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
                 }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
+                }),
+                dropshapelist: state.dropshapelist.map(figure => {
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                }),
                 selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
             }
 
@@ -230,7 +236,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.shape.id),
-                dropshapelist: state.dropshapelist.concat(action.payload),
+                dropshapelist: state.dropshapelist.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
             }
 
         default:

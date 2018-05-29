@@ -24,4 +24,10 @@
     <value>Круг</value>
     <value>Красный</value>
   </conceptitem>
+  <conceptitem>
+    <id>5</id>
+    <conceptname>Зак</conceptname>
+    <value>Круг</value>
+    <value>Белый</value>
+  </conceptitem>
 </concepts>
