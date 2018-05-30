@@ -1,0 +1,15 @@
+#play-tab {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#play-tab td {
+    width: 100px;
+    height: 100px;
+}
+
+#play-tab td svg {
+    vertical-align: middle;
+}

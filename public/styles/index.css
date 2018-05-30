@@ -961,4 +961,5 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     position: absolute;
     left: 14%;
     top: 273px;
+    text-align: center;
 }

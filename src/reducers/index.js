@@ -221,6 +221,9 @@ export default function featureList(state, action = {}) {
                 openingdragfieldshapes: state.openingdragfieldshapes.map(figure => {
                     return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
                 }),
+                playfieldshapes: state.playfieldshapes.map(figure => {
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                }),
                 selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
             }
 
@@ -242,6 +245,7 @@ export default function featureList(state, action = {}) {
                 dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.shape.id),
                 dropshapelist: state.dropshapelist.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
                 openingdragfieldshapes: state.openingdragfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
+                playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
             }
 
         case OpeningTypes.SELECT_EXPERIMENT_CONCEPT:
@@ -249,6 +253,7 @@ export default function featureList(state, action = {}) {
                 ...state,
                 opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload, sequence: []},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
+                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
             }
 
         case OpeningTypes.DRAG_N_DROP_OPENING:

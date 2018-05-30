@@ -39,6 +39,7 @@ function main() {
                 dragshapelist: [],
                 dropshapelist: [],
                 openingdragfieldshapes: [],
+                playfieldshapes: [],
             };
             const store = createStore(reducer, initialState);
 
