@@ -259,8 +259,6 @@ export default function featureList(state, action = {}) {
             }
             
         case OpeningTypes.RETURN_SHAPE:
-            console.log("STATE!!!");
-            console.log(state.opening);
             return {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id)},

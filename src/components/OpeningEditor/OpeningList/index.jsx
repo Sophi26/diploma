@@ -12,8 +12,6 @@ class OpeningList extends React.Component {
 
         let openShapes = [];
         let id_block = -1;
-        console.log("OPENING!!!");
-        console.log(this.props.openingseq.sequence);
         for(let i = 0; i < this.props.fieldShapes.length; ++i) {              
             if(this.props.fieldShapes[i].shape.openconcept) {
 
@@ -36,8 +34,6 @@ class OpeningList extends React.Component {
                 openShapes.push(opencell);
             }
         }
-        console.log("SHAPES!!!");
-        console.log(openShapes);
 
         return(
             <div id="open-shapes-ul-flex-container">
@@ -59,8 +55,6 @@ class OpeningList extends React.Component {
 
     onDragStart(e, shape) {
 
-        console.log("DRAG!!!");
-        console.log(shape);
         e.dataTransfer.setData("figure", JSON.stringify(shape));
     }
 }

@@ -1,0 +1,8 @@
+#task-text p:first-child {
+    margin: 0;
+}
+
+#task-concept {
+    color: #1492E6;
+    display: inline-block;
+}

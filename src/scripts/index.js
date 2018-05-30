@@ -8,6 +8,7 @@ import figureEditorApi from './figureEditorApi';
 import seeMaterialApi from './seeMaterialApi';
 import poleApi from './poleApi';
 import openingApi from './openingApi';
+import playApi from './playApi';
 import hypothesis from './hypothesis';
 
 function main() {
@@ -47,6 +48,7 @@ function main() {
             seeMaterialApi(store);
             poleApi(store);
             openingApi(store);
+            playApi(store);
             hypothesis();
         })
         .catch();

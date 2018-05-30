@@ -943,3 +943,22 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     width: 35%;
     height: 339px;
 }
+
+#criterion {
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    height: 58px;
+    position: absolute;
+    left: 14%;
+    top: 195px;
+    text-align: center;
+}
+
+#grid {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 14%;
+    top: 273px;
+}
