@@ -30,4 +30,16 @@
     <value>Круг</value>
     <value>Белый</value>
   </conceptitem>
+  <conceptitem>
+    <id>6</id>
+    <conceptname>Кра</conceptname>
+    <value>Красный</value>
+    <value>Маленький</value>
+  </conceptitem>
+  <conceptitem>
+    <id>7</id>
+    <conceptname>Зод</conceptname>
+    <value>Квадрат</value>
+    <value>4</value>
+  </conceptitem>
 </concepts>

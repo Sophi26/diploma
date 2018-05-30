@@ -12,6 +12,8 @@ class OpeningList extends React.Component {
 
         let openShapes = [];
         let id_block = -1;
+        console.log("OPENING!!!");
+        console.log(this.props.openingseq.sequence);
         for(let i = 0; i < this.props.fieldShapes.length; ++i) {              
             if(this.props.fieldShapes[i].shape.openconcept) {
 
@@ -21,7 +23,8 @@ class OpeningList extends React.Component {
                     const view = this.props.openingseq.sequence[id_block].icon.attrs.viewBox.split(' ');
                     const x = Number(view[0]) + Number(view[2]) / 2;
                     const y = Number(view[1]) + Number(view[3]) / 2;
-                    svg = <div onDragStart={e => this.onDragStart(e, this.props.openingseq.sequence[id_block])} draggable>
+                    const fig = this.props.openingseq.sequence[id_block];
+                    svg = <div className="draggeble-item" onDragStart={e => this.onDragStart(e, fig)} draggable>
                             <svg width={this.props.openingseq.sequence[id_block].icon.attrs.width} height={this.props.openingseq.sequence[id_block].icon.attrs.height} viewBox={this.props.openingseq.sequence[id_block].icon.attrs.viewBox}>
                                 <path fill={this.props.openingseq.sequence[id_block].icon.childs[0].attrs.fill} d={this.props.openingseq.sequence[id_block].icon.childs[0].attrs.d} />
                                 <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.openingseq.sequence[id_block].concept !== undefined ? this.props.openingseq.sequence[id_block].concept : ''}</text>
@@ -33,6 +36,8 @@ class OpeningList extends React.Component {
                 openShapes.push(opencell);
             }
         }
+        console.log("SHAPES!!!");
+        console.log(openShapes);
 
         return(
             <div id="open-shapes-ul-flex-container">
@@ -54,6 +59,8 @@ class OpeningList extends React.Component {
 
     onDragStart(e, shape) {
 
+        console.log("DRAG!!!");
+        console.log(shape);
         e.dataTransfer.setData("figure", JSON.stringify(shape));
     }
 }
