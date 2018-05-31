@@ -1,0 +1,3 @@
+export const DRAG_N_DROP_USER = 'DRAG_N_DROP_USER';
+export const RETURN_SHAPE_USER = 'RETURN_SHAPE_USER';
+export const OPEN_NEXT_SAMPLE = 'OPEN_NEXT_SAMPLE';

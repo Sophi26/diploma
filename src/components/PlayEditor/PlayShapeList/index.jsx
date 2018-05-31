@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import './style.css';
 import SampleList from '../SampleList';
 import UserList from '../UserList';
+import { userSelect } from '../../../actions/PlayEditorActions';
 
 class PlayShapeList extends React.Component {
 
@@ -18,7 +19,7 @@ class PlayShapeList extends React.Component {
             sampleShapes.push(sample);
         }
 
-        const userShapes = <UserList shapes={this.props.userUl} />;
+        const userShapes = <UserList shapes={this.props.userUl} actions={this.props.actions} />;
 
         return(
             <div id="play-shapes-flex-container">
@@ -39,7 +40,10 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                
+                onUserSelect: (fig) => {
+                    const action = userSelect(fig);
+                    dispatch(action);
+                },
             }
         }
     }

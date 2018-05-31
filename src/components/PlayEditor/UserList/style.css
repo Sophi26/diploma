@@ -1,7 +1,9 @@
 #user-shapes-flex-block {
     margin-left: 15px;
+    width: 300px;
     height: 100px;
-    border: #1492E6 .2px solid;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .user-shape {

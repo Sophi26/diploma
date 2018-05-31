@@ -3,6 +3,7 @@ import * as FigureTypes from '../constants/FigureEditorActionTypes';
 import * as SeeTypes from '../constants/SeeEditorActionTypes';
 import * as PoleTypes from '../constants/PoleEditorAtionTypes';
 import * as OpeningTypes from '../constants/OpeningEditorActionTypes';
+import * as PlayTypes from '../constants/PlayEditorActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -262,7 +263,7 @@ export default function featureList(state, action = {}) {
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
                 samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
-                playfieldshapes: sample !== undefined ? state.playfieldshapes.map(shape => shape.shape.id === sample.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : {...shape, shape: Object.assign(shape.shape, {hidden: false})}) : state.playfieldshapes,
+                playfieldshapes: sample !== undefined ? state.playfieldshapes.filter(shape => shape.shape.id !== sample.id) : state.playfieldshapes,
             }
             
         case OpeningTypes.RETURN_SHAPE:
@@ -270,6 +271,20 @@ export default function featureList(state, action = {}) {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
+            }
+
+        case PlayTypes.DRAG_N_DROP_USER:
+            return {
+                ...state,
+                userlist: state.userlist.filter(shape => shape.id !== action.payload.id).concat(action.payload),
+                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
+            }
+
+        case PlayTypes.RETURN_SHAPE_USER:
+            return {
+                ...state,
+                userlist: state.userlist.filter(shape => shape.id !== action.payload.id),
+                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
             }
 
         default:

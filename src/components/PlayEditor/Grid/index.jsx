@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import './style.css';
-//import { returnPlace } from '../../../actions/OpeningEditorActions';
+import { returnUser } from '../../../actions/PlayEditorActions';
 
 class Grid extends React.Component {
 
@@ -55,7 +55,7 @@ class Grid extends React.Component {
     onDrop(e) {
 
         let fig = e.dataTransfer.getData("figure");
-        //this.props.actions.onReturnPlace(JSON.parse(fig));
+        this.props.actions.onReturnUser(JSON.parse(fig));
     }
 }
 
@@ -69,10 +69,10 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                /*onReturnPlace: (fig) => {
-                    const action = returnPlace(fig);
+                onReturnUser: (fig) => {
+                    const action = returnUser(fig);
                     dispatch(action);
-                },*/
+                },
             }
         }
     }
