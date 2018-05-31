@@ -1,0 +1,15 @@
+.sample-shape-flex-box {
+    margin-left: 15px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.sample-shape-flex-box:first-child {
+    margin-left: 0;
+}
+
+.sample-shape-flex-box svg {
+    vertical-align: middle;
+}

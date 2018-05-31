@@ -40,6 +40,8 @@ function main() {
                 dropshapelist: [],
                 openingdragfieldshapes: [],
                 playfieldshapes: [],
+                samplelist: [],
+                userlist: [],
             };
             const store = createStore(reducer, initialState);
 
