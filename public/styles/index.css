@@ -963,3 +963,9 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     top: 273px;
     text-align: center;
 }
+
+#sample-list {
+    margin: 0 20px 0 20px;
+    position: relative;
+    top: 20px;
+}

@@ -253,14 +253,20 @@ export default function featureList(state, action = {}) {
                 ...state,
                 opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload, sequence: []},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
-                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
             }
 
         case OpeningTypes.DRAG_N_DROP_OPENING:
+            const sample = state.opening.sequence[0];
+            console.log("ACTION!!!");
+            console.log(state.playfieldshapes);
+            console.log("SAMPLE!!!");
+            console.log(sample);
             return {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
+                samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
+                //playfieldshapes: state.playfieldshapes.filter(shape => sample.id !== undefined && shape.shape.id !== sample.id),
             }
             
         case OpeningTypes.RETURN_SHAPE:
