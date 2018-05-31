@@ -244,8 +244,8 @@ export default function featureList(state, action = {}) {
                 ...state,
                 dragshapelist: state.dragshapelist.filter(shape => shape.id !== action.payload.shape.id),
                 dropshapelist: state.dropshapelist.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
-                openingdragfieldshapes: state.openingdragfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
-                playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(action.payload),
+                openingdragfieldshapes: state.openingdragfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(JSON.parse(JSON.stringify(action.payload))),
+                playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== action.payload.shape.id).concat(JSON.parse(JSON.stringify(action.payload))),
             }
 
         case OpeningTypes.SELECT_EXPERIMENT_CONCEPT:
@@ -257,16 +257,12 @@ export default function featureList(state, action = {}) {
 
         case OpeningTypes.DRAG_N_DROP_OPENING:
             const sample = state.opening.sequence[0];
-            console.log("ACTION!!!");
-            console.log(state.playfieldshapes);
-            console.log("SAMPLE!!!");
-            console.log(sample);
             return {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
                 samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
-                //playfieldshapes: state.playfieldshapes.filter(shape => sample.id !== undefined && shape.shape.id !== sample.id),
+                playfieldshapes: sample !== undefined ? state.playfieldshapes.map(shape => shape.shape.id === sample.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : {...shape, shape: Object.assign(shape.shape, {hidden: false})}) : state.playfieldshapes,
             }
             
         case OpeningTypes.RETURN_SHAPE:
