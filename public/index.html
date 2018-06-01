@@ -269,6 +269,9 @@
                             <div class="modal-window" id="ok-window">
                                 <h2>Подтверждение</h2>
 
+                                <p>Вы уверены в своем выборе?</p>
+                                <div id="ok-user-list"></div>
+
                                 <div class="buttons">
                                     <button id="call-hyp">Да</button>
                                     <button>Нет</button>
@@ -278,8 +281,13 @@
                             <div class="modal-window" id="hyp-window">
                                 <h2>Гипотеза</h2>
 
+                                <p>Ваш выбор</p>
+                                <div id="hyp-user-list"></div>
+
+                                <input type="text" name="hyp" id="f-add-hyp" value="Ваше мнение..." />
+
                                 <div class="buttons">
-                                    <button>Готово</button>
+                                    <button id="next-sample">Готово</button>
                                     <button>Отмена</button>
                                 </div>
                             </div>

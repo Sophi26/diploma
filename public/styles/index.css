@@ -944,6 +944,19 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     height: 339px;
 }
 
+#ok-window p {
+    margin: 20px 0 10px 20px;
+}
+
+#hyp-window p {
+    margin: 10px 0 0 20px;
+}
+
+#hyp-window input {
+    margin: 10px 20px 0 20px;
+    width: 380px;
+}
+
 #criterion {
     margin: 0;
     padding: 0;

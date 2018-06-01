@@ -52,7 +52,7 @@ function main() {
             poleApi(store);
             openingApi(store);
             playApi(store);
-            hypothesis();
+            hypothesis(store);
         })
         .catch();
 }

@@ -1,0 +1,15 @@
+#hyp-w {
+    margin: 0 0 0 20px;
+}
+
+#hyp-w p {
+    margin: 0;
+}
+
+#hyp-shapes-flex-block {
+    margin-bottom: 15px;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}

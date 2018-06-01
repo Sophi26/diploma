@@ -287,6 +287,22 @@ export default function featureList(state, action = {}) {
                 playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
             }
 
+        case PlayTypes.OPEN_NEXT_SAMPLE:
+            let nx = action.payload;
+            for(let i = 0; i < state.playfieldshapes.length; ++i) {
+                if(state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
+                    if(state.playfieldshapes[i].shape.hidden)
+                        ++nx
+                    else break;
+                }
+            }
+            return {
+                ...state,
+                userlist: [],
+                samplelist: state.samplelist.filter(shape => shape.id !== state.opening.sequence[nx].id).concat(state.opening.sequence[nx]),
+                playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== state.opening.sequence[nx].id).map(shape => { return {...shape, shape: Object.assign(shape.shape, {hidden: false})} }),
+            }
+
         default:
             return state;
     }

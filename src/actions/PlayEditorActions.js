@@ -13,3 +13,10 @@ export function returnUser(shape) {
         payload: shape,
     };
 }
+
+export function nextSample(next) {
+    return {
+        type: EditorTypes.OPEN_NEXT_SAMPLE,
+        payload: next,
+    };
+}
