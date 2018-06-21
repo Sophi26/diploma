@@ -19,7 +19,8 @@ function main(store) {
     render( <Provider store={store}><FigureImg /></Provider>, document.getElementById("select-shape"));
 
     let figId = 1;
-    const input = document.getElementById("upload"); input.addEventListener('change', () => {
+    const input = document.getElementById("upload");
+    input.addEventListener('change', () => {
         const file_name = input.files[0].name.substr(0, input.files[0].name.length - 4);
         let data = new FormData();
         data.append('file', input.files[0]);

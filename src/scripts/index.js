@@ -42,6 +42,7 @@ function main() {
                 playfieldshapes: [],
                 samplelist: [],
                 userlist: [],
+                actionfig: {},
             };
             const store = createStore(reducer, initialState);
 

@@ -303,6 +303,13 @@ export default function featureList(state, action = {}) {
                 playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== state.opening.sequence[nx].id).map(shape => { return {...shape, shape: Object.assign(shape.shape, {hidden: false})} }),
             }
 
+        case PlayTypes.SELECT_ACTION_SHAPE:
+            return {
+                ...state,
+                actionfig: { shape: action.payload },
+                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
+            }
+
         default:
             return state;
     }

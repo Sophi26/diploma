@@ -20,3 +20,10 @@ export function nextSample(next) {
         payload: next,
     };
 }
+
+export function actionFigure(shape) {
+    return {
+        type: EditorTypes.SELECT_ACTION_SHAPE,
+        payload: shape,
+    };
+}
