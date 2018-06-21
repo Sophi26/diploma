@@ -42,4 +42,22 @@
     <value>Квадрат</value>
     <value>4</value>
   </conceptitem>
+  <conceptitem>
+    <id>8</id>
+    <conceptname>Бат</conceptname>
+    <value>Красный</value>
+    <value>Маленький</value>
+  </conceptitem>
+  <conceptitem>
+    <id>9</id>
+    <conceptname>Роц</conceptname>
+    <value>Зелёный</value>
+    <value>Большой</value>
+  </conceptitem>
+  <conceptitem>
+    <id>10</id>
+    <conceptname>Пак</conceptname>
+    <value>Большой</value>
+    <value>4</value>
+  </conceptitem>
 </concepts>
