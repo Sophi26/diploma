@@ -310,6 +310,22 @@ export default function featureList(state, action = {}) {
                 playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
             }
 
+        case PlayTypes.OK_ACTION_SHAPE:
+            const selshape = JSON.parse(JSON.stringify(state.actionfig.shape));
+            return {
+                ...state,
+                actionfig: {},
+                userlist: state.userlist.filter(shape => shape.id !== selshape.id).concat(selshape),
+            }
+
+        case PlayTypes.CANCLE_ACTION_SHAPE:
+            const selecshape = JSON.parse(JSON.stringify(state.actionfig.shape));
+            return {
+                ...state,
+                actionfig: {},
+                playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === selecshape.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
+            }
+
         default:
             return state;
     }

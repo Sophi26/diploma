@@ -27,3 +27,15 @@ export function actionFigure(shape) {
         payload: shape,
     };
 }
+
+export function okActionFigure() {
+    return {
+        type: EditorTypes.OK_ACTION_SHAPE,
+    };
+}
+
+export function cancleActionFigure() {
+    return {
+        type: EditorTypes.CANCLE_ACTION_SHAPE,
+    };
+}

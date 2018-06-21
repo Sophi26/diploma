@@ -7,6 +7,9 @@ import Grid from '../components/PlayEditor/Grid';
 import PlayShapeList from '../components/PlayEditor/PlayShapeList';
 import ActionBlock from '../components/PlayEditor/ActionBlock';
 
+import { okActionFigure } from '../actions/PlayEditorActions';
+import { cancleActionFigure } from '../actions/PlayEditorActions';
+
 function main(store) {
 
     render( <Provider store={store}><Task /></Provider>, document.getElementById("criterion"));
@@ -18,11 +21,13 @@ function main(store) {
     const cancle_btn = document.getElementById("no-btn");
 
     ok_btn.addEventListener('click', () => {
-
+        const action = okActionFigure();
+        store.dispatch(action);
     });
 
     cancle_btn.addEventListener('click', () => {
-
+        const action = cancleActionFigure();
+        store.dispatch(action);
     });
 }
 
