@@ -326,6 +326,14 @@ export default function featureList(state, action = {}) {
                 playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === selecshape.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
             }
 
+        case PlayTypes.ROTATE_ACTION_SHAPE:
+            const rotate = "matrix(.966 .259 -.259 .966 0 0)";
+            const r_transform = pmatrix2(state.actionfig.transform, rotate);
+            return {
+                ...state,
+                actionfig: {...state.actionfig, transform: r_transform},
+            }
+
         case PlayTypes.FLIP_H_ACTION_SHAPE:
             const flip_h = "matrix(1 0 0 -1 0 0)";
             const new_transform = pmatrix2(state.actionfig.transform, flip_h);
@@ -348,7 +356,7 @@ export default function featureList(state, action = {}) {
 }
 
 function pmatrix2(str1,str2) {
-    
+
     let s1 = str1.substring(7, str1.length-1);
     s1 = s1.split(" ");
 
