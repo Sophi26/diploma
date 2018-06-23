@@ -8,10 +8,11 @@ import { actionFigure } from '../../../actions/PlayEditorActions';
 class ActionBlock extends React.Component {
 
     render() {
- 
+        
+        console.log("RENDER!!!");
         let svgf = null;
         if(this.props.shape.shape !== undefined) {
-            svgf = <svg width={this.props.shape.shape.icon.attrs.width} height={this.props.shape.shape.icon.attrs.height} viewBox={this.props.shape.shape.icon.attrs.viewBox}>
+            svgf = <svg transform={this.props.shape.transform} width={this.props.shape.shape.icon.attrs.width} height={this.props.shape.shape.icon.attrs.height} viewBox={this.props.shape.shape.icon.attrs.viewBox}>
                         <path fill={this.props.shape.shape.icon.childs[0].attrs.fill} d={this.props.shape.shape.icon.childs[0].attrs.d} />
                     </svg>;
         }
@@ -30,7 +31,6 @@ class ActionBlock extends React.Component {
 
     onDrop(e) {
 
-        console.log("DROP!!!");
         let fig = e.dataTransfer.getData("figure");
         this.props.actions.onActionFigure(JSON.parse(fig));
     }

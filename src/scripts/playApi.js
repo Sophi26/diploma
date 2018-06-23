@@ -9,6 +9,9 @@ import ActionBlock from '../components/PlayEditor/ActionBlock';
 
 import { okActionFigure } from '../actions/PlayEditorActions';
 import { cancleActionFigure } from '../actions/PlayEditorActions';
+import { rotateActionFigure } from '../actions/PlayEditorActions';
+import { flipHActionFigure } from '../actions/PlayEditorActions';
+import { flipVActionFigure } from '../actions/PlayEditorActions';
 
 function main(store) {
 
@@ -27,6 +30,25 @@ function main(store) {
 
     cancle_btn.addEventListener('click', () => {
         const action = cancleActionFigure();
+        store.dispatch(action);
+    });
+
+    const rotate_btn = document.getElementById("rotate");
+    const flip_h_btn = document.getElementById("flip-h");
+    const flip_v_btn = document.getElementById("flip-v");
+
+    rotate_btn.addEventListener('click', () => {
+        const action = rotateActionFigure();
+        store.dispatch(action);
+    });
+
+    flip_h_btn.addEventListener('click', () => {
+        const action = flipHActionFigure();
+        store.dispatch(action);
+    });
+
+    flip_v_btn.addEventListener('click', () => {
+        const action = flipVActionFigure();
         store.dispatch(action);
     });
 }

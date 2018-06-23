@@ -306,7 +306,7 @@ export default function featureList(state, action = {}) {
         case PlayTypes.SELECT_ACTION_SHAPE:
             return {
                 ...state,
-                actionfig: { shape: action.payload },
+                actionfig: { shape: action.payload, transform: "matrix(1 0 0 1 0 0)" },
                 playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
             }
 
@@ -326,7 +326,34 @@ export default function featureList(state, action = {}) {
                 playfieldshapes: state.playfieldshapes.map(shape => shape.shape.id === selecshape.id ? {...shape, shape: Object.assign(shape.shape, {hidden: false})} : shape),
             }
 
+        case PlayTypes.FLIP_H_ACTION_SHAPE:
+            const flip_h = "matrix(1 0 0 -1 0 0)";
+            const new_transform = pmatrix2(state.actionfig.transform, flip_h);
+            return {
+                ...state,
+                actionfig: {...state.actionfig, transform: new_transform},
+            }
+
+        case PlayTypes.FLIP_V_ACTION_SHAPE:
+            const flip_v = "matrix(-1 0 0 1 0 0)";
+            const n_transform = pmatrix2(state.actionfig.transform, flip_v);
+            return {
+                ...state,
+                actionfig: {...state.actionfig, transform: n_transform},
+            }
+
         default:
             return state;
     }
+}
+
+function pmatrix2(str1,str2) {
+    
+    let s1 = str1.substring(7, str1.length-1);
+    s1 = s1.split(" ");
+
+    let s2 = str2.substring(7, str2.length-1);
+    s2 = s2.split(" ");
+    
+    return "matrix(" + (s1[0]*s2[0]+s1[2]*s2[1]) + " " + (s1[1]*s2[0]+s1[3]*s2[1]) + " " + (s1[0]*s2[2]+s1[2]*s2[3]) + " " + (s1[1]*s2[2]+s1[3]*s2[3]) + " " + (s1[0]*s2[4]+s1[2]*s2[5]+s1[4]*1) + " " + (s1[1]*s2[4]+s1[3]*s2[5]+s1[5]*1) + ")";
 }

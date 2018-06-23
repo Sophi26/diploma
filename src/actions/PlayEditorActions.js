@@ -39,3 +39,21 @@ export function cancleActionFigure() {
         type: EditorTypes.CANCLE_ACTION_SHAPE,
     };
 }
+
+export function rotateActionFigure() {
+    return {
+        type: EditorTypes.ROTATE_ACTION_SHAPE,
+    };
+}
+
+export function flipHActionFigure() {
+    return {
+        type: EditorTypes.FLIP_H_ACTION_SHAPE,
+    };
+}
+
+export function flipVActionFigure() {
+    return {
+        type: EditorTypes.FLIP_V_ACTION_SHAPE,
+    };
+}
