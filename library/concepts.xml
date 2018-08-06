@@ -60,4 +60,10 @@
     <value>Большой</value>
     <value>4</value>
   </conceptitem>
+  <conceptitem>
+    <id>11</id>
+    <conceptname>Зеб</conceptname>
+    <value>Зелёный</value>
+    <value>Большой</value>
+  </conceptitem>
 </concepts>
