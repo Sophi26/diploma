@@ -4,6 +4,7 @@ import * as SeeTypes from '../constants/SeeEditorActionTypes';
 import * as PoleTypes from '../constants/PoleEditorAtionTypes';
 import * as OpeningTypes from '../constants/OpeningEditorActionTypes';
 import * as PlayTypes from '../constants/PlayEditorActionTypes';
+import * as SaveTypes from '../constants/SaveActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -349,6 +350,29 @@ export default function featureList(state, action = {}) {
                 ...state,
                 actionfig: {...state.actionfig, transform: n_transform},
             }
+
+        case SaveTypes.SAVE_EXP:
+            const saveObj = {
+                experiment: {
+                    concept: state.selconcept,
+                    field: {
+                        width: state.field.width,
+                        height: state.field.height,
+                    },
+                    placement: {
+                        place: state.dropshapelist,
+                    },
+                    opening: {
+                        formingconcept: state.opening.expconcept,
+                        sequence: {
+                            figureid: state.opening.sequence,
+                        },
+                    },
+                },
+            };
+            console.log("FILE!!!");
+            console.log(saveObj);
+            return state;
 
         default:
             return state;

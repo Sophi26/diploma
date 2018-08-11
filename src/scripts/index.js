@@ -10,6 +10,7 @@ import poleApi from './poleApi';
 import openingApi from './openingApi';
 import playApi from './playApi';
 import hypothesis from './hypothesis';
+import saveExperiment from './saveExperiment';
 
 function main() {
 
@@ -46,6 +47,7 @@ function main() {
             };
             const store = createStore(reducer, initialState);
 
+            saveExperiment(store);
             switchingTabs();
             featureEditor(store);
             figureEditorApi(store);
