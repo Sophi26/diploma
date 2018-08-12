@@ -6,7 +6,6 @@ function main(store) {
 
     save.addEventListener('click', () => {
     
-        console.log("SAVE!!!");
         const action = saveExp();
         store.dispatch(action);
     });

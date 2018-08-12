@@ -128,6 +128,23 @@ app.get(
         res.send(concepts.concepts.conceptitem);
     });
 
+/////SAVE EXPERIMENT!!!\\\\\
+
+app.post(
+    "/api/save",
+    jsonParser,
+    (req, res) => {
+    
+        if (!req.body) return res.sendStatus(400);
+    
+        console.log(req.body);
+        const expinfo = req.body;
+        const xmlFile = Path.join(__dirname, 'library', 'experiments', 'exp_1.xml');
+        const xml = builder.buildObject(expinfo);
+        fs.writeFileSync(xmlFile, xml);
+        res.send(expinfo);
+    });
+
 /////EDIT EXPERIMENT!!!\\\\\
 
 /////FEATURE EDITOR!!!\\\\\

@@ -379,9 +379,22 @@ export default function featureList(state, action = {}) {
                     },
                 },
             };
-            console.log("FILE!!!");
-            console.log(saveObj);
-            // console.log(state);
+            fetch("/api/save", {
+                method: "POST",
+                body: JSON.stringify(saveObj),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+
+                console.log("SAVE!!!");
+                console.log(data);
+            })
+            .catch();
             return state;
 
         default:

@@ -47,8 +47,8 @@ function main() {
             };
             const store = createStore(reducer, initialState);
 
-            saveExperiment(store);
             switchingTabs();
+            saveExperiment(store);
             featureEditor(store);
             figureEditorApi(store);
             seeMaterialApi(store);
