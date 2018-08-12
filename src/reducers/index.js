@@ -354,24 +354,34 @@ export default function featureList(state, action = {}) {
         case SaveTypes.SAVE_EXP:
             const saveObj = {
                 experiment: {
-                    concept: state.selconcept,
+                    shapes: {
+                        shapeitem: state.figures,
+                    },
+                    concepts: {
+                        conceptitem: state.selconcept,
+                    },
                     field: {
                         width: state.field.width,
                         height: state.field.height,
                     },
                     placement: {
-                        place: state.dropshapelist,
+                        placeitem: state.dropshapelist.map(item => {
+                            return { x: item.x, y: item.y, figureid: item.shape.id };
+                        }),
                     },
                     opening: {
-                        formingconcept: state.opening.expconcept,
+                        formingconcept: state.opening.expconcept.id,
                         sequence: {
-                            figureid: state.opening.sequence,
+                            figureid: state.opening.sequence.map(item => {
+                                return item.id;
+                            }),
                         },
                     },
                 },
             };
             console.log("FILE!!!");
             console.log(saveObj);
+            // console.log(state);
             return state;
 
         default:
