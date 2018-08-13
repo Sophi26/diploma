@@ -128,6 +128,17 @@ app.get(
         res.send(concepts.concepts.conceptitem);
     });
 
+/////EARLY EXPERIMENTS!!!\\\\\
+
+app.get(
+    "/api/early",
+    (req, res) => {
+
+        const dirPath = Path.join(__dirname, 'library', 'experiments');
+        const expList = fs.readdirSync(dirPath, "utf8");
+        res.send(expList);
+    });
+
 /////SAVE EXPERIMENT!!!\\\\\
 
 app.post(
@@ -137,7 +148,6 @@ app.post(
     
         if (!req.body) return res.sendStatus(400);
     
-        console.log(req.body);
         const expinfo = req.body;
         const xmlFile = Path.join(__dirname, 'library', 'experiments', 'exp_1.xml');
         const xml = builder.buildObject(expinfo);

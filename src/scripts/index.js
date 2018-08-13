@@ -11,9 +11,11 @@ import openingApi from './openingApi';
 import playApi from './playApi';
 import hypothesis from './hypothesis';
 import saveExperiment from './saveExperiment';
+import earlyExperiments from './earlyExperiments';
 
 function main() {
 
+    earlyExperiments();
     createExperiment();
 
     fetch("/api/attributes", {
