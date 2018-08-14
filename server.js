@@ -149,7 +149,7 @@ app.post(
         if (!req.body) return res.sendStatus(400);
     
         const expinfo = req.body;
-        const xmlFile = Path.join(__dirname, 'library', 'experiments', 'exp_1.xml');
+        const xmlFile = Path.join(__dirname, 'library', 'experiments', 'Exp_1.xml');
         const xml = builder.buildObject(expinfo);
         fs.writeFileSync(xmlFile, xml);
         res.send(expinfo);
