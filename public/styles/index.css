@@ -206,10 +206,19 @@ h1 {
     margin-right: 30px;
     width: 320px;
     height: 300px;
-    border: rgba(3, 3, 33, .8) 1px solid;
-    text-align: center;
+    border: rgba(3, 3, 33, .6) 1px solid;
     cursor: pointer;
-    line-height: 300px;
+    position: relative;
+}
+
+.name-block {
+    width: 320px;
+    height: 80px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    line-height: 80px;
+    position: absolute;
+    bottom: 0;
 }
 
 #create-experiment-flex-block p {
@@ -228,19 +237,24 @@ h1 {
     cursor: pointer
 }
 
-.experiment p {
-    margin: 0;
+.name-block p {
+    margin: 0 0 0 15px;
     padding: 0;
-    display: inline-block;
     text-decoration: none;
     font-weight: normal;
     letter-spacing: 0.1em;
-    vertical-align: middle;
+    display: inline-block;
 }
 
-.experiment svg {
-    vertical-align: middle;
-    cursor: pointer
+.name-block svg {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+.name-block path:hover {
+    fill: #1492E6;
 }
 
 #creation {
