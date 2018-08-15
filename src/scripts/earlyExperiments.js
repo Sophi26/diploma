@@ -33,7 +33,51 @@ function main() {
                 nameBlock.appendChild(menuIcon);
                 expFlexBlock.appendChild(nameBlock);
 
+                let contextMenu = document.createElement("ul");
+                contextMenu.setAttribute('class', 'con-menu');
+                let menuItem = document.createElement("li");
+                let itemName = document.createElement("a");
+                itemName.appendChild(document.createTextNode('Открыть'));
+                menuItem.appendChild(itemName);
+                contextMenu.appendChild(menuItem);
+                menuItem = document.createElement("li");
+                itemName = document.createElement("a");
+                itemName.appendChild(document.createTextNode('Переименовать'));
+                menuItem.appendChild(itemName);
+                contextMenu.appendChild(menuItem);
+                menuItem = document.createElement("li");
+                itemName = document.createElement("a");
+                itemName.appendChild(document.createTextNode('Копировать'));
+                menuItem.appendChild(itemName);
+                contextMenu.appendChild(menuItem);
+                menuItem = document.createElement("li");
+                itemName = document.createElement("a");
+                itemName.appendChild(document.createTextNode('Удалить'));
+                menuItem.appendChild(itemName);
+                contextMenu.appendChild(menuItem);
+                expFlexBlock.appendChild(contextMenu);
+
                 expFlexContainer.insertBefore(expFlexBlock, expFlexContainer.firstChild);
+
+                menuIcon.addEventListener('mouseover', () => {
+
+                    contextMenu.style.display = 'block';
+                });
+
+                menuIcon.addEventListener('mouseout', () => {
+
+                    contextMenu.style.display = 'none';
+                });
+
+                contextMenu.addEventListener('mouseover', () => {
+
+                    contextMenu.style.display = 'block';
+                });
+
+                contextMenu.addEventListener('mouseout', () => {
+
+                    contextMenu.style.display = 'none';
+                });
             }
         })
         .catch();
