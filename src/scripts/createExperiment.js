@@ -30,6 +30,7 @@ function main() {
 
         document.getElementById("start").style.display = 'none';
         document.getElementById("creation").style.display = 'block';
+        document.getElementById("exp-name").textContent = 'Новый';
     });
 }
 

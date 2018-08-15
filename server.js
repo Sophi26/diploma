@@ -139,6 +139,22 @@ app.get(
         res.send(expList);
     });
 
+/////OPEN EXPERIMENT!!!\\\\\
+
+app.post(
+    "/api/open",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+        
+        const filename = req.body.filename;
+        const filePath = Path.join(__dirname, 'library', 'experiments', filename);
+        const data = fs.readFileSync(filePath, "utf8");
+        const expObj = xmlParser(data);
+        res.send(expObj);
+    });
+
 /////SAVE EXPERIMENT!!!\\\\\
 
 app.post(
@@ -154,8 +170,6 @@ app.post(
         fs.writeFileSync(xmlFile, xml);
         res.send(expinfo);
     });
-
-/////EDIT EXPERIMENT!!!\\\\\
 
 /////FEATURE EDITOR!!!\\\\\
 

@@ -5,6 +5,7 @@ import * as PoleTypes from '../constants/PoleEditorAtionTypes';
 import * as OpeningTypes from '../constants/OpeningEditorActionTypes';
 import * as PlayTypes from '../constants/PlayEditorActionTypes';
 import * as SaveTypes from '../constants/SaveActionTypes';
+import * as OpenTypes from '../constants/OpenActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -396,6 +397,12 @@ export default function featureList(state, action = {}) {
             })
             .catch();
             return state;
+
+        case OpenTypes.OPEN_EXP:
+            return {
+                ...state,
+                
+            }
 
         default:
             return state;

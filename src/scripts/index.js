@@ -12,6 +12,7 @@ import playApi from './playApi';
 import hypothesis from './hypothesis';
 import saveExperiment from './saveExperiment';
 import earlyExperiments from './earlyExperiments';
+import openExperiment from './openExperiment';
 
 function main() {
 
@@ -49,6 +50,7 @@ function main() {
             };
             const store = createStore(reducer, initialState);
 
+            openExperiment(store);
             switchingTabs();
             saveExperiment(store);
             featureEditor(store);
