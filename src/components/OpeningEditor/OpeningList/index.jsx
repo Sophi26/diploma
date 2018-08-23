@@ -24,7 +24,7 @@ class OpeningList extends React.Component {
                     const fig = this.props.openingseq.sequence[id_block];
                     svg = <div className="draggeble-item" onDragStart={e => this.onDragStart(e, fig)} draggable>
                             <svg width={this.props.openingseq.sequence[id_block].icon.attrs.width} height={this.props.openingseq.sequence[id_block].icon.attrs.height} viewBox={this.props.openingseq.sequence[id_block].icon.attrs.viewBox}>
-                                <path fill={this.props.openingseq.sequence[id_block].icon.childs[0].attrs.fill} d={this.props.openingseq.sequence[id_block].icon.childs[0].attrs.d} />
+                                <path fill={this.props.openingseq.sequence[id_block].icon.childs.attrs.fill} d={this.props.openingseq.sequence[id_block].icon.childs.attrs.d} />
                                 <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.openingseq.sequence[id_block].concept !== undefined ? this.props.openingseq.sequence[id_block].concept : ''}</text>
                             </svg>
                         </div>;

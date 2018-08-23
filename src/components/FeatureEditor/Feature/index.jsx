@@ -12,7 +12,7 @@ class Feature extends React.Component {
 
         this.state = {
             isRename: false,
-            value_name: this.props.feature.featurename[0],
+            value_name: this.props.feature.featurename,
         }
     }
 
@@ -22,9 +22,7 @@ class Feature extends React.Component {
         const activeClass = classNames({
             "active-feature": isValueShown,
         });
-        const name = feature.featurename.map((featureName) => {
-            return <a className={activeClass} onClick={onFeatureNameClick}>{featureName}</a>;
-        })[0];
+        const name = <a className={activeClass} onClick={onFeatureNameClick}>{feature.featurename}</a>;
         const input = <input type="text" autoFocus="true" value={this.state.value_name} onChange={this.handleChange.bind(this)} onKeyDown={this.renFeature.bind(this)} />;
 
         return (
@@ -48,7 +46,7 @@ class Feature extends React.Component {
 
     delFeature() {
 
-        fetch("/api/attributes/" + this.props.feature.id[0], {
+        fetch("/api/attributes/" + this.props.feature.id, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -59,7 +57,7 @@ class Feature extends React.Component {
             })
             .then((data) => {
 
-                this.props.actions.onDeleteFeature(data.id[0]);
+                this.props.actions.onDeleteFeature(data.id);
             })
             .catch();
     }
@@ -67,7 +65,7 @@ class Feature extends React.Component {
     openInput() {
         this.setState({
             isRename: !this.state.isRename,
-            value_name: this.props.feature.featurename[0],
+            value_name: this.props.feature.featurename,
         });
     }
 
@@ -83,7 +81,7 @@ class Feature extends React.Component {
             fetch("/api/attributes", {
                 method: "PUT",
                 body: JSON.stringify({
-                    id: this.props.feature.id[0],
+                    id: this.props.feature.id,
                     featurename: e.target.value,
                 }),
                 headers: {
@@ -95,7 +93,7 @@ class Feature extends React.Component {
             })
             .then((data) => {
 
-                this.props.actions.onRenameFeature(data.id[0], data.featurename[0]);
+                this.props.actions.onRenameFeature(data.id, data.featurename);
                 this.setState({
                     isRename: false,
                 });

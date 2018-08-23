@@ -15,15 +15,15 @@ class FeatureList extends React.Component {
         super(props);
 
         this.state = {
-            openFeatureId: this.props.featureList[0].id[0],
+            openFeatureId: this.props.featureList[0].id,
         }
     }
 
     render() {
 
         const featureElements = this.props.featureList.map((feature, key) => {
-            return <li key={feature.id[0]}>
-                        <Feature feature={feature} actions={this.props.actions} isValueShown={this.state.openFeatureId === feature.id[0]} onFeatureNameClick={this.showValues.bind(this, feature.id[0])} />
+            return <li key={feature.id}>
+                        <Feature feature={feature} actions={this.props.actions} isValueShown={this.state.openFeatureId === feature.id} onFeatureNameClick={this.showValues.bind(this, feature.id)} />
                     </li>;
         });
     
@@ -38,7 +38,7 @@ class FeatureList extends React.Component {
         
         this.setState({ openFeatureId });
         for(let i = 0; i < this.props.featureList.length; ++i) {
-            if(this.props.featureList[i].id[0] === openFeatureId) {
+            if(this.props.featureList[i].id === openFeatureId) {
                 this.props.actions.onShowValues(openFeatureId, this.props.featureList[i].valuename);
                 break;
             }

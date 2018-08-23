@@ -42,7 +42,7 @@ function main(store) {
                 })
                 .then((data) => {
 
-                    const action = addFeature(data.id[0], data.featurename[0]);
+                    const action = addFeature(data.id, data.featurename);
                     store.dispatch(action);
                 })
                 .catch();

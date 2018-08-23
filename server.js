@@ -10,6 +10,7 @@ const SVGO = require("svgo");
 
 const app = Express();
 const builder = new xml2js.Builder();
+const parser = new xml2js.Parser({explicitArray : false});
 const jsonParser = bodyParser.json();
 const svgo = new SVGO({
     plugins: [{
@@ -101,7 +102,7 @@ app.post(
                 return res.status(500).send(err);
             const data = fs.readFileSync(svgOnServer, "utf8");
             svgo.optimize(data, { path: svgOnServer }).then(result => {
-                svgson(result.data, {}, result => res.send(result));
+                svgson(result.data, {}, result => res.send({ ...result, childs: result.childs[0] }));
             });
         });
     });
@@ -114,8 +115,9 @@ app.get(
 
         const xmlFile = Path.join(__dirname, 'library', 'attributes.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
-        const featureList = xmlParser(data);
-        res.send(featureList.features.featureitem);
+        parser.parseString(data, (err, result) => {
+            res.send(result.features.featureitem);
+        });
     });
 
 app.get(
@@ -124,8 +126,9 @@ app.get(
 
         const xmlFile = Path.join(__dirname, 'library', 'concepts.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
-        const concepts = xmlParser(data);
-        res.send(concepts.concepts.conceptitem);
+        parser.parseString(data, (err, result) => {
+            res.send(result.concepts.conceptitem);
+        });
     });
 
 /////EARLY EXPERIMENTS!!!\\\\\
@@ -151,8 +154,9 @@ app.post(
         const filename = req.body.filename;
         const filePath = Path.join(__dirname, 'library', 'experiments', filename);
         const data = fs.readFileSync(filePath, "utf8");
-        const expObj = xmlParser(data);
-        res.send(expObj);
+        parser.parseString(data, (err, result) => {
+            res.send(result);
+        });
     });
 
 /////SAVE EXPERIMENT!!!\\\\\
@@ -181,12 +185,12 @@ app.post(
         if (!req.body) return res.sendStatus(400);
 
         let featureName = req.body.featurename;
-        let newFeature = { id: [], featurename: [featureName] };
+        let newFeature = { featurename: featureName };
         const xmlFile = Path.join(__dirname, 'library', 'attributes.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
         const result = xmlParser(data);
         let id = Math.max.apply(Math, result.features.featureitem.map((o) => { return o.id[0]; }));
-        newFeature.id[0] = id + 1;
+        newFeature.id = String(id + 1);
         result.features.featureitem.push(newFeature);
         const xml = builder.buildObject(result);
         fs.writeFileSync(xmlFile, xml);
@@ -202,12 +206,14 @@ app.post(
 
         let conceptName = req.body.conceptname;
         let valueList = req.body.value
-        let newConcept = { id: [], conceptname: [conceptName], value: valueList };
+        //let newConcept = { id: [], conceptname: [conceptName], value: valueList };
+        let newConcept = { conceptname: conceptName, value: valueList };
         const xmlFile = Path.join(__dirname, 'library', 'concepts.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
         const result = xmlParser(data);
         let id = Math.max.apply(Math, result.concepts.conceptitem.map((o) => { return o.id[0]; }));
-        newConcept.id[0] = id + 1;
+        //newConcept.id[0] = id + 1;
+        newConcept.id = String(id + 1);
         result.concepts.conceptitem.push(newConcept);
         const xml = builder.buildObject(result);
         fs.writeFileSync(xmlFile, xml);
@@ -221,18 +227,19 @@ app.delete(
         const id = req.params.id;
         const xmlFile = Path.join(__dirname, 'library', 'attributes.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
-        const result = xmlParser(data);
-        for (let i = 0; result.features.featureitem.length; i++) {
+        parser.parseString(data, (err, result) => {
+            for (let i = 0; result.features.featureitem.length; i++) {
 
-            if (result.features.featureitem[i].id[0] == id) {
+                if (result.features.featureitem[i].id == id) {
 
-                const attribute = result.features.featureitem.splice(i, 1)[0];
-                const xml = builder.buildObject(result);
-                fs.writeFileSync(xmlFile, xml);
-                res.send(attribute);
-                break;
+                    const attribute = result.features.featureitem.splice(i, 1)[0];
+                    const xml = builder.buildObject(result);
+                    fs.writeFileSync(xmlFile, xml);
+                    res.send(attribute);
+                    break;
+                }
             }
-        }
+        });
     });
 
 app.put(
@@ -246,18 +253,19 @@ app.put(
         let featureName = req.body.featurename;
         const xmlFile = Path.join(__dirname, 'library', 'attributes.xml');
         const data = fs.readFileSync(xmlFile, "utf8");
-        const result = xmlParser(data);
-        for (let i = 0; i < result.features.featureitem.length; i++) {
+        parser.parseString(data, (err, result) => {
+            for (let i = 0; i < result.features.featureitem.length; i++) {
 
-            if (result.features.featureitem[i].id[0] == featureId) {
+                if (result.features.featureitem[i].id == featureId) {
 
-                result.features.featureitem[i].featurename[0] = featureName;
-                const xml = builder.buildObject(result);
-                fs.writeFileSync(xmlFile, xml);
-                res.send(result.features.featureitem[i]);
-                break;
+                    result.features.featureitem[i].featurename = featureName;
+                    const xml = builder.buildObject(result);
+                    fs.writeFileSync(xmlFile, xml);
+                    res.send(result.features.featureitem[i]);
+                    break;
+                }
             }
-        }
+        });
     });
 
 app.post(
@@ -340,10 +348,6 @@ app.put(
             }
         }
     });
-
-/////FIGURE EDITOR!!!\\\\\
-
-
 
 app.listen(8081, () => {    
     console.log("Сервер ожидает подключения...");

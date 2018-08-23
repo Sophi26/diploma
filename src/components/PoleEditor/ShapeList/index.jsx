@@ -17,7 +17,7 @@ class ShapeList extends React.Component {
 
             return <div className="draggable" key={figure.id} onDragStart={e => this.onDragStart(e, figure)} draggable>
                         <svg width={figure.icon.attrs.width} height={figure.icon.attrs.height} viewBox={figure.icon.attrs.viewBox}>
-                            <path fill={figure.icon.childs[0].attrs.fill} d={figure.icon.childs[0].attrs.d} />
+                            <path fill={figure.icon.childs.attrs.fill} d={figure.icon.childs.attrs.d} />
                             <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{figure.concept !== undefined ? figure.concept : ''}</text>
                         </svg>
                     </div>;

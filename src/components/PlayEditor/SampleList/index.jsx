@@ -14,7 +14,7 @@ class SampleList extends React.Component {
         return(
             <div className="sample-shape-flex-box">
                 <svg width={sample.icon.attrs.width} height={sample.icon.attrs.height} viewBox={sample.icon.attrs.viewBox}>
-                    <path fill={sample.icon.childs[0].attrs.fill} d={sample.icon.childs[0].attrs.d} />
+                    <path fill={sample.icon.childs.attrs.fill} d={sample.icon.childs.attrs.d} />
                 </svg>
             </div>
         );

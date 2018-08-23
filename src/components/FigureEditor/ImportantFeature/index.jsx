@@ -11,7 +11,7 @@ class ImportantFeature extends React.Component {
         super(props);
 
         this.state = {
-            isSelect: this.props.feature.important,
+            isSelect: typeof(this.props.feature.important) == "boolean" ? this.props.feature.important : this.props.feature.important == "true" ? true : false,
         }
     }
 
@@ -23,7 +23,7 @@ class ImportantFeature extends React.Component {
         return (
             <div className="feature-li">
                 {this.state.isSelect ? check : not_check}
-                <p>{this.props.feature.featurename[0]}</p>
+                <p>{this.props.feature.featurename}</p>
             </div>
         );
     }
@@ -32,14 +32,14 @@ class ImportantFeature extends React.Component {
         this.setState({
             isSelect: true,
         });
-        this.props.actions.onSelectFeature(this.props.figId, this.props.feature.id[0], this.props.feature.featurename[0], this.props.feature.valuename);
+        this.props.actions.onSelectFeature(this.props.figId, this.props.feature.id, this.props.feature.featurename, this.props.feature.valuename);
     }
 
     deselectFeature() {
         this.setState({
             isSelect: false,
         });
-        this.props.actions.onDeselectFeature(this.props.figId, this.props.feature.id[0]);
+        this.props.actions.onDeselectFeature(this.props.figId, this.props.feature.id);
     }
 }
 

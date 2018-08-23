@@ -23,8 +23,8 @@ class TaskList extends React.Component {
         const conceptElements = this.props.conceptList.map((concept, key) => { 
             return <li key={key}>
                         <TaskConcept concept={concept}   
-                                isSelectConcept={this.state.selectId === concept.id[0]} 
-                                onTaskConceptClick={this.selectTaskConcept.bind(this, concept.id[0], concept)} />
+                                isSelectConcept={this.state.selectId === concept.id || (this.props.formingConcept === undefined ? 0 : this.props.formingConcept.id === concept.id)} 
+                                onTaskConceptClick={this.selectTaskConcept.bind(this, concept.id, concept)} />
                     </li>;
         });
 
@@ -46,6 +46,7 @@ export default connect(
     state => {
         return {
             conceptList: state.selconcept,
+            formingConcept: state.opening.expconcept,
         };
     },
     dispatch => {

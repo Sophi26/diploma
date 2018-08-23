@@ -18,10 +18,10 @@ class Grid extends React.Component {
                 
                 let svg = null;
                 for(let k = 0; k < this.props.shapes.length; ++k) { 
-                    if(this.props.shapes[k].x === i && this.props.shapes[k].y === j) {
+                    if(Number(this.props.shapes[k].x) === i && Number(this.props.shapes[k].y) === j) {
                         svg = <div style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-play" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
                                 <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
-                                    <path fill={this.props.shapes[k].shape.icon.childs[0].attrs.fill} d={this.props.shapes[k].shape.icon.childs[0].attrs.d} />
+                                    <path fill={this.props.shapes[k].shape.icon.childs.attrs.fill} d={this.props.shapes[k].shape.icon.childs.attrs.d} />
                                 </svg>
                             </div>;
                         break;

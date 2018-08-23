@@ -16,7 +16,7 @@ class TaskConcept extends React.Component {
             val_task_concept += ', ' + this.props.concept.value[i];
         }
         val_task_concept += ')';
-        const name_conc = this.props.concept.conceptname[0] + ' ' + val_task_concept;
+        const name_conc = this.props.concept.conceptname + ' ' + val_task_concept;
 
         return(
             <div>

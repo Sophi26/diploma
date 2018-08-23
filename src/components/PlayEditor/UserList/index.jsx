@@ -14,7 +14,7 @@ class UserList extends React.Component {
 
             const svg = <div className="user-shape" onDragStart={e => this.onDragStart(e, this.props.shapes[i])} draggable>
                             <svg width={this.props.shapes[i].icon.attrs.width} height={this.props.shapes[i].icon.attrs.height} viewBox={this.props.shapes[i].icon.attrs.viewBox}>
-                                <path fill={this.props.shapes[i].icon.childs[0].attrs.fill} d={this.props.shapes[i].icon.childs[0].attrs.d} />
+                                <path fill={this.props.shapes[i].icon.childs.attrs.fill} d={this.props.shapes[i].icon.childs.attrs.d} />
                             </svg>
                         </div>;
             userShapes.push(svg);

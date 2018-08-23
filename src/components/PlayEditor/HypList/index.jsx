@@ -14,13 +14,13 @@ class HypList extends React.Component {
 
             const svg = <div className="user-shape">
                             <svg width={this.props.userUl[i].icon.attrs.width} height={this.props.userUl[i].icon.attrs.height} viewBox={this.props.userUl[i].icon.attrs.viewBox}>
-                                <path fill={this.props.userUl[i].icon.childs[0].attrs.fill} d={this.props.userUl[i].icon.childs[0].attrs.d} />
+                                <path fill={this.props.userUl[i].icon.childs.attrs.fill} d={this.props.userUl[i].icon.childs.attrs.d} />
                             </svg>
                         </div>;
             userShapes.push(svg);
         }
 
-        const task = this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname[0];
+        const task = this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname;
 
         return(
             <div id="hyp-w">

@@ -25,8 +25,8 @@ class SeeConceptList extends React.Component {
             i = key + 1; 
             return <li key={key}>
                         <SeeConcept concept={concept}   
-                                isOpenConcept={this.state.openConceptId === concept.id[0]} 
-                                onConceptClick={this.openConcept.bind(this, concept.id[0], concept.conceptname[0])} />
+                                isOpenConcept={this.state.openConceptId === concept.id} 
+                                onConceptClick={this.openConcept.bind(this, concept.id, concept.conceptname)} />
                     </li>;
         });
     

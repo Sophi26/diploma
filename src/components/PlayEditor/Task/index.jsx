@@ -9,7 +9,7 @@ class Task extends React.Component {
 
     render() {
 
-        const task = this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname[0];
+        const task = this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname;
 
         return(
             <div id="task-text">

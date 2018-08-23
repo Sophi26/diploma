@@ -24,10 +24,10 @@ export default function featureList(state, action = {}) {
         case EditorTypes.DELETE_FEATURE:
             return {
                 ...state,
-                features: state.features.filter(feature => feature.id[0] !== action.payload[0]),
-                values: state.values.id[0] === action.payload[0] ? { id: [], valuename: [] } : state.values,
+                features: state.features.filter(feature => feature.id !== action.payload),
+                values: state.values.id === action.payload ? { valuename: [] } : state.values,
                 figures: state.figures.map(figure => {
-                    return {...figure, features: figure.features.filter(feature => feature.id[0] !== action.payload[0]), };
+                    return {...figure, features: figure.features.filter(feature => feature.id !== action.payload), };
                 }),
             }
 
@@ -35,12 +35,12 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 features: state.features.map(feature => {
-                    return feature.id[0] !== action.payload.id[0] ? feature : {...feature, featurename: action.payload.featurename };
+                    return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
                 }),
                 figures: state.figures.map(figure => {
                     return {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.id[0] ? feature : {...feature, featurename: action.payload.featurename };
+                            return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
                         }),
                     };
                 }),
@@ -57,7 +57,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 features: state.features.map(feature => {
-                    return feature.featurename[0] !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
                 }),
                 values: {
                     ...state.values,
@@ -66,7 +66,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return {...figure,
                         features: figure.features.map(feature => {
-                            return feature.featurename[0] !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                            return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
                         }),
                     };
                 }),
@@ -76,7 +76,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 features: state.features.map(feature => {
-                    return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
                 }),
                 values: {
                     ...state.values,
@@ -85,7 +85,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
                         }),
                     };
                 }),
@@ -95,7 +95,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 features: state.features.map(feature => {
-                    return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
                 }),
                 values: {
                     ...state.values,
@@ -104,7 +104,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
                         }),
                     };
                 }),
@@ -153,7 +153,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return figure.id !== action.payload.figureid ? figure : {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.featureid ? feature : {...feature, important: true };
+                            return feature.id !== action.payload.featureid ? feature : {...feature, important: true };
                         })
                     };
                 }),
@@ -166,7 +166,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return figure.id !== action.payload.figureid ? figure : {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.featureid ? feature : {...feature, important: false };
+                            return feature.id !== action.payload.featureid ? feature : {...feature, important: false };
                         })
                     };
                 }),
@@ -202,7 +202,7 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.map(figure => {
                     return figure.id !== action.payload.figId ? figure : {...figure,
                         features: figure.features.map(feature => {
-                            return feature.id[0] !== action.payload.id ? feature : {...feature, valuename: val };
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: val };
                         })
                     };
                 }),
@@ -213,21 +213,21 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 figures: state.figures.map(figure => {
-                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
+                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname }) : {...figure, concept: action.payload.concept.conceptname };
                 }),
                 dragshapelist: state.dragshapelist.map(figure => {
-                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname[0] }) : {...figure, concept: action.payload.concept.conceptname[0] };
+                    return figure.id !== action.payload.figId ? figure : figure.concept === undefined ? Object.assign(figure, { concept: action.payload.concept.conceptname }) : {...figure, concept: action.payload.concept.conceptname };
                 }),
                 dropshapelist: state.dropshapelist.map(figure => {
-                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname} };
                 }),
                 openingdragfieldshapes: state.openingdragfieldshapes.map(figure => {
-                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname} };
                 }),
                 playfieldshapes: state.playfieldshapes.map(figure => {
-                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname[0] }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname[0]} };
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname} };
                 }),
-                selconcept: state.selconcept.filter(conc => conc.conceptname[0] !== action.payload.concept.conceptname[0]).concat(action.payload.concept),
+                selconcept: state.selconcept.filter(conc => conc.conceptname !== action.payload.concept.conceptname).concat(action.payload.concept),
             }
 
         case SeeTypes.OPEN_CONCEPT:
@@ -255,7 +255,7 @@ export default function featureList(state, action = {}) {
             return {
                 ...state,
                 opening: state.opening.expconcept === undefined ? Object.assign(state.opening, {expconcept: action.payload}) : {...state.opening, expconcept: action.payload, sequence: []},
-                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname[0] ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
+                openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.concept === action.payload.conceptname ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})}),
             }
 
         case OpeningTypes.DRAG_N_DROP_OPENING:
@@ -264,7 +264,7 @@ export default function featureList(state, action = {}) {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
-                samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
+                /* БАГ */ samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
                 playfieldshapes: sample !== undefined ? state.playfieldshapes.filter(shape => shape.shape.id !== sample.id) : state.playfieldshapes,
             }
             
@@ -392,16 +392,70 @@ export default function featureList(state, action = {}) {
             })
             .then((data) => {
 
-                console.log("SAVE!!!");
-                console.log(data);
+                
             })
             .catch();
             return state;
 
         case OpenTypes.OPEN_EXP:
+            let drop_field = [];
+            for(let i = 0; i < action.payload.experiment.placement.placeitem.length; ++i) {
+                for(let j = 0; j < action.payload.experiment.shapes.shapeitem.length; ++j) {
+                    if(action.payload.experiment.placement.placeitem[i].figureid == action.payload.experiment.shapes.shapeitem[j].id) {
+                        drop_field.push({ x: action.payload.experiment.placement.placeitem[i].x, y: action.payload.experiment.placement.placeitem[i].y, shape: JSON.parse(JSON.stringify(action.payload.experiment.shapes.shapeitem[j])) });
+                    }
+                } 
+            }
+            let drag_field = [];
+            for(let i = 0; i < action.payload.experiment.shapes.shapeitem.length; ++i) {
+                let check = 0;
+                for(let j = 0; j < action.payload.experiment.placement.placeitem.length; ++j) {
+                    if(action.payload.experiment.shapes.shapeitem[i].id == action.payload.experiment.placement.placeitem[j].figureid) {
+                        check = 1;
+                        break;
+                    }
+                }
+                if(!check) drag_field.push(action.payload.experiment.shapes.shapeitem[i]); 
+            }
+            let sel_conc = {};
+            for(let i = 0; i < action.payload.experiment.concepts.conceptitem.length; ++i) {
+                if(action.payload.experiment.opening.formingconcept == action.payload.experiment.concepts.conceptitem[i].id) {
+                    sel_conc = action.payload.experiment.concepts.conceptitem[i];
+                }
+            }
+            let shape_queue = [];
+            let open_field = JSON.parse(JSON.stringify(drop_field));
+            open_field.map(shape => shape.shape.concept === sel_conc.conceptname ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})});
+            for(let i = 0; i < action.payload.experiment.opening.sequence.figureid.length; ++i) {
+                for(let j = 0; j < open_field.length; ++j) {
+                    if(open_field[j].shape.id == action.payload.experiment.opening.sequence.figureid[i]) {
+                        open_field[j].shape.hidden = true;
+                        shape_queue.push(open_field[j].shape);
+                        break;
+                    }
+                }
+            }
+            let play_field = JSON.parse(JSON.stringify(drop_field));
+            play_field.map(shape => shape.shape.concept === sel_conc.conceptname ? {...shape, shape: Object.assign(shape.shape, {openconcept: true, hidden: false})} : {...shape, shape: Object.assign(shape.shape, {openconcept: false, hidden: false})});
+            let sample_list = [];
+            sample_list = shape_queue[0] !== undefined ? sample_list.concat(shape_queue[0]) : sample_list;
+            play_field = shape_queue[0] !== undefined ? play_field.filter(shape => shape.shape.id !== shape_queue[0].id) : play_field;
             return {
                 ...state,
-                
+                figures: action.payload.experiment.shapes.shapeitem,
+                selconcept: action.payload.experiment.concepts.conceptitem,
+                seeconceptshapes: { shapes: [] },
+                figureinfo: { impfeatures: [], concepts: [] },
+                figureimg: {},
+                field: { width: action.payload.experiment.field.width, height: action.payload.experiment.field.width },
+                opening: { expconcept: sel_conc, sequence: shape_queue },
+                dragshapelist: drag_field,
+                dropshapelist: drop_field,
+                openingdragfieldshapes: open_field,
+                playfieldshapes: play_field,
+                samplelist: sample_list,
+                userlist: [],
+                actionfig: {},
             }
 
         default:
