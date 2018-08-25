@@ -193,6 +193,17 @@ app.post(
         });
     });
 
+/////DELETE EXPERIMENT!!!\\\\\
+
+app.delete(
+    "/api/expdel/:expfile",
+    (req, res) => {
+
+        const delfile = Path.join(__dirname, 'library', 'experiments', req.params.expfile);
+        fs.unlinkSync(delfile);
+        res.send({ delExp: req.params.expfile });
+    });
+
 /////FEATURE EDITOR!!!\\\\\
 
 app.post(

@@ -87,11 +87,30 @@ function main() {
             itemName.appendChild(document.createTextNode('Копировать'));
             menuItem.appendChild(itemName);
             contextMenu.appendChild(menuItem);
+            itemName.addEventListener('click', () => {
+                
+            });
             menuItem = document.createElement("li");
             itemName = document.createElement("a");
             itemName.appendChild(document.createTextNode('Удалить'));
             menuItem.appendChild(itemName);
             contextMenu.appendChild(menuItem);
+            itemName.addEventListener('click', () => {
+                fetch("/api/expdel/" + result[i], {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    expFlexContainer.removeChild(expFlexBlock);
+                    result.splice(i, 1);
+                })
+                .catch();
+            });
             expFlexBlock.appendChild(contextMenu);
 
             expFlexContainer.insertBefore(expFlexBlock, expFlexContainer.firstChild);
