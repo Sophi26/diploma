@@ -37,6 +37,7 @@ function main() {
             contextMenu.setAttribute('class', 'con-menu');
             let menuItem = document.createElement("li");
             let itemName = document.createElement("a");
+            itemName.setAttribute('class', 'open-experiment');
             itemName.appendChild(document.createTextNode('Открыть'));
             menuItem.appendChild(itemName);
             contextMenu.appendChild(menuItem);
@@ -48,6 +49,39 @@ function main() {
             itemName.appendChild(document.createTextNode('Переименовать'));
             menuItem.appendChild(itemName);
             contextMenu.appendChild(menuItem);
+            itemName.addEventListener('click', () => {
+                nameBlock.removeChild(expName);
+                const input_rename = document.createElement("input");
+                input_rename.setAttribute('type', 'text');
+                input_rename.setAttribute('autoFocus', 'true');
+                input_rename.setAttribute('value', result[i].slice(0, -4));
+                nameBlock.insertBefore(input_rename, menuIcon);
+                input_rename.addEventListener('keydown', (e) => {
+                    if (e.which === 13) {
+                        fetch("/api/exprename", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                oldexpname: result[i],
+                                newexpname: e.target.value + '.xml',
+                            }),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((data) => {
+                            nameBlock.removeChild(input_rename);
+                            expName = document.createElement("p");
+                            expName.appendChild(document.createTextNode(data.newExpName.slice(0, -4)));
+                            nameBlock.appendChild(expName);
+                            result[i] = data.newExpName; 
+                        })
+                        .catch();
+                    }
+                });
+            });
             menuItem = document.createElement("li");
             itemName = document.createElement("a");
             itemName.appendChild(document.createTextNode('Копировать'));

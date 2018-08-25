@@ -2,7 +2,7 @@ import { openExp } from '../actions/OpenActions';
 
 function main(store) {
 
-    const exps = document.querySelectorAll(".con-menu li a");
+    const exps = document.querySelectorAll(".open-experiment");
     for(let i=0; i < exps.length; i++) {
 
         exps[i].addEventListener('click', () => {

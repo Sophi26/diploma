@@ -175,6 +175,24 @@ app.post(
         res.send(expinfo);
     });
 
+/////RENAME EXPERIMENT!!!\\\\\
+
+app.post(
+    "/api/exprename",
+    jsonParser,
+    (req, res) => {
+    
+        if (!req.body) return res.sendStatus(400);
+
+        const oldName = Path.join(__dirname, 'library', 'experiments', req.body.oldexpname);
+        const newName = Path.join(__dirname, 'library', 'experiments', req.body.newexpname);
+
+        fs.rename(oldName, newName, (err) => {
+            if ( err ) console.log('ERROR: ' + err);
+            res.send({ newExpName: req.body.newexpname });
+        });
+    });
+
 /////FEATURE EDITOR!!!\\\\\
 
 app.post(

@@ -29,6 +29,19 @@ h1 {
     letter-spacing: 0.1em;
 }
 
+.name-block input {
+    margin: 0 0 0 15px;
+    padding: 3px 0 3px 5px;
+    width: 50%;
+    color: rgb(3, 3, 33);
+    background-color: #FAFAFF;
+    font-size: 14pt;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    border: rgba(3, 3, 33, .5) .5px solid;
+    border-radius: 2px;
+}
+
 .con-menu {
     list-style: none;
     margin: 0;
