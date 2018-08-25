@@ -3,6 +3,7 @@ const xmlParser = require("xml2js-parser").parseStringSync;
 const bodyParser = require("body-parser");
 const xml2js = require("xml2js");
 const fs = require("fs");
+const fs_extra = require("fs-extra");
 const Path = require("path");
 const fileUpload = require("express-fileupload");
 const svgson = require("svgson");
@@ -191,6 +192,23 @@ app.post(
             if ( err ) console.log('ERROR: ' + err);
             res.send({ newExpName: req.body.newexpname });
         });
+    });
+
+/////COPY EXPERIMENT!!!\\\\\
+
+app.post(
+    "/api/expcopy",
+    jsonParser,
+    (req, res) => {
+    
+        if (!req.body) return res.sendStatus(400);
+
+        const expName = Path.join(__dirname, 'library', 'experiments', req.body.expname + '.xml');
+        const expCopy = Path.join(__dirname, 'library', 'experiments', req.body.expname + '_copy.xml');
+
+        //fs.createReadStream(expName).pipe(fs.createWriteStream(expCopy));
+        fs_extra.copySync(expName, expCopy);
+        res.send({ copyName: req.body.expname + '_copy' });
     });
 
 /////DELETE EXPERIMENT!!!\\\\\

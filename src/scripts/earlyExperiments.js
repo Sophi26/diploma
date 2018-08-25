@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function main() {
 
     fetch("/api/early", {
@@ -84,11 +86,23 @@ function main() {
             });
             menuItem = document.createElement("li");
             itemName = document.createElement("a");
+            itemName.setAttribute('class', 'copy-experiment');
             itemName.appendChild(document.createTextNode('Копировать'));
             menuItem.appendChild(itemName);
             contextMenu.appendChild(menuItem);
             itemName.addEventListener('click', () => {
-                
+                $.ajax({
+                    url: "/api/expcopy",
+                    type: "POST",
+                    data: JSON.stringify({
+                        expname: result[i].slice(0, -4),
+                    }),
+                    async: false,
+                    contentType: "application/json",
+                    success: (data) => {
+                        document.getElementById("exp-name").textContent = data.copyName;
+                    }
+                });
             });
             menuItem = document.createElement("li");
             itemName = document.createElement("a");
