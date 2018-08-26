@@ -161,6 +161,41 @@ app.get(
         res.send(expList);
     });
 
+app.get(
+    "/api/all",
+    (req, res) => {
+    
+        const dirPath = Path.join(__dirname, 'library', 'experiments');
+        const expList = fs.readdirSync(dirPath, "utf8");
+        let earlyList = [];
+        for(let i = 0; i < expList.length; ++i) {
+            let exp = dirPath + '/' + expList[i];
+            const stats = fs.statSync(exp);
+            const createDate = new Date(stats["mtime"]);
+            const nowDate = new Date();
+            console.log(createDate);
+            console.log(nowDate);
+            if(createDate.getFullYear() === nowDate.getFullYear()) {
+                if(createDate.getMonth() === nowDate.getMonth()) {
+                    if((nowDate.getDate() - createDate.getDate()) < 10) {
+                        earlyList.push(expList[i]);
+                    }
+                } else if(createDate.getMonth() < nowDate.getMonth()) {
+                    if(nowDate.getDate() <= 3 && createDate.getDate() >= 26) {
+                        earlyList.push(expList[i]);
+                    }
+                }
+            } else if(createDate.getFullYear() < nowDate.getFullYear()) {
+                if(createDate.getMonth() === 11 && nowDate.getMonth() === 0) {
+                    if(nowDate.getDate() <= 3 && createDate.getDate() >= 26) {
+                        earlyList.push(expList[i]);
+                    }
+                }
+            }
+        }
+        res.send(earlyList);
+    });
+
 /////OPEN EXPERIMENT!!!\\\\\
 
 app.post(

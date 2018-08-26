@@ -14,6 +14,7 @@ import saveExperiment from './saveExperiment';
 import earlyExperiments from './earlyExperiments';
 import openExperiment from './openExperiment';
 import createInMenu from './createInMenu';
+import earlyExperimentsInMenu from './earlyExperimentsInMenu';
 
 function main() {
 
@@ -53,6 +54,7 @@ function main() {
 
             createInMenu(store);
             openExperiment(store);
+            earlyExperimentsInMenu(store);
             switchingTabs();
             saveExperiment(store);
             featureEditor(store);
