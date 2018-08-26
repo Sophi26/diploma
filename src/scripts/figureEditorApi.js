@@ -38,7 +38,6 @@ function main(store) {
         })
         .catch();
     });
-
 }
 
 export {

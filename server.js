@@ -108,6 +108,24 @@ app.post(
         });
     });
 
+/////UPLOAD FILE!!!\\\\\
+
+app.post(
+    "/api/uploadfile",
+    (req, res) => {
+
+        let expFile = req.files.file;
+        const expOnServer = Path.join(__dirname, 'library', 'experiments', req.files.file.name);
+        expFile.mv(expOnServer, (err) => {
+            if (err)
+                return res.status(500).send(err);
+            const data = fs.readFileSync(expOnServer, "utf8");
+            parser.parseString(data, (err, result) => {
+                res.send(result);
+            });
+        });
+    });
+
 /////CREATE EXPERIMENT!!!\\\\\
 
 app.get(

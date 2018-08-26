@@ -7,66 +7,6 @@
         <name>svg</name>
         <attrs>
           <xmlns>http://www.w3.org/2000/svg</xmlns>
-          <width>23.783</width>
-          <height>46.016</height>
-          <viewBox>113.722 239.698 23.783 46.016</viewBox>
-          <style>isolation:isolate</style>
-        </attrs>
-        <childs>
-          <name>path</name>
-          <attrs>
-            <fill>red</fill>
-            <stroke>red</stroke>
-            <strokeLinecap>square</strokeLinecap>
-            <strokeMiterlimit>3</strokeMiterlimit>
-            <d>M136.005 241.198v43.017h-20.783v-22.234l20.783-20.783z</d>
-            <vectorEffect>non-scaling-stroke</vectorEffect>
-          </attrs>
-        </childs>
-      </icon>
-      <figurename>Fig_1</figurename>
-      <features>
-        <id>1</id>
-        <featurename>Форма</featurename>
-        <valuename>Квадрат</valuename>
-        <valuename>Круг</valuename>
-        <valuename>Треугольник</valuename>
-        <important>false</important>
-      </features>
-      <features>
-        <id>2</id>
-        <featurename>Цвет</featurename>
-        <valuename>Красный</valuename>
-        <valuename>Синий</valuename>
-        <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
-        <valuename>Зелёный</valuename>
-        <important>true</important>
-      </features>
-      <features>
-        <id>3</id>
-        <featurename>Размер</featurename>
-        <valuename>Маленький</valuename>
-        <valuename>Средний</valuename>
-        <valuename>Большой</valuename>
-        <important>true</important>
-      </features>
-      <features>
-        <id>4</id>
-        <featurename>Кол-во углов</featurename>
-        <valuename>3</valuename>
-        <valuename>4</valuename>
-        <valuename>5</valuename>
-        <important>false</important>
-      </features>
-      <concept>Бат</concept>
-    </shapeitem>
-    <shapeitem>
-      <id>2</id>
-      <icon>
-        <name>svg</name>
-        <attrs>
-          <xmlns>http://www.w3.org/2000/svg</xmlns>
           <width>87.496</width>
           <height>47.733</height>
           <viewBox>278.106 649.031 87.496 47.733</viewBox>
@@ -99,7 +39,6 @@
         <valuename>Красный</valuename>
         <valuename>Синий</valuename>
         <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
         <valuename>Зелёный</valuename>
         <important>false</important>
       </features>
@@ -122,14 +61,14 @@
       <concept>Пак</concept>
     </shapeitem>
     <shapeitem>
-      <id>3</id>
+      <id>2</id>
       <icon>
         <name>svg</name>
         <attrs>
           <xmlns>http://www.w3.org/2000/svg</xmlns>
-          <width>46.016</width>
-          <height>27.009</height>
-          <viewBox>301.15 419.445 46.016 27.009</viewBox>
+          <width>23.783</width>
+          <height>46.016</height>
+          <viewBox>113.722 239.698 23.783 46.016</viewBox>
           <style>isolation:isolate</style>
         </attrs>
         <childs>
@@ -139,12 +78,12 @@
             <stroke>red</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
-            <d>M319.657 420.945h17.506l8.503 24.009H302.65l17.007-24.009z</d>
+            <d>M136.005 241.198v43.017h-20.783v-22.234l20.783-20.783z</d>
             <vectorEffect>non-scaling-stroke</vectorEffect>
           </attrs>
         </childs>
       </icon>
-      <figurename>Fig_2</figurename>
+      <figurename>Fig_1</figurename>
       <features>
         <id>1</id>
         <featurename>Форма</featurename>
@@ -159,7 +98,6 @@
         <valuename>Красный</valuename>
         <valuename>Синий</valuename>
         <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
         <valuename>Зелёный</valuename>
         <important>true</important>
       </features>
@@ -179,10 +117,10 @@
         <valuename>5</valuename>
         <important>false</important>
       </features>
-      <concept>Бат</concept>
+      <concept>Кра</concept>
     </shapeitem>
     <shapeitem>
-      <id>4</id>
+      <id>3</id>
       <icon>
         <name>svg</name>
         <attrs>
@@ -219,7 +157,65 @@
         <valuename>Красный</valuename>
         <valuename>Синий</valuename>
         <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
+        <valuename>Зелёный</valuename>
+        <important>false</important>
+      </features>
+      <features>
+        <id>3</id>
+        <featurename>Размер</featurename>
+        <valuename>Большой</valuename>
+        <valuename>Средний</valuename>
+        <valuename>Маленький</valuename>
+        <important>true</important>
+      </features>
+      <features>
+        <id>4</id>
+        <featurename>Кол-во углов</featurename>
+        <valuename>4</valuename>
+        <valuename>3</valuename>
+        <valuename>5</valuename>
+        <important>true</important>
+      </features>
+      <concept>Пак</concept>
+    </shapeitem>
+    <shapeitem>
+      <id>4</id>
+      <icon>
+        <name>svg</name>
+        <attrs>
+          <xmlns>http://www.w3.org/2000/svg</xmlns>
+          <width>86.363</width>
+          <height>49.528</height>
+          <viewBox>203.96 396.181 86.363 49.528</viewBox>
+          <style>isolation:isolate</style>
+        </attrs>
+        <childs>
+          <name>path</name>
+          <attrs>
+            <fill>#0F0</fill>
+            <stroke>#0F0</stroke>
+            <strokeLinecap>square</strokeLinecap>
+            <strokeMiterlimit>3</strokeMiterlimit>
+            <d>M238.418 397.681h33.927l16.478 46.528H205.46l32.958-46.528z</d>
+            <vectorEffect>non-scaling-stroke</vectorEffect>
+          </attrs>
+        </childs>
+      </icon>
+      <figurename>Fig_5</figurename>
+      <features>
+        <id>1</id>
+        <featurename>Форма</featurename>
+        <valuename>Квадрат</valuename>
+        <valuename>Круг</valuename>
+        <valuename>Треугольник</valuename>
+        <important>false</important>
+      </features>
+      <features>
+        <id>2</id>
+        <featurename>Цвет</featurename>
+        <valuename>Красный</valuename>
+        <valuename>Синий</valuename>
+        <valuename>Жёлтый</valuename>
         <valuename>Зелёный</valuename>
         <important>false</important>
       </features>
@@ -279,7 +275,6 @@
         <valuename>Красный</valuename>
         <valuename>Синий</valuename>
         <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
         <valuename>Зелёный</valuename>
         <important>true</important>
       </features>
@@ -299,70 +294,10 @@
         <valuename>5</valuename>
         <important>false</important>
       </features>
-      <concept>Бат</concept>
+      <concept>Кра</concept>
     </shapeitem>
     <shapeitem>
       <id>6</id>
-      <icon>
-        <name>svg</name>
-        <attrs>
-          <xmlns>http://www.w3.org/2000/svg</xmlns>
-          <width>87.496</width>
-          <height>47.733</height>
-          <viewBox>278.106 649.031 87.496 47.733</viewBox>
-          <style>isolation:isolate</style>
-        </attrs>
-        <childs>
-          <name>path</name>
-          <attrs>
-            <fill>#0F0</fill>
-            <stroke>#0F0</stroke>
-            <strokeLinecap>square</strokeLinecap>
-            <strokeMiterlimit>3</strokeMiterlimit>
-            <d>M279.606 650.531h84.496v44.733h-84.496v-44.733z</d>
-            <vectorEffect>non-scaling-stroke</vectorEffect>
-          </attrs>
-        </childs>
-      </icon>
-      <figurename>Fig_6</figurename>
-      <features>
-        <id>1</id>
-        <featurename>Форма</featurename>
-        <valuename>Квадрат</valuename>
-        <valuename>Круг</valuename>
-        <valuename>Треугольник</valuename>
-        <important>false</important>
-      </features>
-      <features>
-        <id>2</id>
-        <featurename>Цвет</featurename>
-        <valuename>Зелёный</valuename>
-        <valuename>Синий</valuename>
-        <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
-        <valuename>Красный</valuename>
-        <important>true</important>
-      </features>
-      <features>
-        <id>3</id>
-        <featurename>Размер</featurename>
-        <valuename>Большой</valuename>
-        <valuename>Средний</valuename>
-        <valuename>Маленький</valuename>
-        <important>true</important>
-      </features>
-      <features>
-        <id>4</id>
-        <featurename>Кол-во углов</featurename>
-        <valuename>3</valuename>
-        <valuename>4</valuename>
-        <valuename>5</valuename>
-        <important>false</important>
-      </features>
-      <concept>Зеб</concept>
-    </shapeitem>
-    <shapeitem>
-      <id>7</id>
       <icon>
         <name>svg</name>
         <attrs>
@@ -399,7 +334,6 @@
         <valuename>Зелёный</valuename>
         <valuename>Синий</valuename>
         <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
         <valuename>Красный</valuename>
         <important>true</important>
       </features>
@@ -419,87 +353,27 @@
         <valuename>5</valuename>
         <important>false</important>
       </features>
-      <concept>Зеб</concept>
-    </shapeitem>
-    <shapeitem>
-      <id>8</id>
-      <icon>
-        <name>svg</name>
-        <attrs>
-          <xmlns>http://www.w3.org/2000/svg</xmlns>
-          <width>86.363</width>
-          <height>49.528</height>
-          <viewBox>203.96 396.181 86.363 49.528</viewBox>
-          <style>isolation:isolate</style>
-        </attrs>
-        <childs>
-          <name>path</name>
-          <attrs>
-            <fill>#0F0</fill>
-            <stroke>#0F0</stroke>
-            <strokeLinecap>square</strokeLinecap>
-            <strokeMiterlimit>3</strokeMiterlimit>
-            <d>M238.418 397.681h33.927l16.478 46.528H205.46l32.958-46.528z</d>
-            <vectorEffect>non-scaling-stroke</vectorEffect>
-          </attrs>
-        </childs>
-      </icon>
-      <figurename>Fig_5</figurename>
-      <features>
-        <id>1</id>
-        <featurename>Форма</featurename>
-        <valuename>Квадрат</valuename>
-        <valuename>Круг</valuename>
-        <valuename>Треугольник</valuename>
-        <important>false</important>
-      </features>
-      <features>
-        <id>2</id>
-        <featurename>Цвет</featurename>
-        <valuename>Красный</valuename>
-        <valuename>Синий</valuename>
-        <valuename>Жёлтый</valuename>
-        <valuename>Белый</valuename>
-        <valuename>Зелёный</valuename>
-        <important>false</important>
-      </features>
-      <features>
-        <id>3</id>
-        <featurename>Размер</featurename>
-        <valuename>Большой</valuename>
-        <valuename>Средний</valuename>
-        <valuename>Маленький</valuename>
-        <important>true</important>
-      </features>
-      <features>
-        <id>4</id>
-        <featurename>Кол-во углов</featurename>
-        <valuename>4</valuename>
-        <valuename>3</valuename>
-        <valuename>5</valuename>
-        <important>true</important>
-      </features>
-      <concept>Пак</concept>
+      <concept>Роц</concept>
     </shapeitem>
   </shapes>
   <concepts>
-    <conceptitem>
-      <id>8</id>
-      <conceptname>Бат</conceptname>
-      <value>Красный</value>
-      <value>Маленький</value>
-    </conceptitem>
-    <conceptitem>
-      <id>11</id>
-      <conceptname>Зеб</conceptname>
-      <value>Зелёный</value>
-      <value>Большой</value>
-    </conceptitem>
     <conceptitem>
       <id>10</id>
       <conceptname>Пак</conceptname>
       <value>Большой</value>
       <value>4</value>
+    </conceptitem>
+    <conceptitem>
+      <id>6</id>
+      <conceptname>Кра</conceptname>
+      <value>Красный</value>
+      <value>Маленький</value>
+    </conceptitem>
+    <conceptitem>
+      <id>9</id>
+      <conceptname>Роц</conceptname>
+      <value>Зелёный</value>
+      <value>Большой</value>
     </conceptitem>
   </concepts>
   <field>
@@ -508,51 +382,40 @@
   </field>
   <placement>
     <placeitem>
-      <x>2</x>
-      <y>3</y>
-      <figureid>2</figureid>
-    </placeitem>
-    <placeitem>
       <x>1</x>
-      <y>1</y>
+      <y>2</y>
       <figureid>1</figureid>
     </placeitem>
     <placeitem>
-      <x>0</x>
-      <y>1</y>
-      <figureid>4</figureid>
-    </placeitem>
-    <placeitem>
       <x>1</x>
-      <y>3</y>
-      <figureid>6</figureid>
-    </placeitem>
-    <placeitem>
-      <x>3</x>
-      <y>1</y>
+      <y>4</y>
       <figureid>3</figureid>
     </placeitem>
     <placeitem>
-      <x>4</x>
-      <y>1</y>
-      <figureid>8</figureid>
-    </placeitem>
-    <placeitem>
-      <x>0</x>
-      <y>3</y>
-      <figureid>7</figureid>
+      <x>2</x>
+      <y>4</y>
+      <figureid>2</figureid>
     </placeitem>
     <placeitem>
       <x>3</x>
-      <y>3</y>
+      <y>2</y>
+      <figureid>4</figureid>
+    </placeitem>
+    <placeitem>
+      <x>4</x>
+      <y>2</y>
+      <figureid>6</figureid>
+    </placeitem>
+    <placeitem>
+      <x>0</x>
+      <y>4</y>
       <figureid>5</figureid>
     </placeitem>
   </placement>
   <opening>
-    <formingconcept>8</formingconcept>
+    <formingconcept>6</formingconcept>
     <sequence>
-      <figureid>3</figureid>
-      <figureid>1</figureid>
+      <figureid>2</figureid>
       <figureid>5</figureid>
     </sequence>
   </opening>

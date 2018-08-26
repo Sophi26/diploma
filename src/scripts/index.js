@@ -13,6 +13,7 @@ import hypothesis from './hypothesis';
 import saveExperiment from './saveExperiment';
 import earlyExperiments from './earlyExperiments';
 import openExperiment from './openExperiment';
+import createInMenu from './createInMenu';
 
 function main() {
 
@@ -50,6 +51,7 @@ function main() {
             };
             const store = createStore(reducer, initialState);
 
+            createInMenu(store);
             openExperiment(store);
             switchingTabs();
             saveExperiment(store);

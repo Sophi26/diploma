@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 import { saveExp } from '../actions/SaveActions';
 
 function main(store) {
@@ -8,6 +10,8 @@ function main(store) {
     
         const action = saveExp();
         store.dispatch(action);
+
+        $('#hidden-menu-ticker').prop('checked', false);
     });
 }
 

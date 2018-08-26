@@ -540,6 +540,12 @@ h1 {
     height: 0;
 }
 
+#upload-file {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
 #folder {
     cursor: pointer;
 }

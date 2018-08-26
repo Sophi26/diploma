@@ -6,6 +6,7 @@ import * as OpeningTypes from '../constants/OpeningEditorActionTypes';
 import * as PlayTypes from '../constants/PlayEditorActionTypes';
 import * as SaveTypes from '../constants/SaveActionTypes';
 import * as OpenTypes from '../constants/OpenActionTypes';
+import * as CreateTypes from '../constants/CreateActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -454,6 +455,25 @@ export default function featureList(state, action = {}) {
                 openingdragfieldshapes: open_field,
                 playfieldshapes: play_field,
                 samplelist: sample_list,
+                userlist: [],
+                actionfig: {},
+            }
+
+        case CreateTypes.CREATE_EXP:
+            return {
+                ...state,
+                figures: [],
+                selconcept: [],
+                seeconceptshapes: { shapes: [] },
+                figureinfo: { impfeatures: [], concepts: [] },
+                figureimg: {},
+                field: { width: 0, height: 0 },
+                opening: { sequence: [] },
+                dragshapelist: [],
+                dropshapelist: [],
+                openingdragfieldshapes: [],
+                playfieldshapes: [],
+                samplelist: [],
                 userlist: [],
                 actionfig: {},
             }
