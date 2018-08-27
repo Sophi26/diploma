@@ -80,7 +80,7 @@ h1 {
     list-style: none;
     margin: 0;
     padding-left: 25px;
-    padding-top: 30px;
+    padding-top: 25px;
     box-sizing: border-box;
     box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
     width: 350px;
@@ -101,6 +101,7 @@ h1 {
     font-weight: normal;
     letter-spacing: 0.1em;
     cursor: pointer;
+    font-size: 14pt;
 }
 
 #early-experiments li a:hover {
@@ -129,6 +130,17 @@ h1 {
 
 #hidden-menu li {
     line-height: 60px;
+}
+
+#recent-li {
+    position: relative;
+}
+
+#recent-li svg {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 15px;
 }
 
 #hidden-menu li a {

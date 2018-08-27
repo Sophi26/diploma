@@ -4,7 +4,7 @@ import { openExp } from '../actions/OpenActions';
 
 function main(store) {
 
-    fetch("/api/all", {
+    fetch("/api/early", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

@@ -23,7 +23,12 @@
                     <label id="open-li" for="upload-file"><a id="open-button">Открыть...</a></label>
                     <input type="file" name="expFile" id="upload-file" accept="text/xml">
                 </li>
-                <li><a id="open-recent-button">Открыть Недавние</a></li>
+                <li id="recent-li">
+                    <a id="open-recent-button">Открыть Недавние</a>
+                    <svg width="36px" height="36px" viewBox="0 0 24 24">
+                        <path fill="rgba(3, 3, 33, .8)" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                    </svg>
+                </li>
                 <li>
                     <hr>
                 </li>
@@ -43,9 +48,9 @@
                         <svg width="30px" height="30px" viewBox="0 0 24 24">
                             <path fill="rgb(3, 3, 33)" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
                         </svg>
-                        <a>Недавние</a>
+                        <a id="side-recent">Недавние</a>
                     </li>
-                    <li><a>Все</a></li>
+                    <li><a id="side-all">Все</a></li>
                 </ul>
             </div>
 

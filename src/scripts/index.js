@@ -15,6 +15,7 @@ import earlyExperiments from './earlyExperiments';
 import openExperiment from './openExperiment';
 import createInMenu from './createInMenu';
 import earlyExperimentsInMenu from './earlyExperimentsInMenu';
+import sidebarButtons from './sidebarButtons';
 
 function main() {
 
@@ -54,6 +55,7 @@ function main() {
 
             createInMenu(store);
             openExperiment(store);
+            sidebarButtons(store);
             earlyExperimentsInMenu(store);
             switchingTabs();
             saveExperiment(store);

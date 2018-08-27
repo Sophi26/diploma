@@ -153,7 +153,7 @@ app.get(
 /////EARLY EXPERIMENTS!!!\\\\\
 
 app.get(
-    "/api/early",
+    "/api/all",
     (req, res) => {
 
         const dirPath = Path.join(__dirname, 'library', 'experiments');
@@ -162,7 +162,7 @@ app.get(
     });
 
 app.get(
-    "/api/all",
+    "/api/early",
     (req, res) => {
     
         const dirPath = Path.join(__dirname, 'library', 'experiments');
@@ -173,8 +173,6 @@ app.get(
             const stats = fs.statSync(exp);
             const createDate = new Date(stats["mtime"]);
             const nowDate = new Date();
-            console.log(createDate);
-            console.log(nowDate);
             if(createDate.getFullYear() === nowDate.getFullYear()) {
                 if(createDate.getMonth() === nowDate.getMonth()) {
                     if((nowDate.getDate() - createDate.getDate()) < 10) {
