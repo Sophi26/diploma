@@ -603,7 +603,7 @@ h1 {
     vertical-align: middle;
 }
 
-.heading path:hover {
+.heading svg:hover path{
     fill: #1492E6;
 }
 

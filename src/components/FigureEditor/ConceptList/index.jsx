@@ -22,7 +22,7 @@ class ConceptList extends React.Component {
         const elements = this.props.concepts.map((concept, key) => {
             i = key + 1;
             return <li key={key} onClick={this.selConc.bind(this, key, concept)}>
-                        <Concept concept={concept} isSelect={this.state.selectConceptId === key} />
+                        <Concept concept={concept} isSelect={this.state.selectConceptId === key} oneConcept={this.props.oneConcept} impFeat={this.props.impFeat} actions={this.props.actions} />
                     </li>;
         });
 
@@ -75,7 +75,6 @@ class ConceptList extends React.Component {
             })
             .then((data) => {
 
-                console.log(data);
                 this.props.actions.onSelectConcept(this.props.figId, data);
             })
             .catch();           

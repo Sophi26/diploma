@@ -57,7 +57,7 @@ function main() {
             openExperiment(store);
             sidebarButtons(store);
             earlyExperimentsInMenu(store);
-            switchingTabs();
+            switchingTabs(store);
             saveExperiment(store);
             featureEditor(store);
             figureEditorApi(store);

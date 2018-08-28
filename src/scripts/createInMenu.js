@@ -12,6 +12,8 @@ function main(store) {
         document.getElementById("start").style.display = 'none';
         document.getElementById("creation").style.display = 'block';
         document.getElementById("exp-name").textContent = 'Новый';
+        document.getElementById("f-width").value = '0';
+        document.getElementById("f-height").value = '0';
 
         const action = createExp();
         store.dispatch(action);

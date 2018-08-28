@@ -1,4 +1,6 @@
-function main() {
+import { initPlay } from '../actions/SwitchingTabsActions';
+
+function main(store) {
 
     document.getElementById("tab1").style.display = 'block';
 
@@ -22,6 +24,12 @@ function main() {
             }
         });
     }
+
+    document.getElementById("play-icon").addEventListener('click', () => {
+
+        const action = initPlay();
+        store.dispatch(action);
+    });
 }
 
 export {

@@ -47,6 +47,8 @@ function main(store) {
                     document.getElementById("creation").style.display = 'block';
                     document.getElementById("early-experiments").style.display = 'none';
                     $('#hidden-menu-ticker').prop('checked', false);
+                    document.getElementById("f-width").value = data.experiment.field.width;
+                    document.getElementById("f-height").value = data.experiment.field.height;
                 })
                 .catch();
             });

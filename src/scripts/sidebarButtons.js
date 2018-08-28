@@ -77,6 +77,8 @@ function main(store) {
         
                         document.getElementById("start").style.display = 'none';
                         document.getElementById("creation").style.display = 'block';
+                        document.getElementById("f-width").value = data.experiment.field.width;
+                        document.getElementById("f-height").value = data.experiment.field.height;
                     })
                     .catch();
                 });
@@ -154,6 +156,8 @@ function main(store) {
                 
                                 document.getElementById("start").style.display = 'none';
                                 document.getElementById("creation").style.display = 'block';
+                                document.getElementById("f-width").value = data.experiment.field.width;
+                                document.getElementById("f-height").value = data.experiment.field.height;
                             })
                             .catch();
                         }
@@ -276,6 +280,8 @@ function main(store) {
         
                         document.getElementById("start").style.display = 'none';
                         document.getElementById("creation").style.display = 'block';
+                        document.getElementById("f-width").value = data.experiment.field.width;
+                        document.getElementById("f-height").value = data.experiment.field.height;
                     })
                     .catch();
                 });
@@ -353,6 +359,8 @@ function main(store) {
                 
                                 document.getElementById("start").style.display = 'none';
                                 document.getElementById("creation").style.display = 'block';
+                                document.getElementById("f-width").value = data.experiment.field.width;
+                                document.getElementById("f-height").value = data.experiment.field.height;
                             })
                             .catch();
                         }

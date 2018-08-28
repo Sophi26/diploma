@@ -9,6 +9,7 @@ import ConceptList from '../ConceptList';
 import { conceptOptions } from '../../../actions/FigureEditorActions';
 import { selectValue } from '../../../actions/FigureEditorActions';
 import { selectConcept } from '../../../actions/FigureEditorActions';
+import { renameConcept } from '../../../actions/FigureEditorActions';
 
 class FigureInfo extends React.Component {
 
@@ -106,6 +107,10 @@ export default connect(
                 },
                 onSelectConcept: (figId, conc) => {
                     const action = selectConcept(figId, conc);
+                    dispatch(action);
+                },
+                onRenameConcept: (axeConc, newConc) => {
+                    const action = renameConcept(axeConc, newConc);
                     dispatch(action);
                 },
             }

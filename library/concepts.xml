@@ -66,4 +66,28 @@
     <value>Зелёный</value>
     <value>Большой</value>
   </conceptitem>
+  <conceptitem>
+    <conceptname>Буч</conceptname>
+    <value>Большой</value>
+    <value>4</value>
+    <id>12</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Баку</conceptname>
+    <value>Большой</value>
+    <value>4</value>
+    <id>13</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Ноп</conceptname>
+    <value>Большой</value>
+    <value>4</value>
+    <id>14</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Мик</conceptname>
+    <value>Красный</value>
+    <value>Маленький</value>
+    <id>15</id>
+  </conceptitem>
 </concepts>

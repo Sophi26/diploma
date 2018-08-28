@@ -69,3 +69,10 @@ export function selectConcept(figId, concept) {
         payload: { figId: figId, concept: concept },
     };
 }
+
+export function renameConcept(axeConc, newConc) {
+    return {
+        type: EditorTypes.RENAME_CONCEPT,
+        payload: { axeconc: axeConc, newconc: newConc },
+    };
+}

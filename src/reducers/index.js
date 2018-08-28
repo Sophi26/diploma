@@ -7,6 +7,7 @@ import * as PlayTypes from '../constants/PlayEditorActionTypes';
 import * as SaveTypes from '../constants/SaveActionTypes';
 import * as OpenTypes from '../constants/OpenActionTypes';
 import * as CreateTypes from '../constants/CreateActionTypes';
+import * as SwitchingTabsTypes from '../constants/SwitchingTabsActionTypes';
 
 export default function featureList(state, action = {}) {
 
@@ -229,6 +230,43 @@ export default function featureList(state, action = {}) {
                     return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname} };
                 }),
                 selconcept: state.selconcept.filter(conc => conc.conceptname !== action.payload.concept.conceptname).concat(action.payload.concept),
+            }
+
+        case FigureTypes.RENAME_CONCEPT:
+            return {
+                ...state,
+                figures: state.figures.map(figure => {
+                    return figure.concept !== action.payload.axeconc ? figure : {...figure, concept: action.payload.newconc};
+                }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return figure.concept !== action.payload.axeconc ? figure : {...figure, concept: action.payload.newconc};
+                }),
+                dropshapelist: state.dropshapelist.map(figure => {
+                    return figure.shape.concept !== action.payload.axeconc ? figure : {...figure, shape: {...figure.shape, concept: action.payload.newconc} };
+                }),
+                openingdragfieldshapes: state.openingdragfieldshapes.map(figure => {
+                    return figure.shape.concept !== action.payload.axeconc ? figure : {...figure, shape: {...figure.shape, concept: action.payload.newconc} };
+                }),
+                playfieldshapes: state.playfieldshapes.map(figure => {
+                    return figure.shape.concept !== action.payload.axeconc ? figure : {...figure, shape: {...figure.shape, concept: action.payload.newconc} };
+                }),
+                selconcept: state.selconcept.map(conc => {
+                    return conc.conceptname !== action.payload.axeconc ? conc : {...conc, conceptname: action.payload.newconc};
+                }),
+                opening: state.opening.expconcept === undefined ? state.opening : { expconcept: state.opening.expconcept.conceptname !== action.payload.axeconc ? state.opening.expconcept : {...state.opening.expconcept, conceptname: action.payload.newconc}, 
+                    sequence: state.opening.sequence.map(shape => {
+                        return shape.concept !== action.payload.axeconc ? shape : {...shape, concept: action.payload.newconc};
+                    }),
+                },
+                samplelist: state.samplelist.map(shape => {
+                    return shape.concept !== action.payload.axeconc ? shape : {...shape, concept: action.payload.newconc};
+                }),
+                seeconceptshapes: state.seeconceptshapes.conceptname === undefined ? state.seeconceptshapes : {...state.seeconceptshapes, 
+                    conceptname: state.seeconceptshapes.conceptname !== action.payload.axeconc ? state.seeconceptshapes.conceptname : action.payload.newconc,
+                    shapes: state.seeconceptshapes.shapes.map(shape => {
+                        return shape.concept !== action.payload.axeconc ? shape : {...shape, concept: action.payload.newconc};
+                    }),    
+                },
             }
 
         case SeeTypes.OPEN_CONCEPT:
@@ -474,6 +512,21 @@ export default function featureList(state, action = {}) {
                 openingdragfieldshapes: [],
                 playfieldshapes: [],
                 samplelist: [],
+                userlist: [],
+                actionfig: {},
+            }
+
+        case SwitchingTabsTypes.INIT_PLAY:
+            const switch_sample = state.opening.sequence[0];
+            let init_samplelist = [];
+            init_samplelist = switch_sample !== undefined ? init_samplelist.concat(switch_sample) : init_samplelist;
+            let init_playfield = JSON.parse(JSON.stringify(state.openingdragfieldshapes));
+            init_playfield.map(shape => { return {...shape, shape: Object.assign(shape.shape, {hidden: false})}; });
+            init_playfield = switch_sample !== undefined ? init_playfield.filter(shape => shape.shape.id !== switch_sample.id) : init_playfield;
+            return {
+                ...state,
+                playfieldshapes: init_playfield,
+                samplelist: init_samplelist,
                 userlist: [],
                 actionfig: {},
             }
