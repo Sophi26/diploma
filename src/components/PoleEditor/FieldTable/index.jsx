@@ -10,6 +10,7 @@ class FieldTable extends React.Component {
     render() {
 
         const table = [];
+        //style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}}
 
         for(let i = 0; i < this.props.fieldTab.height; ++i) {
             let columns = [];

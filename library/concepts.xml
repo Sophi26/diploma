@@ -90,4 +90,16 @@
     <value>Маленький</value>
     <id>15</id>
   </conceptitem>
+  <conceptitem>
+    <conceptname>Мач</conceptname>
+    <value>Маленький</value>
+    <value>4</value>
+    <id>16</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Лир</conceptname>
+    <value>Маленький</value>
+    <value>4</value>
+    <id>17</id>
+  </conceptitem>
 </concepts>

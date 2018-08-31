@@ -15,6 +15,9 @@ class FigureInfo extends React.Component {
 
     render() {
 
+        console.log("INFO!!!");
+        console.log(this.props.figInfo);
+
         let concept = null;
         let oneConcept = false;
 
@@ -73,7 +76,7 @@ class FigureInfo extends React.Component {
                     }
                 });
             }
-            this.props.actions.onConceptOptions(conceptsArray);
+            this.props.actions.onConceptOptions(this.props.figInfo.id, conceptsArray);
             concept = <div id="concept-list"><p>Дать название</p><ConceptList figId={this.props.figInfo.id} impFeat={this.props.figInfo.impfeatures} oneConcept={oneConcept} concepts={this.props.figInfo.concepts} actions={this.props.actions} /></div>;
         }
 
@@ -97,8 +100,8 @@ export default connect(
     dispatch => {
         return {
             actions: {
-                onConceptOptions: (concepts) => {
-                    const action = conceptOptions(concepts);
+                onConceptOptions: (figId, concepts) => {
+                    const action = conceptOptions(figId, concepts);
                     dispatch(action);
                 },
                 onSelectValue: (figId, id, value) => {

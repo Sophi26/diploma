@@ -176,9 +176,17 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.CONCEPT_OPTIONS:
+            let check_sel = false;
+            for (let i = 0; i < state.figures.length; ++i) {
+                if (state.figures[i].id === action.payload.figId) {
+                    if(state.figures[i].concept !== undefined) {
+                        check_sel = true;
+                    }
+                }
+            }
             return {
                 ...state,
-                figureinfo: Object.assign(state.figureinfo, { concepts: action.payload }),
+                figureinfo: Object.assign(state.figureinfo, { concepts: !check_sel ? action.payload.concepts : action.payload.concepts.map(concept => { return Object.assign(JSON.parse(JSON.stringify(concept)), { select: true }); }) }),
             }
 
         case FigureTypes.SELECT_VALUE:

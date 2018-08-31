@@ -12,7 +12,7 @@ class ConceptList extends React.Component {
         super(props);
 
         this.state = {
-            selectConceptId: 0,
+            selectConceptId: null,
         }
     }
 
@@ -21,8 +21,8 @@ class ConceptList extends React.Component {
         let i = 0;
         const elements = this.props.concepts.map((concept, key) => {
             i = key + 1;
-            return <li key={key} onClick={this.selConc.bind(this, key, concept)}>
-                        <Concept concept={concept} isSelect={this.state.selectConceptId === key} oneConcept={this.props.oneConcept} impFeat={this.props.impFeat} actions={this.props.actions} />
+            return <li key={key} onClick={this.selConc.bind(this, concept.id, concept)}>
+                        <Concept concept={concept} isSelect={this.props.oneConcept ? concept.select : this.state.selectConceptId === concept.id} oneConcept={this.props.oneConcept} impFeat={this.props.impFeat} actions={this.props.actions} />
                     </li>;
         });
 
@@ -76,6 +76,7 @@ class ConceptList extends React.Component {
             .then((data) => {
 
                 this.props.actions.onSelectConcept(this.props.figId, data);
+                this.setState({ selectConceptId: data.id });
             })
             .catch();           
         }

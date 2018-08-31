@@ -49,10 +49,10 @@ export function onlyImportantFeatures(features) {
     };
 }
 
-export function conceptOptions(concepts) {
+export function conceptOptions(figId, concepts) {
     return {
         type: EditorTypes.CONCEPT_OPTIONS,
-        payload: concepts,
+        payload: { figId: figId, concepts: concepts },
     };
 }
 
