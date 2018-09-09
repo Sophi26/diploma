@@ -3,9 +3,9 @@
   <featureitem>
     <id>1</id>
     <featurename>Форма</featurename>
+    <valuename>Треугольник</valuename>
     <valuename>Квадрат</valuename>
     <valuename>Круг</valuename>
-    <valuename>Треугольник</valuename>
   </featureitem>
   <featureitem>
     <id>2</id>
@@ -23,8 +23,8 @@
     <valuename>Маленький</valuename>
   </featureitem>
   <featureitem>
-    <id>4</id>
     <featurename>Кол-во углов</featurename>
+    <id>4</id>
     <valuename>3</valuename>
     <valuename>4</valuename>
     <valuename>5</valuename>

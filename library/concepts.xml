@@ -102,4 +102,22 @@
     <value>4</value>
     <id>17</id>
   </conceptitem>
+  <conceptitem>
+    <conceptname>Там</conceptname>
+    <value>Маленький</value>
+    <value>Треугольник</value>
+    <id>18</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Алаб</conceptname>
+    <value>Большой</value>
+    <value>Алый</value>
+    <id>19</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Алам</conceptname>
+    <value>Алый</value>
+    <value>Маленький</value>
+    <id>20</id>
+  </conceptitem>
 </concepts>

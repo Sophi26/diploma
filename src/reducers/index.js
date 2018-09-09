@@ -11,24 +11,94 @@ import * as SwitchingTabsTypes from '../constants/SwitchingTabsActionTypes';
 
 export default function featureList(state, action = {}) {
 
+    console.log(state);
+    
     switch (action.type) {
 
         case EditorTypes.ADD_FEATURE:
             const new_feature = action.payload;
             return {
                 ...state,
-                features: state.features.concat(new_feature),
+                features: state.features.concat(JSON.parse(JSON.stringify(new_feature))),
                 figures: state.figures.map(figure => {
-                    return {...figure, features: figure.features.concat(new_feature), };
-                }), 
+                    return {...figure, features: figure.features.concat(JSON.parse(JSON.stringify(new_feature))), };
+                }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.concat(JSON.parse(JSON.stringify(new_feature))), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.concat(JSON.parse(JSON.stringify(new_feature)))} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.concat(JSON.parse(JSON.stringify(new_feature)))} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.concat(JSON.parse(JSON.stringify(new_feature)))} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.concat(JSON.parse(JSON.stringify(new_feature))) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
+                    return {...figure, features: figure.features.concat(JSON.parse(JSON.stringify(new_feature))), };
+                }),
+                opening: {
+                    ...state.opening,
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.concat(JSON.parse(JSON.stringify(new_feature))) };
+                    }),
+                },
             }
 
         case EditorTypes.DELETE_FEATURE:
+            let feature_values = [];
+            for(let i = 0; i < state.features.length; ++i) {
+                if(state.features[i].id === action.payload) {
+                    feature_values = state.features[i].valuename;
+                }
+            }
             return {
                 ...state,
                 features: state.features.filter(feature => feature.id !== action.payload),
                 values: state.values.id === action.payload ? { valuename: [] } : state.values,
                 figures: state.figures.map(figure => {
+                    return {...figure, features: figure.features.filter(feature => feature.id !== action.payload), };
+                }),
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.filter(feature => feature.id !== action.payload)},
+                opening: {
+                    ...state.opening,
+                    expconcept: state.opening.expconcept === undefined ? undefined : {
+                        ...state.opening.expconcept,
+                        value: state.opening.expconcept.value.filter(value => feature_values.indexOf(value) === -1),
+                    },
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.filter(feature => feature.id !== action.payload) };
+                    }),
+                },
+                selconcept: state.selconcept.map(concept => {
+                    return {...concept, value: concept.value.filter(value => feature_values.indexOf(value) === -1) };
+                }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.filter(feature => feature.id !== action.payload), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.filter(feature => feature.id !== action.payload)} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.filter(feature => feature.id !== action.payload)} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.filter(feature => feature.id !== action.payload)} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.filter(feature => feature.id !== action.payload) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
                     return {...figure, features: figure.features.filter(feature => feature.id !== action.payload), };
                 }),
             }
@@ -46,6 +116,50 @@ export default function featureList(state, action = {}) {
                         }),
                     };
                 }),
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => {
+                    return feature.id !== action.payload.id ? feature : {...feature, name: action.payload.featurename };    
+                })},
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                    }), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                    })} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                    })} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                    })} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                        }) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                    }), };
+                }),
+                opening: {
+                    ...state.opening,
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, featurename: action.payload.featurename };
+                        }) };
+                    }),
+                },
             }
 
         case EditorTypes.OPEN_FEATURE:
@@ -72,6 +186,50 @@ export default function featureList(state, action = {}) {
                         }),
                     };
                 }),
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => {
+                    return feature.name !== action.payload.featurename ? feature : feature.values[0] === undefined ? Object.assign(feature, { values: [new_value], selvalue: new_value }) : {...feature, values: [...feature.values, new_value] };    
+                })},
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    }), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    })} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    })} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    })} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                        }) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                    }), };
+                }),
+                opening: {
+                    ...state.opening,
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.featurename !== action.payload.featurename ? feature : feature.valuename === undefined ? Object.assign(feature, { valuename: [new_value] }) : {...feature, valuename: [...feature.valuename, new_value] };
+                        }) };
+                    }),
+                },
             }
 
         case EditorTypes.DELETE_VALUE:
@@ -91,6 +249,57 @@ export default function featureList(state, action = {}) {
                         }),
                     };
                 }),
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => {
+                    return feature.id !== action.payload.id ? feature : {...feature, values: feature.values.filter(value => value !== action.payload.valuename), selvalue: feature.selvalue !== action.payload.valuename ? feature.selvalue : feature.values[1] };    
+                })},
+                opening: {
+                    ...state.opening,
+                    expconcept: state.opening.expconcept === undefined ? undefined : {
+                        ...state.opening.expconcept,
+                        value: state.opening.expconcept.value.filter(value => value !== action.payload.valuename),
+                    },
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                        }) };
+                    }),
+                },
+                selconcept: state.selconcept.map(concept => {
+                    return {...concept, value: concept.value.filter(value => value !== action.payload.valuename) };
+                }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    }), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    })} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    })} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    })} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                        }) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.filter(value => value !== action.payload.valuename) };
+                    }), };
+                }),
             }
 
         case EditorTypes.RENAME_VALUE:
@@ -109,6 +318,57 @@ export default function featureList(state, action = {}) {
                             return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
                         }),
                     };
+                }),
+                figureinfo: {...state.figureinfo, impfeatures: state.figureinfo.impfeatures.map(feature => {
+                    return feature.id !== action.payload.id ? feature : {...feature, values: feature.values.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }), selvalue: feature.selvalue !== action.payload.prevname ? feature.selvalue : action.payload.valuename };    
+                })},
+                opening: {
+                    ...state.opening,
+                    expconcept: state.opening.expconcept === undefined ? undefined : {
+                        ...state.opening.expconcept,
+                        value: state.opening.expconcept.value.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }),
+                    },
+                    sequence: state.opening.sequence.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                        }) };
+                    }),
+                },
+                selconcept: state.selconcept.map(concept => {
+                    return {...concept, value: concept.value.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                }),
+                dragshapelist: state.dragshapelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    }), };
+                }),
+                dropshapelist: !state.dropshapelist.length ? [] : state.dropshapelist.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    })} };
+                }),
+                openingdragfieldshapes: !state.openingdragfieldshapes.length ? [] : state.openingdragfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    })} };
+                }),
+                playfieldshapes: !state.playfieldshapes.length ? [] : state.playfieldshapes.map(figure => {
+                    return {...figure, shape: {...figure.shape, features: figure.shape.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    })} };
+                }),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.map(figure => {
+                        return {...figure, features: figure.features.map(feature => {
+                            return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                        }) };
+                    }),
+                },
+                samplelist: state.samplelist.map(figure => {
+                    return {...figure, features: figure.features.map(feature => {
+                        return feature.id !== action.payload.id ? feature : {...feature, valuename: feature.valuename.map(value => { return value !== action.payload.prevname ? value : action.payload.valuename; }) };
+                    }), };
                 }),
             }
 

@@ -15,9 +15,6 @@ class FigureInfo extends React.Component {
 
     render() {
 
-        console.log("INFO!!!");
-        console.log(this.props.figInfo);
-
         let concept = null;
         let oneConcept = false;
 
