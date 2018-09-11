@@ -399,6 +399,19 @@ export default function featureList(state, action = {}) {
                 figures: state.figures.filter(figure => figure.id !== action.payload),
                 figureinfo: state.figureinfo.id !== action.payload ? state.figureinfo : { impfeatures: [] },
                 figureimg: state.figureimg.id !== action.payload ? state.figureimg : {},
+                dragshapelist: state.dragshapelist.filter(figure => figure.id !== action.payload),
+                dropshapelist: state.dropshapelist.filter(item => item.shape.id !== action.payload),
+                opening: {
+                    ...state.opening,
+                    sequence: state.opening.sequence.filter(figure => figure.id !== action.payload),
+                },
+                openingdragfieldshapes: state.openingdragfieldshapes.filter(item => item.shape.id !== action.payload),
+                playfieldshapes: state.playfieldshapes.filter(item => item.shape.id !== action.payload),
+                samplelist: state.samplelist.filter(figure => figure.id !== action.payload),
+                seeconceptshapes: {
+                    ...state.seeconceptshapes,
+                    shapes: state.seeconceptshapes.shapes.filter(figure => figure.id !== action.payload),
+                },
             }
 
         case FigureTypes.OPEN_FIGURE:
@@ -571,7 +584,7 @@ export default function featureList(state, action = {}) {
                 ...state,
                 opening: {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.id).concat(action.payload)},
                 openingdragfieldshapes: state.openingdragfieldshapes.map(shape => shape.shape.id === action.payload.id ? {...shape, shape: Object.assign(shape.shape, {hidden: true})} : shape),
-                /* БАГ */ samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
+                samplelist: sample !== undefined ? state.samplelist.filter(shape => shape.id !== sample.id).concat(sample) : state.samplelist,
                 playfieldshapes: sample !== undefined ? state.playfieldshapes.filter(shape => shape.shape.id !== sample.id) : state.playfieldshapes,
             }
             

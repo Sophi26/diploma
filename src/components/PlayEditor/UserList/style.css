@@ -1,21 +1,17 @@
 #user-shapes-flex-block {
     margin-left: 15px;
-    width: 300px;
+    width: 385px;
     height: 100px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .user-shape {
-    margin-left: 15px;
+    margin-right: 15px;
     width: 100px;
     height: 100px;
     text-align: center;
     line-height: 100px;
-}
-
-.user-shape:first-child {
-    margin-left: 0;
 }
 
 .user-shape svg {
