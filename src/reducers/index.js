@@ -10,8 +10,6 @@ import * as CreateTypes from '../constants/CreateActionTypes';
 import * as SwitchingTabsTypes from '../constants/SwitchingTabsActionTypes';
 
 export default function featureList(state, action = {}) {
-
-    console.log(state);
     
     switch (action.type) {
 
