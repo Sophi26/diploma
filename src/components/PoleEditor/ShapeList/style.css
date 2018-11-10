@@ -13,6 +13,10 @@
     margin-bottom: 30px;
 }
 
+.draggable svg {
+    cursor: move;
+}
+
 .draggable text {
     position: absolute;
     fill: rgb(3, 3, 33);

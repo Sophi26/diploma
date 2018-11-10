@@ -5,56 +5,56 @@ import { openExp } from '../actions/OpenActions';
 function main(store) {
 
     fetch("/api/early", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then((response) => {
-        return response.json();
-    })
-    .then((result) => {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
 
-        const expList = document.getElementById("early-experiments");
+            const expList = document.getElementById("early-experiments");
 
-        for(let i=0; i < result.length; i++) {
+            for (let i = 0; i < result.length; i++) {
 
-            let expitem = document.createElement("li");
-            let expName = document.createElement("a");
-            expName.appendChild(document.createTextNode(result[i].slice(0, -4)));
-            expitem.appendChild(expName);
-            expList.appendChild(expitem);
-            expName.addEventListener('click', () => {
-                fetch("/api/open", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        filename: result[i],
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-    
-                    const action = openExp(data);
-                    store.dispatch(action);
-    
-                    document.getElementById("exp-name").textContent = result[i].slice(0, -4);
-                    document.getElementById("start").style.display = 'none';
-                    document.getElementById("creation").style.display = 'block';
-                    document.getElementById("early-experiments").style.display = 'none';
-                    $('#hidden-menu-ticker').prop('checked', false);
-                    document.getElementById("f-width").value = data.experiment.field.width;
-                    document.getElementById("f-height").value = data.experiment.field.height;
-                })
-                .catch();
-            });
-        }
-    })
-    .catch();
+                let expitem = document.createElement("li");
+                let expName = document.createElement("a");
+                expName.appendChild(document.createTextNode(result[i].slice(0, -4)));
+                expitem.appendChild(expName);
+                expList.appendChild(expitem);
+                expName.addEventListener('click', () => {
+                    fetch("/api/open", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                filename: result[i],
+                            }),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((data) => {
+
+                            const action = openExp(data);
+                            store.dispatch(action);
+
+                            document.getElementById("exp-name").textContent = result[i].slice(0, -4);
+                            document.getElementById("start").style.display = 'none';
+                            document.getElementById("creation").style.display = 'block';
+                            document.getElementById("early-experiments").style.display = 'none';
+                            $('#hidden-menu-ticker').prop('checked', false);
+                            document.getElementById("f-width").value = data.experiment.field.width;
+                            document.getElementById("f-height").value = data.experiment.field.height;
+                        })
+                        .catch();
+                });
+            }
+        })
+        .catch();
 
     const recent_button = document.getElementById("open-recent-button");
     const early_list = document.getElementById("early-experiments");
@@ -66,7 +66,9 @@ function main(store) {
 
     recent_button.addEventListener('mouseout', () => {
 
-        early_list.style.display = 'none';
+        setTimeout(() => {
+            early_list.style.display = 'none';
+        }, 400);
     });
 
     early_list.addEventListener('mouseover', () => {

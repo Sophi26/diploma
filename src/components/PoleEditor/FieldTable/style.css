@@ -29,3 +29,7 @@
     fill: rgb(3, 3, 33);
     font-size: 14pt;
 }
+
+.draggable-table svg {
+    cursor: move;
+}

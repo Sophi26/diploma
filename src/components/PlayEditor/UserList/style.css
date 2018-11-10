@@ -16,4 +16,5 @@
 
 .user-shape svg {
     vertical-align: middle;
+    cursor: move;
 }

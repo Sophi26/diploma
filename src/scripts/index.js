@@ -16,6 +16,7 @@ import openExperiment from './openExperiment';
 import createInMenu from './createInMenu';
 import earlyExperimentsInMenu from './earlyExperimentsInMenu';
 import sidebarButtons from './sidebarButtons';
+import openVectorEditor from './openVectorEditor';
 
 function main() {
 
@@ -61,6 +62,7 @@ function main() {
             saveExperiment(store);
             featureEditor(store);
             figureEditorApi(store);
+            openVectorEditor();
             seeMaterialApi(store);
             poleApi(store);
             openingApi(store);

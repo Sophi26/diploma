@@ -589,6 +589,10 @@ h1 {
     height: 0;
 }
 
+#vector-editor {
+    cursor: pointer;
+}
+
 #folder {
     cursor: pointer;
 }

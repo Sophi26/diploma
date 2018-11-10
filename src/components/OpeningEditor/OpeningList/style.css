@@ -22,4 +22,5 @@
 
 .open-cell svg {
     vertical-align: middle;
+    cursor: move;
 }

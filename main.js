@@ -1,5 +1,7 @@
 const { app } = require('electron');
 const { BrowserWindow } = require('electron');
+const { ipcMain } = require('electron');
+const { shell } = require('electron');
 
 let mainWindow = null;
 
@@ -19,4 +21,8 @@ app.on('ready', () => {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+});
+
+ipcMain.on('open-editor', () => {
+    shell.openExternal("https://designer.gravit.io/");
 });

@@ -22,4 +22,5 @@
 
 #f-s-tab td svg {
     vertical-align: middle;
+    cursor: move;
 }
