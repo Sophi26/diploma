@@ -64,15 +64,17 @@ function main(store) {
         early_list.style.display = 'block';
     });
 
+    let timerId;
     recent_button.addEventListener('mouseout', () => {
 
-        setTimeout(() => {
+        timerId = setTimeout(() => {
             early_list.style.display = 'none';
-        }, 400);
+        }, 300);
     });
 
     early_list.addEventListener('mouseover', () => {
 
+        clearTimeout(timerId);
         early_list.style.display = 'block';
     });
 

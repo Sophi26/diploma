@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { setTimeout } from 'timers';
 
 function main() {
 
@@ -135,15 +134,17 @@ function main() {
                     contextMenu.style.display = 'block';
                 });
 
+                let timerId;
                 menuIcon.addEventListener('mouseout', () => {
 
-                    setTimeout(() => {
+                    timerId = setTimeout(() => {
                         contextMenu.style.display = 'none';
-                    }, 400);
+                    }, 500);
                 });
 
                 contextMenu.addEventListener('mouseover', () => {
 
+                    clearTimeout(timerId);
                     contextMenu.style.display = 'block';
                 });
 
