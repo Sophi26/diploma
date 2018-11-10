@@ -343,7 +343,7 @@ h1 {
     top: 25px;
 }
 
-.name-block svg:hover path{
+.name-block svg:hover path {
     fill: #1492E6;
 }
 
@@ -562,7 +562,6 @@ h1 {
     height: 745px;
 }
 
-
 #s-table {
     margin: 0;
     padding: 0;
@@ -590,12 +589,6 @@ h1 {
     height: 0;
 }
 
-#save-as {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-}
-
 #folder {
     cursor: pointer;
 }
@@ -608,7 +601,7 @@ h1 {
     vertical-align: middle;
 }
 
-.heading svg:hover path{
+.heading svg:hover path {
     fill: #1492E6;
 }
 

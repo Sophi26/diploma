@@ -2,12 +2,13 @@
     "name": "diploma",
     "version": "1.0.0",
     "description": "ITMO's diploma project",
-    "main": "nw_start.html",
+    "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js",
+        "start": "electron .",
         "build:scripts": "webpack",
-        "postinstall": "npm run build:scripts"
+        "postinstall": "npm run build:scripts",
+        "server": "node server.js"
     },
     "repository": {
         "type": "git",
@@ -27,6 +28,7 @@
         "babel-preset-node6-es6": "^11.2.5",
         "babel-preset-react": "^6.24.1",
         "css-loader": "^0.28.11",
+        "electron": "^3.0.8",
         "file-loader": "^1.1.11",
         "style-loader": "^0.21.0",
         "webpack": "^4.6.0",

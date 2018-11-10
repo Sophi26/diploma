@@ -4,6 +4,7 @@ module.exports = {
     entry: {
         main: Path.join(__dirname, 'src', 'index.js'),
     },
+    target: 'electron-renderer',
     output: {
         path: Path.join(__dirname, 'public', 'js'),
         filename: 'index.js',
