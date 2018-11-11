@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+const { remote } = require("electron");
+const { dialog } = remote;
+
 import './style.css';
 import { openingPlace } from '../../../actions/OpeningEditorActions';
 
@@ -50,6 +53,12 @@ class OpeningList extends React.Component {
     onDrop(e) {
 
         let fig = e.dataTransfer.getData("figure");
+
+        if(JSON.parse(fig).concept !== this.props.openingseq.expconcept.conceptname) {
+            dialog.showErrorBox("Данная фигура не может быть подкреплением:(", "Выберите, пожалуйста, фигуру, которая имеет название " + this.props.openingseq.expconcept.conceptname + "!");
+            return;
+        }
+
         this.props.actions.onOpenPlace(JSON.parse(fig));
     }
 

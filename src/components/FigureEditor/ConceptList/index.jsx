@@ -2,6 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 
+const { remote } = require("electron");
+const { dialog } = remote;
+
 import './style.css';
 import Concept from '../Concept';
 
@@ -56,16 +59,11 @@ class ConceptList extends React.Component {
     addConcept(e) {
 
         if (e.which === 13) {
-            let values = [];
-            for(let i = 0; i < this.props.impFeat.length; ++i) {
-                values.push(this.props.impFeat[i].selvalue);
-            }
+
+            const inp_value = e.target.value;
+
             fetch("/api/concepts", {
-                method: "POST",
-                body: JSON.stringify({
-                    conceptname: e.target.value,
-                    value: values,
-                }),
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -75,10 +73,38 @@ class ConceptList extends React.Component {
             })
             .then((data) => {
 
-                this.props.actions.onSelectConcept(this.props.figId, data);
-                this.setState({ selectConceptId: data.id });
+                for (let i = 0; i < data.length; ++i) {
+                    if (data[i].conceptname === inp_value) {
+                        dialog.showErrorBox("Данное понятие уже существует:(", "Введите, пожалуйста, другое имя!");
+                        return;
+                    }
+                }
+
+                let values = [];
+                for (let i = 0; i < this.props.impFeat.length; ++i) {
+                    values.push(this.props.impFeat[i].selvalue);
+                }
+                fetch("/api/concepts", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        conceptname: inp_value,
+                        value: values,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                    this.props.actions.onSelectConcept(this.props.figId, data);
+                    this.setState({ selectConceptId: data.id });
+                })
+                .catch();
             })
-            .catch();           
+            .catch();
         }
     }
 }
