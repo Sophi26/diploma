@@ -539,7 +539,11 @@ export default function featureList(state, action = {}) {
             for (let i = 0; i < state.figures.length; ++i) {
                 if (state.figures[i].id === action.payload.figId) {
                     if (state.figures[i].concept !== undefined) {
-                        check_sel = true;
+                        if (action.payload.concepts[0] !== undefined) {
+                            if (state.figures[i].concept === action.payload.concepts[0].conceptname) {
+                                check_sel = true;
+                            }
+                        }
                     }
                 }
             }
