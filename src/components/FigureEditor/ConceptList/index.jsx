@@ -25,7 +25,7 @@ class ConceptList extends React.Component {
         const elements = this.props.concepts.map((concept, key) => {
             i = key + 1;
             return <li key={key} onClick={this.selConc.bind(this, concept.id, concept)}>
-                        <Concept concept={concept} isSelect={this.props.oneConcept ? concept.select : this.state.selectConceptId === concept.id} oneConcept={this.props.oneConcept} impFeat={this.props.impFeat} actions={this.props.actions} />
+                        <Concept figId={this.props.figId} concept={concept} isSelect={this.props.oneConcept ? concept.select : this.state.selectConceptId === concept.id} oneConcept={this.props.oneConcept} impFeat={this.props.impFeat} actions={this.props.actions} />
                     </li>;
         });
 
@@ -48,7 +48,7 @@ class ConceptList extends React.Component {
     selConc(selectConceptId, concept) {
         
         this.setState({ selectConceptId });
-        this.props.actions.onSelectConcept(this.props.figId, concept);
+        //this.props.actions.onSelectConcept(this.props.figId, concept);
     }
 
     selConcOther(selectConceptId) {

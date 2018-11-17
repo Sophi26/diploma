@@ -480,6 +480,21 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.DELETE_FIGURE:
+            let fig_conc;
+            for (let i = 0; i < state.figures.length; ++i) {
+                if (state.figures[i].id === action.payload) {
+                    fig_conc = state.figures[i].concept;
+                    break;
+                }
+            }
+            let check_fig_conc = 0;
+            if (fig_conc !== undefined) {
+                for (let i = 0; i < state.figures.length; ++i) {
+                    if (state.figures[i].concept === fig_conc && state.figures[i].id !== action.payload) {
+                        ++check_fig_conc;
+                    }
+                }
+            }
             return {
                 ...state,
                 figures: state.figures.filter(figure => figure.id !== action.payload),
@@ -489,6 +504,7 @@ export default function featureList(state, action = {}) {
                 dropshapelist: state.dropshapelist.filter(item => item.shape.id !== action.payload),
                 opening: {
                     ...state.opening,
+                    expconcept: state.opening.expconcept === undefined ? state.opening.expconcept : check_fig_conc !== 0 ? state.opening.expconcept : state.opening.expconcept.conceptname !== fig_conc ? state.opening.expconcept : {},
                     sequence: state.opening.sequence.filter(figure => figure.id !== action.payload),
                 },
                 openingdragfieldshapes: state.openingdragfieldshapes.filter(item => item.shape.id !== action.payload),
@@ -496,8 +512,10 @@ export default function featureList(state, action = {}) {
                 samplelist: state.samplelist.filter(figure => figure.id !== action.payload),
                 seeconceptshapes: {
                     ...state.seeconceptshapes,
+                    conceptname: state.seeconceptshapes.conceptname === undefined ? state.seeconceptshapes.conceptname : check_fig_conc !== 0 ? state.seeconceptshapes.conceptname : state.seeconceptshapes.conceptname === fig_conc ? undefined : state.seeconceptshapes.conceptname,
                     shapes: state.seeconceptshapes.shapes.filter(figure => figure.id !== action.payload),
                 },
+                selconcept: check_fig_conc === 0 && fig_conc !== undefined ? state.selconcept.filter(conc => conc.conceptname !== fig_conc) : state.selconcept,
             }
 
         case FigureTypes.OPEN_FIGURE:
@@ -583,6 +601,23 @@ export default function featureList(state, action = {}) {
             }
 
         case FigureTypes.SELECT_CONCEPT:
+            let ex_conc;
+            let fig;
+            for (let i = 0; i < state.figures.length; ++i) {
+                if (state.figures[i].id === action.payload.figId) {
+                    ex_conc = state.figures[i].concept;
+                    fig = JSON.parse(JSON.stringify(state.figures[i]));
+                    break;
+                }
+            }
+            let check_ex_conc = 0;
+            if (ex_conc !== undefined) {
+                for (let i = 0; i < state.figures.length; ++i) {
+                    if (state.figures[i].concept === ex_conc && state.figures[i].id !== action.payload.figId) {
+                        ++check_ex_conc;
+                    }
+                }
+            }
             return {
                 ...state,
                 figures: state.figures.map(figure => {
@@ -595,12 +630,15 @@ export default function featureList(state, action = {}) {
                     return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname } };
                 }),
                 openingdragfieldshapes: state.openingdragfieldshapes.map(figure => {
-                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname } };
+                    return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : figure.shape.concept !== ex_conc ? {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname } } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname, openconcept: false, hidden: false } };
                 }),
                 playfieldshapes: state.playfieldshapes.map(figure => {
                     return figure.shape.id !== action.payload.figId ? figure : figure.shape.concept === undefined ? {...figure, shape: Object.assign(figure.shape, { concept: action.payload.concept.conceptname }) } : {...figure, shape: {...figure.shape, concept: action.payload.concept.conceptname } };
                 }),
-                selconcept: state.selconcept.filter(conc => conc.conceptname !== action.payload.concept.conceptname).concat(action.payload.concept),
+                selconcept: check_ex_conc === 0 && ex_conc !== undefined ? state.selconcept.filter(conc => conc.conceptname !== ex_conc).filter(conc => conc.conceptname !== action.payload.concept.conceptname).concat(action.payload.concept) : state.selconcept.filter(conc => conc.conceptname !== action.payload.concept.conceptname).concat(action.payload.concept),
+                seeconceptshapes: state.seeconceptshapes.conceptname === undefined ? state.seeconceptshapes : check_ex_conc !== 0 && state.seeconceptshapes.conceptname === ex_conc ? {...state.seeconceptshapes, shapes: state.seeconceptshapes.shapes.filter(shape => shape.id !== action.payload.figId) } : check_ex_conc !== 0 && state.seeconceptshapes.conceptname !== ex_conc ? {...state.seeconceptshapes, shapes: state.seeconceptshapes.shapes.concat(fig) } : state.seeconceptshapes.conceptname === ex_conc ? { shapes: [] } : {...state.seeconceptshapes, shapes: state.seeconceptshapes.shapes.concat(fig) },
+                opening: state.opening.expconcept === undefined ? state.opening : check_ex_conc !== 0 ? {...state.opening, sequence: state.opening.sequence.filter(shape => shape.id !== action.payload.figId) } : state.opening.expconcept.conceptname !== ex_conc ? state.opening : { sequence: [] },
+                samplelist: state.samplelist.filter(shape => shape.id !== action.payload.figId),
             }
 
         case FigureTypes.RENAME_CONCEPT:
