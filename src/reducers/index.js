@@ -819,7 +819,7 @@ export default function featureList(state, action = {}) {
                             return { x: item.x, y: item.y, figureid: item.shape.id };
                         }),
                     },
-                    opening: {
+                    opening: state.opening.expconcept === undefined ? { formingconcept: undefined, sequence: { figureid: [] } } : {
                         formingconcept: state.opening.expconcept.id,
                         sequence: {
                             figureid: state.opening.sequence.map(item => {
@@ -868,7 +868,7 @@ export default function featureList(state, action = {}) {
                             return { x: item.x, y: item.y, figureid: item.shape.id };
                         })
                     },
-                    opening: {
+                    opening: state.opening.expconcept === undefined ? { formingconcept: undefined, sequence: { figureid: [] } } : {
                         formingconcept: state.opening.expconcept.id,
                         sequence: {
                             figureid: state.opening.sequence.map(item => {
@@ -901,39 +901,47 @@ export default function featureList(state, action = {}) {
 
         case OpenTypes.OPEN_EXP:
             let drop_field = [];
-            for (let i = 0; i < action.payload.experiment.placement.placeitem.length; ++i) {
-                for (let j = 0; j < action.payload.experiment.shapes.shapeitem.length; ++j) {
-                    if (action.payload.experiment.placement.placeitem[i].figureid == action.payload.experiment.shapes.shapeitem[j].id) {
-                        drop_field.push({ x: action.payload.experiment.placement.placeitem[i].x, y: action.payload.experiment.placement.placeitem[i].y, shape: JSON.parse(JSON.stringify(action.payload.experiment.shapes.shapeitem[j])) });
+            if (action.payload.experiment.placement.placeitem !== undefined) {
+                for (let i = 0; i < action.payload.experiment.placement.placeitem.length; ++i) {
+                    for (let j = 0; j < action.payload.experiment.shapes.shapeitem.length; ++j) {
+                        if (action.payload.experiment.placement.placeitem[i].figureid == action.payload.experiment.shapes.shapeitem[j].id) {
+                            drop_field.push({ x: action.payload.experiment.placement.placeitem[i].x, y: action.payload.experiment.placement.placeitem[i].y, shape: JSON.parse(JSON.stringify(action.payload.experiment.shapes.shapeitem[j])) });
+                        }
                     }
                 }
             }
             let drag_field = [];
-            for (let i = 0; i < action.payload.experiment.shapes.shapeitem.length; ++i) {
-                let check = 0;
-                for (let j = 0; j < action.payload.experiment.placement.placeitem.length; ++j) {
-                    if (action.payload.experiment.shapes.shapeitem[i].id == action.payload.experiment.placement.placeitem[j].figureid) {
-                        check = 1;
-                        break;
+            if (action.payload.experiment.shapes.shapeitem !== undefined) {
+                for (let i = 0; i < action.payload.experiment.shapes.shapeitem.length; ++i) {
+                    let check = 0;
+                    for (let j = 0; j < action.payload.experiment.placement.placeitem.length; ++j) {
+                        if (action.payload.experiment.shapes.shapeitem[i].id == action.payload.experiment.placement.placeitem[j].figureid) {
+                            check = 1;
+                            break;
+                        }
                     }
+                    if (!check) drag_field.push(action.payload.experiment.shapes.shapeitem[i]);
                 }
-                if (!check) drag_field.push(action.payload.experiment.shapes.shapeitem[i]);
             }
             let sel_conc = {};
-            for (let i = 0; i < action.payload.experiment.concepts.conceptitem.length; ++i) {
-                if (action.payload.experiment.opening.formingconcept == action.payload.experiment.concepts.conceptitem[i].id) {
-                    sel_conc = action.payload.experiment.concepts.conceptitem[i];
+            if (action.payload.experiment.concepts.conceptitem !== undefined) {
+                for (let i = 0; i < action.payload.experiment.concepts.conceptitem.length; ++i) {
+                    if (action.payload.experiment.opening.formingconcept == action.payload.experiment.concepts.conceptitem[i].id) {
+                        sel_conc = action.payload.experiment.concepts.conceptitem[i];
+                    }
                 }
             }
             let shape_queue = [];
             let open_field = JSON.parse(JSON.stringify(drop_field));
             open_field.map(shape => shape.shape.concept === sel_conc.conceptname ? {...shape, shape: Object.assign(shape.shape, { openconcept: true, hidden: false }) } : {...shape, shape: Object.assign(shape.shape, { openconcept: false, hidden: false }) });
-            for (let i = 0; i < action.payload.experiment.opening.sequence.figureid.length; ++i) {
-                for (let j = 0; j < open_field.length; ++j) {
-                    if (open_field[j].shape.id == action.payload.experiment.opening.sequence.figureid[i]) {
-                        open_field[j].shape.hidden = true;
-                        shape_queue.push(open_field[j].shape);
-                        break;
+            if (action.payload.experiment.opening.sequence.figureid !== undefined) {
+                for (let i = 0; i < action.payload.experiment.opening.sequence.figureid.length; ++i) {
+                    for (let j = 0; j < open_field.length; ++j) {
+                        if (open_field[j].shape.id == action.payload.experiment.opening.sequence.figureid[i]) {
+                            open_field[j].shape.hidden = true;
+                            shape_queue.push(open_field[j].shape);
+                            break;
+                        }
                     }
                 }
             }
@@ -944,8 +952,8 @@ export default function featureList(state, action = {}) {
             play_field = shape_queue[0] !== undefined ? play_field.filter(shape => shape.shape.id !== shape_queue[0].id) : play_field;
             return {
                 ...state,
-                figures: action.payload.experiment.shapes.shapeitem,
-                selconcept: action.payload.experiment.concepts.conceptitem,
+                figures: action.payload.experiment.shapes.shapeitem === undefined ? [] : action.payload.experiment.shapes.shapeitem,
+                selconcept: action.payload.experiment.concepts.conceptitem === undefined ? [] : action.payload.experiment.concepts.conceptitem,
                 seeconceptshapes: { shapes: [] },
                 figureinfo: { impfeatures: [], concepts: [] },
                 figureimg: {},
