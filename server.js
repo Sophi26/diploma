@@ -8,6 +8,7 @@ const Path = require("path");
 const fileUpload = require("express-fileupload");
 const svgson = require("svgson");
 const SVGO = require("svgo");
+const MongoClient = require("mongodb").MongoClient;
 
 const app = Express();
 const builder = new xml2js.Builder();
@@ -87,6 +88,10 @@ const svgo = new SVGO({
     }]
 });
 
+const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
+
+let dbClient;
+
 app.use(fileUpload());
 app.use(Express.static(__dirname + "/public"));
 app.use('/styles', Express.static(Path.join(__dirname, '/public/styles')));
@@ -149,6 +154,376 @@ app.get(
         const data = fs.readFileSync(xmlFile, "utf8");
         parser.parseString(data, (err, result) => {
             res.send(result.concepts.conceptitem);
+        });
+    });
+
+/////MONGODB!!!\\\\\
+
+app.post(
+    "/api/initexp",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const collection = app.locals.db.collection(exp_name);
+        const options = {
+            "sort": [
+                ['test_id', -1]
+            ]
+        };
+        collection.findOne({}, options, (err, doc) => {
+
+            let action = {};
+
+            if (doc === null) {
+
+                action = { test_id: 0, action: "Старт эксперимента", time: new Date().toISOString() };
+
+                collection.insertOne(action, (err, result) => {
+
+                    if (err) return console.log(err);
+
+                    res.send(action);
+                });
+            } else {
+
+                action = { test_id: doc.test_id + 1, action: "Старт эксперимента", time: new Date().toISOString() };
+
+                collection.insertOne(action, (err, result) => {
+
+                    if (err) return console.log(err);
+
+                    res.send(action);
+                });
+            }
+        });
+    });
+
+app.post(
+    "/api/dragfigfield",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Взять фигуру с поля", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/dropfigfield",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Вернуть фигуру на поле", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/dragfiguserlist",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Взять выставленную фигуру", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/dropfiguserlist",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Выставить фигуру рядом с образцом", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/okactionshape",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Выставить фигуру рядом с образцом", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/cancleactionshape",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Вернуть фигуру на поле", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/rotateactionshape",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Повернуть фигуру", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/fliphactionshape",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Отразить фигуру по горизонтали", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/flipvactionshape",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Отразить фигуру по вертикали", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/dropfigactionblock",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const fig_name = req.body.fig_name;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Выставить фигуру в функциональный блок", figure: fig_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/endselection",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Завершить выставление фигур", time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/okselection",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Подтвердить выставку", time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/cancleselection",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Отменить выставку", time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/canclehypothesis",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Отменить ввод гипотезы", time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
+        });
+    });
+
+app.post(
+    "/api/opennextsample",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const hyp_name = req.body.hypothesis;
+        const collection = app.locals.db.collection(exp_name);
+
+        const action = { test_id: test_id, action: "Ввести гипотезу", hypothesis: hyp_name, time: new Date().toISOString() };
+
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
         });
     });
 
@@ -462,6 +837,20 @@ app.put(
         }
     });
 
-app.listen(8081, () => {    
-    console.log("Сервер ожидает подключения...");
+mongoClient.connect((err, client) => {
+
+    if (err) return console.log(err);
+
+    dbClient = client;
+    app.locals.db = client.db("experiments");
+
+    app.listen(8081, () => {    
+        console.log("Сервер ожидает подключения...");
+    });
+});
+
+process.on("SIGINT", () => {
+
+    dbClient.close();
+    process.exit();
 });

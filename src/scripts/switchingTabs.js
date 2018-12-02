@@ -27,8 +27,24 @@ function main(store) {
 
     document.getElementById("play-icon").addEventListener('click', () => {
 
-        const action = initPlay();
-        store.dispatch(action);
+        fetch("/api/initexp", {
+                method: "POST",
+                body: JSON.stringify({
+                    exp_name: document.getElementById("exp-name").textContent,
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+
+                const action = initPlay(data.test_id);
+                store.dispatch(action);
+            })
+            .catch();
     });
 }
 

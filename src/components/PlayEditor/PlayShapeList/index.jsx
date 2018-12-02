@@ -19,7 +19,7 @@ class PlayShapeList extends React.Component {
             sampleShapes.push(sample);
         }
 
-        const userShapes = <UserList shapes={this.props.userUl} actions={this.props.actions} />;
+        const userShapes = <UserList shapes={this.props.userUl} actions={this.props.actions} test_id={this.props.test_id} />;
 
         return(
             <div id="play-shapes-flex-container">
@@ -35,6 +35,7 @@ export default connect(
         return {
             sampleUl: state.samplelist,
             userUl: state.userlist,
+            test_id: state.testid
         };
     },
     dispatch => {

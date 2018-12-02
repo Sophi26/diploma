@@ -36,11 +36,49 @@ class UserList extends React.Component {
 
         let fig = e.dataTransfer.getData("figure");
         this.props.actions.onUserSelect(JSON.parse(fig));
+
+        fetch("/api/dropfiguserlist", {
+            method: "POST",
+            body: JSON.stringify({
+                exp_name: document.getElementById("exp-name").textContent,
+                test_id: this.props.test_id,
+                fig_name: JSON.parse(fig).figurename,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+
+        })
+        .catch();
     }
 
     onDragStart(e, shape) {
 
         e.dataTransfer.setData("figure", JSON.stringify(shape));
+
+        fetch("/api/dragfiguserlist", {
+            method: "POST",
+            body: JSON.stringify({
+                exp_name: document.getElementById("exp-name").textContent,
+                test_id: this.props.test_id,
+                fig_name: shape.figurename,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+
+        })
+        .catch();
     }
 }
 

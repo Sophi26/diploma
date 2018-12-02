@@ -747,6 +747,24 @@ export default function featureList(state, action = {}) {
                     else break;
                 }
             }
+            fetch("/api/opennextsample", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        hypothesis: document.getElementById("f-add-hyp").value
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 userlist: [],
@@ -763,6 +781,24 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.OK_ACTION_SHAPE:
             const selshape = JSON.parse(JSON.stringify(state.actionfig.shape));
+            fetch("/api/okactionshape", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        fig_name: selshape.figurename,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 actionfig: {},
@@ -771,6 +807,24 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.CANCLE_ACTION_SHAPE:
             const selecshape = JSON.parse(JSON.stringify(state.actionfig.shape));
+            fetch("/api/cancleactionshape", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        fig_name: selecshape.figurename,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 actionfig: {},
@@ -780,6 +834,24 @@ export default function featureList(state, action = {}) {
         case PlayTypes.ROTATE_ACTION_SHAPE:
             const rotate = "matrix(.966 .259 -.259 .966 0 0)";
             const r_transform = pmatrix2(state.actionfig.transform, rotate);
+            fetch("/api/rotateactionshape", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        fig_name: state.actionfig.shape.figurename,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 actionfig: {...state.actionfig, transform: r_transform },
@@ -788,6 +860,24 @@ export default function featureList(state, action = {}) {
         case PlayTypes.FLIP_H_ACTION_SHAPE:
             const flip_h = "matrix(1 0 0 -1 0 0)";
             const new_transform = pmatrix2(state.actionfig.transform, flip_h);
+            fetch("/api/fliphactionshape", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        fig_name: state.actionfig.shape.figurename,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 actionfig: {...state.actionfig, transform: new_transform },
@@ -796,10 +886,108 @@ export default function featureList(state, action = {}) {
         case PlayTypes.FLIP_V_ACTION_SHAPE:
             const flip_v = "matrix(-1 0 0 1 0 0)";
             const n_transform = pmatrix2(state.actionfig.transform, flip_v);
+            fetch("/api/flipvactionshape", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                        fig_name: state.actionfig.shape.figurename,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
             return {
                 ...state,
                 actionfig: {...state.actionfig, transform: n_transform },
             }
+
+        case PlayTypes.END_SELECTION:
+            fetch("/api/endselection", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
+            return state;
+
+        case PlayTypes.OK_SELECTION:
+            fetch("/api/okselection", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
+            return state;
+
+        case PlayTypes.CANCLE_SELECTION:
+            fetch("/api/cancleselection", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
+            return state;
+
+        case PlayTypes.CANCLE_HYPOTHESIS:
+            fetch("/api/canclehypothesis", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        exp_name: document.getElementById("exp-name").textContent,
+                        test_id: state.testid,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                })
+                .catch();
+            return state;
 
         case SaveTypes.SAVE_EXP:
             const saveObj = {
@@ -1000,6 +1188,7 @@ export default function featureList(state, action = {}) {
                 samplelist: init_samplelist,
                 userlist: [],
                 actionfig: {},
+                testid: action.payload
             }
 
         default:

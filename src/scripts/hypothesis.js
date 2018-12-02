@@ -5,55 +5,89 @@ import { Provider } from 'react-redux';
 import OkList from '../components/PlayEditor/OkList';
 import HypList from '../components/PlayEditor/HypList';
 import { nextSample } from '../actions/PlayEditorActions';
+import { endSelection } from '../actions/PlayEditorActions';
+import { okSelection } from '../actions/PlayEditorActions';
+import { cancleSelection } from '../actions/PlayEditorActions';
+import { cancleHypothesis } from '../actions/PlayEditorActions';
 
 function main(store) {
 
     const btn = document.getElementById("select-btn");
+    const modal_shadow = document.querySelectorAll(".modal-shadow")[1];
+    const ok_window = document.getElementById("ok-window");
+    const hyp_window = document.getElementById("hyp-window");
+    const hypBtn = document.getElementById("call-hyp");
+    const cancleHypBtn = document.getElementById("cancle-call-hyp");
+    const hyp_ok_btn = document.getElementById("next-sample");
+    const hyp_cancle_btn = document.getElementById("cancle-next-sample");
 
     btn.addEventListener('click', () => {
 
-        const modal_shadow = document.querySelectorAll(".modal-shadow")[1];
-        modal_shadow.style.display = 'block';
-
-        const ok_window = document.getElementById("ok-window");
-        ok_window.style.display = 'block';
-
-        render( <Provider store={store}><OkList /></Provider>, document.getElementById("ok-user-list"));
-
-        const hypBtn = document.getElementById("call-hyp");
-        const hyp_window = document.getElementById("hyp-window");
-
-        hypBtn.addEventListener('click', () => {
-
-            ok_window.style.display = 'none';
-            hyp_window.style.display = 'block';
-
-            render( <Provider store={store}><HypList /></Provider>, document.getElementById("hyp-user-list"));
-        
-            const hyp_ok_btn = document.getElementById("next-sample");
-            let next = 0;
-            hyp_ok_btn.addEventListener('click', () => {
-
-                ++next;
-                const action = nextSample(next);
+                const action = endSelection();
                 store.dispatch(action);
 
-                modal_shadow.style.display = 'none';
+                modal_shadow.style.display = 'block';
+                ok_window.style.display = 'block';
+
+                render( < Provider store = { store } >
+                    <
+                    OkList / >
+                    <
+                    /Provider>, document.getElementById("ok-user-list"));
+                });
+
+            cancleHypBtn.addEventListener('click', () => {
+
+                const action = cancleSelection();
+                store.dispatch(action);
+
                 ok_window.style.display = 'none';
-                hyp_window.style.display = 'none';
+                modal_shadow.style.display = 'none';
             });
-        });
 
-        modal_shadow.addEventListener('click', () => {
+            hypBtn.addEventListener('click', () => {
 
-            modal_shadow.style.display = 'none';
-            ok_window.style.display = 'none';
-            hyp_window.style.display = 'none';
-        });
-    });
-}
+                    const action = okSelection();
+                    store.dispatch(action);
 
-export {
-    main as
-    default,
-};
+                    ok_window.style.display = 'none';
+                    hyp_window.style.display = 'block';
+
+                    render( < Provider store = { store } >
+                        <
+                        HypList / >
+                        <
+                        /Provider>, document.getElementById("hyp-user-list"));
+                    });
+
+                let next = 0; hyp_ok_btn.addEventListener('click', () => {
+
+                    ++next;
+                    const action = nextSample(next);
+                    store.dispatch(action);
+
+                    modal_shadow.style.display = 'none';
+                    hyp_window.style.display = 'none';
+                });
+
+                hyp_cancle_btn.addEventListener('click', () => {
+
+                    const action = cancleHypothesis();
+                    store.dispatch(action);
+
+                    modal_shadow.style.display = 'none';
+                    hyp_window.style.display = 'none';
+                });
+
+                modal_shadow.addEventListener('click', () => {
+
+                    modal_shadow.style.display = 'none';
+                    ok_window.style.display = 'none';
+                    hyp_window.style.display = 'none';
+                });
+            }
+
+            export {
+                main as
+                default,
+            };

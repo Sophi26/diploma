@@ -45,6 +45,25 @@ class Grid extends React.Component {
     onDragStart(e, shape) {
 
         e.dataTransfer.setData("figure", JSON.stringify(shape));
+
+        fetch("/api/dragfigfield", {
+            method: "POST",
+            body: JSON.stringify({
+                exp_name: document.getElementById("exp-name").textContent,
+                test_id: this.props.test_id,
+                fig_name: shape.figurename,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+
+        })
+        .catch();
     }
 
     onDragOver(e) {
@@ -56,6 +75,25 @@ class Grid extends React.Component {
 
         let fig = e.dataTransfer.getData("figure");
         this.props.actions.onReturnUser(JSON.parse(fig));
+
+        fetch("/api/dropfigfield", {
+            method: "POST",
+            body: JSON.stringify({
+                exp_name: document.getElementById("exp-name").textContent,
+                test_id: this.props.test_id,
+                fig_name: JSON.parse(fig).figurename,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+
+        })
+        .catch();
     }
 }
 
@@ -64,6 +102,7 @@ export default connect(
         return {
             fieldTab: state.field,
             shapes: state.playfieldshapes,
+            test_id: state.testid
         };
     },
     dispatch => {

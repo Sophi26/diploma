@@ -32,6 +32,25 @@ class ActionBlock extends React.Component {
 
         let fig = e.dataTransfer.getData("figure");
         this.props.actions.onActionFigure(JSON.parse(fig));
+
+        fetch("/api/dropfigactionblock", {
+            method: "POST",
+            body: JSON.stringify({
+                exp_name: document.getElementById("exp-name").textContent,
+                test_id: this.props.test_id,
+                fig_name: JSON.parse(fig).figurename,
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+
+        })
+        .catch();
     }
 }
 
@@ -39,6 +58,7 @@ export default connect(
     state => {
         return {
             shape: state.actionfig,
+            test_id: state.testid
         };
     },
     dispatch => {

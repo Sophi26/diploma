@@ -57,3 +57,27 @@ export function flipVActionFigure() {
         type: EditorTypes.FLIP_V_ACTION_SHAPE,
     };
 }
+
+export function endSelection() {
+    return {
+        type: EditorTypes.END_SELECTION,
+    };
+}
+
+export function okSelection() {
+    return {
+        type: EditorTypes.OK_SELECTION,
+    };
+}
+
+export function cancleSelection() {
+    return {
+        type: EditorTypes.CANCLE_SELECTION,
+    };
+}
+
+export function cancleHypothesis() {
+    return {
+        type: EditorTypes.CANCLE_HYPOTHESIS,
+    };
+}
