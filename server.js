@@ -180,24 +180,45 @@ app.post(
             if (doc === null) {
 
                 action = { test_id: 0, action: "Старт эксперимента", time: new Date().toISOString() };
-
-                collection.insertOne(action, (err, result) => {
-
-                    if (err) return console.log(err);
-
-                    res.send(action);
-                });
             } else {
 
                 action = { test_id: doc.test_id + 1, action: "Старт эксперимента", time: new Date().toISOString() };
-
-                collection.insertOne(action, (err, result) => {
-
-                    if (err) return console.log(err);
-
-                    res.send(action);
-                });
             }
+            collection.insertOne(action, (err, result) => {
+
+                if (err) return console.log(err);
+
+                res.send(action);
+            });
+        });
+    });
+
+app.post(
+    "/api/endexperiment",
+    jsonParser,
+    (req, res) => {
+
+        if (!req.body) return res.sendStatus(400);
+
+        const exp_name = req.body.exp_name;
+        const test_id = req.body.test_id;
+        const end_type = req.body.end_type;
+        const collection = app.locals.db.collection(exp_name);
+
+        let action = {};
+
+        if (end_type === 0) {
+
+            action = { test_id: test_id, action: "Конец эксперимента: фигуры не найдены", time: new Date().toISOString() };
+        } else {
+
+            action = { test_id: test_id, action: "Конец эксперимента: фигуры найдены", time: new Date().toISOString() };
+        }
+        collection.insertOne(action, (err, result) => {
+
+            if (err) return console.log(err);
+
+            res.send(action);
         });
     });
 

@@ -9,6 +9,7 @@ import { endSelection } from '../actions/PlayEditorActions';
 import { okSelection } from '../actions/PlayEditorActions';
 import { cancleSelection } from '../actions/PlayEditorActions';
 import { cancleHypothesis } from '../actions/PlayEditorActions';
+import { endExperiment } from '../actions/PlayEditorActions';
 
 function main(store) {
 
@@ -45,8 +46,9 @@ function main(store) {
                 modal_shadow.style.display = 'none';
             });
 
-            hypBtn.addEventListener('click', () => {
+            let next = 0; hypBtn.addEventListener('click', () => {
 
+                    next = 0;
                     const action = okSelection();
                     store.dispatch(action);
 
@@ -60,11 +62,17 @@ function main(store) {
                         /Provider>, document.getElementById("hyp-user-list"));
                     });
 
-                let next = 0; hyp_ok_btn.addEventListener('click', () => {
+                hyp_ok_btn.addEventListener('click', () => {
 
                     ++next;
+
                     const action = nextSample(next);
                     store.dispatch(action);
+
+                    const act = endExperiment();
+                    store.dispatch(act);
+
+                    document.getElementById("f-add-hyp").value = "Ваше мнение...";
 
                     modal_shadow.style.display = 'none';
                     hyp_window.style.display = 'none';

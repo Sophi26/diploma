@@ -1,9 +1,14 @@
 #user-shapes-flex-block {
     margin-left: 15px;
-    width: 385px;
+    width: 2000px;
     height: 100px;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
+    /* display: inline-block;
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap; */
+    vertical-align: top;
 }
 
 .user-shape {
@@ -12,6 +17,8 @@
     height: 100px;
     text-align: center;
     line-height: 100px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .user-shape svg {

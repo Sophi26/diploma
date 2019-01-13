@@ -81,3 +81,9 @@ export function cancleHypothesis() {
         type: EditorTypes.CANCLE_HYPOTHESIS,
     };
 }
+
+export function endExperiment() {
+    return {
+        type: EditorTypes.END_EXPERIMENT,
+    };
+}

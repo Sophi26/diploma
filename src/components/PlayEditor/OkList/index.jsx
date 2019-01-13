@@ -21,7 +21,7 @@ class OkList extends React.Component {
         }
 
         return(
-            <div id="user-shapes-flex-block">
+            <div id="samp-shapes-flex-block">
                 {userShapes}
             </div>
         );

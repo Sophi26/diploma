@@ -1,0 +1,12 @@
+#samp-shapes-flex-block {
+    margin-left: 15px;
+    width: 93%;
+    height: 120px;
+    /* display: inline-flex; */
+    /* flex-wrap: wrap; */
+    display: inline-block;
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    vertical-align: top;
+}

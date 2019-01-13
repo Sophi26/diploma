@@ -1,3 +1,8 @@
+const { remote } = require("electron");
+const { dialog } = remote;
+
+import $ from 'jquery';
+
 import * as EditorTypes from '../constants/FeatureEditorActionTypes';
 import * as FigureTypes from '../constants/FigureEditorActionTypes';
 import * as SeeTypes from '../constants/SeeEditorActionTypes';
@@ -740,35 +745,83 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.OPEN_NEXT_SAMPLE:
             let nx = action.payload;
+            console.log("BEFORE!!!");
+            console.log(nx);
             for (let i = 0; i < state.playfieldshapes.length; ++i) {
                 if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
                     if (state.playfieldshapes[i].shape.hidden)
-                        ++nx
+                        ++nx;
                     else break;
                 }
             }
-            fetch("/api/opennextsample", {
-                    method: "POST",
-                    body: JSON.stringify({
+            if (nx === action.payload) {
+                for (let i = 1; i < state.samplelist.length; ++i) {
+                    if (state.samplelist[i].id === state.opening.sequence[nx].id) {
+                        ++nx;
+                    }
+                }
+            }
+            console.log("AFTER!!!");
+            console.log(nx);
+            $.ajax({
+                url: "/api/opennextsample",
+                type: "POST",
+                data: JSON.stringify({
+                    exp_name: document.getElementById("exp-name").textContent,
+                    test_id: state.testid,
+                    hypothesis: document.getElementById("f-add-hyp").value
+                }),
+                async: false,
+                contentType: "application/json",
+                success: (data) => {}
+            });
+            if ((state.samplelist.length + state.userlist.length) === state.opening.sequence.length) {
+                for (let i = 0; i < state.userlist.length; ++i) {
+                    let check = 0;
+                    for (let j = 0; j < state.opening.sequence.length; ++j) {
+                        if (state.userlist[i].id === state.opening.sequence[j].id) {
+                            ++check;
+                        }
+                    }
+                    if (check === 0) {
+                        console.log("NEXT!!!");
+                        console.log(state);
+                        console.log(state.opening.sequence[nx]);
+                        return {
+                            ...state,
+                            userlist: [],
+                            // samplelist: state.samplelist.filter(shape => shape.id !== state.opening.sequence[nx].id).concat(state.opening.sequence[nx]),
+                            samplelist: state.samplelist.concat(state.opening.sequence[nx]),
+                            playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== state.opening.sequence[nx].id).map(shape => { return {...shape, shape: Object.assign(shape.shape, { hidden: false }) } }),
+                        }
+                    }
+                }
+                const options = {
+                    type: 'info',
+                    message: 'Эксперимент завершен! Поздравляю, вам удалось найти верно все фигуры:)'
+                };
+                dialog.showMessageBox(null, options, (response) => {
+
+                });
+                $.ajax({
+                    url: "/api/endexperiment",
+                    type: "POST",
+                    data: JSON.stringify({
                         exp_name: document.getElementById("exp-name").textContent,
                         test_id: state.testid,
-                        hypothesis: document.getElementById("f-add-hyp").value
+                        end_type: 1
                     }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-
-                })
-                .catch();
+                    async: false,
+                    contentType: "application/json",
+                    success: (data) => {}
+                });
+                return state;
+            }
             return {
                 ...state,
                 userlist: [],
-                samplelist: state.samplelist.filter(shape => shape.id !== state.opening.sequence[nx].id).concat(state.opening.sequence[nx]),
+                // samplelist: state.samplelist.filter(shape => shape.id !== state.opening.sequence[nx].id).concat(state.opening.sequence[nx]),
+                samplelist: state.samplelist.concat(state.opening.sequence[nx]),
                 playfieldshapes: state.playfieldshapes.filter(shape => shape.shape.id !== state.opening.sequence[nx].id).map(shape => { return {...shape, shape: Object.assign(shape.shape, { hidden: false }) } }),
             }
 
@@ -927,6 +980,38 @@ export default function featureList(state, action = {}) {
 
                 })
                 .catch();
+            return state;
+
+        case PlayTypes.END_EXPERIMENT:
+            if (state.samplelist.length === state.opening.sequence.length) {
+                const options = {
+                    type: 'info',
+                    message: 'Эксперимент завершен! Вам не удалось найти верно все фигуры:(',
+                    detail: 'Правильный ответ находится в нижней части экрана'
+                };
+                dialog.showMessageBox(null, options, (response) => {
+
+                });
+                fetch("/api/endexperiment", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            exp_name: document.getElementById("exp-name").textContent,
+                            test_id: state.testid,
+                            end_type: 0
+                        }),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+
+                    })
+                    .catch();
+                return state;
+            }
             return state;
 
         case PlayTypes.OK_SELECTION:
