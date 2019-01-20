@@ -1,5 +1,6 @@
 #samp-shapes-flex-block {
-    margin-left: 15px;
+    /* margin-left: 15px; */
+    margin-left: 0;
     width: 93%;
     height: 120px;
     /* display: inline-flex; */

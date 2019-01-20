@@ -25,12 +25,21 @@ class OpeningList extends React.Component {
                     const x = Number(view[0]) + Number(view[2]) / 2;
                     const y = Number(view[1]) + Number(view[3]) / 2;
                     const fig = this.props.openingseq.sequence[id_block];
-                    svg = <div className="draggeble-item" onDragStart={e => this.onDragStart(e, fig)} draggable>
-                            <svg width={this.props.openingseq.sequence[id_block].icon.attrs.width} height={this.props.openingseq.sequence[id_block].icon.attrs.height} viewBox={this.props.openingseq.sequence[id_block].icon.attrs.viewBox}>
-                                <path fill={this.props.openingseq.sequence[id_block].icon.childs.attrs.fill} d={this.props.openingseq.sequence[id_block].icon.childs.attrs.d} />
-                                <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.openingseq.sequence[id_block].concept !== undefined ? this.props.openingseq.sequence[id_block].concept : ''}</text>
-                            </svg>
-                        </div>;
+                    if (this.props.openingseq.sequence[id_block].icon.childs.name === 'path') {
+                        svg = <div className="draggeble-item" onDragStart={e => this.onDragStart(e, fig)} draggable>
+                                <svg width={this.props.openingseq.sequence[id_block].icon.attrs.width} height={this.props.openingseq.sequence[id_block].icon.attrs.height} viewBox={this.props.openingseq.sequence[id_block].icon.attrs.viewBox}>
+                                    <path fill={this.props.openingseq.sequence[id_block].icon.childs.attrs.fill} stroke={this.props.openingseq.sequence[id_block].icon.childs.attrs.stroke} strokeWidth={this.props.openingseq.sequence[id_block].icon.childs.attrs.strokeWidth} d={this.props.openingseq.sequence[id_block].icon.childs.attrs.d} />
+                                    <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.openingseq.sequence[id_block].concept !== undefined ? this.props.openingseq.sequence[id_block].concept : ''}</text>
+                                </svg>
+                            </div>;
+                    } else {
+                        svg = <div className="draggeble-item" onDragStart={e => this.onDragStart(e, fig)} draggable>
+                                <svg width={this.props.openingseq.sequence[id_block].icon.attrs.width} height={this.props.openingseq.sequence[id_block].icon.attrs.height} viewBox={this.props.openingseq.sequence[id_block].icon.attrs.viewBox}>
+                                    <circle fill={this.props.openingseq.sequence[id_block].icon.childs.attrs.fill} stroke={this.props.openingseq.sequence[id_block].icon.childs.attrs.stroke} strokeWidth={this.props.openingseq.sequence[id_block].icon.childs.attrs.strokeWidth} cx={this.props.openingseq.sequence[id_block].icon.childs.attrs.cx} cy={this.props.openingseq.sequence[id_block].icon.childs.attrs.cy} r={this.props.openingseq.sequence[id_block].icon.childs.attrs.r} />
+                                    <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.openingseq.sequence[id_block].concept !== undefined ? this.props.openingseq.sequence[id_block].concept : ''}</text>
+                                </svg>
+                            </div>;
+                    }
                 }
 
                 let opencell = <div key={id_block} className="open-cell" onDragOver={e => this.onDragOver(e)} onDrop={e => this.onDrop(e)}>{svg}</div>;

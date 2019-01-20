@@ -27,7 +27,12 @@ class Figure extends React.Component {
         const close = <svg width="21px" height="21px" viewBox="0 0 24 24"><path fill="rgba(3, 3, 33, .7)" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>;
         const name = <a className={activeClass}>{figure.figurename}</a>;
         const input = <input type="text" autoFocus="true" value={this.state.value_name} onChange={this.handleChange.bind(this)} onKeyDown={this.renFigure.bind(this)} />;
-        const icon = <svg width="21px" height="21px" viewBox={figure.icon.attrs.viewBox}><path fill={figure.icon.childs.attrs.fill} d={figure.icon.childs.attrs.d} /></svg>;
+        let icon = null;
+        if (figure.icon.childs.name === 'path') {
+            icon = <svg width="21px" height="21px" viewBox={figure.icon.attrs.viewBox}><path fill={figure.icon.childs.attrs.fill} stroke={figure.icon.childs.attrs.stroke} strokeWidth={figure.icon.childs.attrs.strokeWidth} d={figure.icon.childs.attrs.d} /></svg>;
+        } else {
+            icon = <svg width="21px" height="21px" viewBox={figure.icon.attrs.viewBox}><circle fill={figure.icon.childs.attrs.fill} stroke={figure.icon.childs.attrs.stroke} strokeWidth={figure.icon.childs.attrs.strokeWidth} cx={figure.icon.childs.attrs.cx} cy={figure.icon.childs.attrs.cy} r={figure.icon.childs.attrs.r} /></svg>;
+        }
         const allFeatures = isOpenFigure && <ImportantFeatureList figId={figure.id} features={figure.features} actions={this.props.actions} />;
 
         return (

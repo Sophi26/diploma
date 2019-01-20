@@ -14,6 +14,8 @@ import * as OpenTypes from '../constants/OpenActionTypes';
 import * as CreateTypes from '../constants/CreateActionTypes';
 import * as SwitchingTabsTypes from '../constants/SwitchingTabsActionTypes';
 
+let check_next = 0;
+
 export default function featureList(state, action = {}) {
 
     switch (action.type) {
@@ -745,8 +747,6 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.OPEN_NEXT_SAMPLE:
             let nx = action.payload;
-            console.log("BEFORE!!!");
-            console.log(nx);
             for (let i = 0; i < state.playfieldshapes.length; ++i) {
                 if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
                     if (state.playfieldshapes[i].shape.hidden)
@@ -761,8 +761,6 @@ export default function featureList(state, action = {}) {
                     }
                 }
             }
-            console.log("AFTER!!!");
-            console.log(nx);
             $.ajax({
                 url: "/api/opennextsample",
                 type: "POST",
@@ -784,9 +782,6 @@ export default function featureList(state, action = {}) {
                         }
                     }
                     if (check === 0) {
-                        console.log("NEXT!!!");
-                        console.log(state);
-                        console.log(state.opening.sequence[nx]);
                         return {
                             ...state,
                             userlist: [],
@@ -796,13 +791,12 @@ export default function featureList(state, action = {}) {
                         }
                     }
                 }
+                check_next = 1;
                 const options = {
                     type: 'info',
                     message: 'Эксперимент завершен! Поздравляю, вам удалось найти верно все фигуры:)'
                 };
-                dialog.showMessageBox(null, options, (response) => {
-
-                });
+                dialog.showMessageBox(null, options, (response) => {});
                 $.ajax({
                     url: "/api/endexperiment",
                     type: "POST",
@@ -1011,7 +1005,15 @@ export default function featureList(state, action = {}) {
                     })
                     .catch();
                 return state;
+            } else if (!check_next) {
+                const options_next = {
+                    type: 'info',
+                    message: 'Продолжение эксперимента! Вы ещё не нашли все нужные фигуры:(',
+                    detail: 'В поле в нижней части экрана добавился еще один образец'
+                };
+                dialog.showMessageBox(null, options_next, (response) => {});
             }
+            check_next = 0;
             return state;
 
         case PlayTypes.OK_SELECTION:
@@ -1173,6 +1175,7 @@ export default function featureList(state, action = {}) {
             return state;
 
         case OpenTypes.OPEN_EXP:
+            console.log(action.payload);
             let drop_field = [];
             if (action.payload.experiment.placement.placeitem !== undefined) {
                 for (let i = 0; i < action.payload.experiment.placement.placeitem.length; ++i) {
@@ -1187,10 +1190,12 @@ export default function featureList(state, action = {}) {
             if (action.payload.experiment.shapes.shapeitem !== undefined) {
                 for (let i = 0; i < action.payload.experiment.shapes.shapeitem.length; ++i) {
                     let check = 0;
-                    for (let j = 0; j < action.payload.experiment.placement.placeitem.length; ++j) {
-                        if (action.payload.experiment.shapes.shapeitem[i].id == action.payload.experiment.placement.placeitem[j].figureid) {
-                            check = 1;
-                            break;
+                    if (action.payload.experiment.placement.placeitem !== undefined) {
+                        for (let j = 0; j < action.payload.experiment.placement.placeitem.length; ++j) {
+                            if (action.payload.experiment.shapes.shapeitem[i].id == action.payload.experiment.placement.placeitem[j].figureid) {
+                                check = 1;
+                                break;
+                            }
                         }
                     }
                     if (!check) drag_field.push(action.payload.experiment.shapes.shapeitem[i]);

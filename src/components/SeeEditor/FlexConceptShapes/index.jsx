@@ -8,12 +8,20 @@ class FlexConceptShapes extends React.Component {
 
     render() {
 
-        const figElements = this.props.shapes.shapes.map((figure, key) => { 
-            return <div className="conc-shape-flex-block" key={key}>
+        const figElements = this.props.shapes.shapes.map((figure, key) => {
+            if (figure.icon.childs.name === 'path') {
+                return <div className="conc-shape-flex-block" key={key}>
                         <svg width={figure.icon.attrs.width} height={figure.icon.attrs.height} viewBox={figure.icon.attrs.viewBox}>
-                            <path fill={figure.icon.childs.attrs.fill} d={figure.icon.childs.attrs.d} />
+                            <path fill={figure.icon.childs.attrs.fill} stroke={figure.icon.childs.attrs.stroke} strokeWidth={figure.icon.childs.attrs.strokeWidth} d={figure.icon.childs.attrs.d} />
                         </svg>
                     </div>;
+            } else {
+                return <div className="conc-shape-flex-block" key={key}>
+                        <svg width={figure.icon.attrs.width} height={figure.icon.attrs.height} viewBox={figure.icon.attrs.viewBox}>
+                            <circle fill={figure.icon.childs.attrs.fill} stroke={figure.icon.childs.attrs.stroke} strokeWidth={figure.icon.childs.attrs.strokeWidth} cx={figure.icon.childs.attrs.cx} cy={figure.icon.childs.attrs.cy} r={figure.icon.childs.attrs.r} />
+                        </svg>
+                    </div>;
+            } 
         });
 
         return(

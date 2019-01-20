@@ -11,9 +11,15 @@ class ActionBlock extends React.Component {
         
         let svgf = null;
         if(this.props.shape.shape !== undefined) {
-            svgf = <svg transform={this.props.shape.transform} width={this.props.shape.shape.icon.attrs.width} height={this.props.shape.shape.icon.attrs.height} viewBox={this.props.shape.shape.icon.attrs.viewBox}>
-                        <path fill={this.props.shape.shape.icon.childs.attrs.fill} d={this.props.shape.shape.icon.childs.attrs.d} />
+            if (this.props.shape.shape.icon.childs.name === 'path') {
+                svgf = <svg transform={this.props.shape.transform} width={this.props.shape.shape.icon.attrs.width} height={this.props.shape.shape.icon.attrs.height} viewBox={this.props.shape.shape.icon.attrs.viewBox}>
+                        <path fill={this.props.shape.shape.icon.childs.attrs.fill} stroke={this.props.shape.shape.icon.childs.attrs.stroke} strokeWidth={this.props.shape.shape.icon.childs.attrs.strokeWidth} d={this.props.shape.shape.icon.childs.attrs.d} />
                     </svg>;
+            } else {
+                svgf = <svg transform={this.props.shape.transform} width={this.props.shape.shape.icon.attrs.width} height={this.props.shape.shape.icon.attrs.height} viewBox={this.props.shape.shape.icon.attrs.viewBox}>
+                        <circle fill={this.props.shape.shape.icon.childs.attrs.fill} stroke={this.props.shape.shape.icon.childs.attrs.stroke} strokeWidth={this.props.shape.shape.icon.childs.attrs.strokeWidth} cx={this.props.shape.shape.icon.childs.attrs.cx} cy={this.props.shape.shape.icon.childs.attrs.cy} r={this.props.shape.shape.icon.childs.attrs.r} />
+                    </svg>;
+            }
         }
 
         return(

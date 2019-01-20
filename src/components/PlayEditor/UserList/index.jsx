@@ -12,11 +12,20 @@ class UserList extends React.Component {
         let userShapes = [];
         for(let i = 0; i < this.props.shapes.length; ++i) {              
 
-            const svg = <div className="user-shape" onDragStart={e => this.onDragStart(e, this.props.shapes[i])} draggable>
-                            <svg width={this.props.shapes[i].icon.attrs.width} height={this.props.shapes[i].icon.attrs.height} viewBox={this.props.shapes[i].icon.attrs.viewBox}>
-                                <path fill={this.props.shapes[i].icon.childs.attrs.fill} d={this.props.shapes[i].icon.childs.attrs.d} />
-                            </svg>
-                        </div>;
+            let svg = null;
+            if (this.props.shapes[i].icon.childs.name === 'path') {
+                svg = <div className="user-shape" onDragStart={e => this.onDragStart(e, this.props.shapes[i])} draggable>
+                        <svg width={this.props.shapes[i].icon.attrs.width} height={this.props.shapes[i].icon.attrs.height} viewBox={this.props.shapes[i].icon.attrs.viewBox}>
+                            <path fill={this.props.shapes[i].icon.childs.attrs.fill} stroke={this.props.shapes[i].icon.childs.attrs.stroke} strokeWidth={this.props.shapes[i].icon.childs.attrs.strokeWidth} d={this.props.shapes[i].icon.childs.attrs.d} />
+                        </svg>
+                    </div>;
+            } else {
+                svg = <div className="user-shape" onDragStart={e => this.onDragStart(e, this.props.shapes[i])} draggable>
+                        <svg width={this.props.shapes[i].icon.attrs.width} height={this.props.shapes[i].icon.attrs.height} viewBox={this.props.shapes[i].icon.attrs.viewBox}>
+                            <circle fill={this.props.shapes[i].icon.childs.attrs.fill} stroke={this.props.shapes[i].icon.childs.attrs.stroke} strokeWidth={this.props.shapes[i].icon.childs.attrs.strokeWidth} cx={this.props.shapes[i].icon.childs.attrs.cx} cy={this.props.shapes[i].icon.childs.attrs.cy} r={this.props.shapes[i].icon.childs.attrs.r} />
+                        </svg>
+                    </div>;
+            }
             userShapes.push(svg);
         }
 

@@ -353,7 +353,7 @@
         <valuename>5</valuename>
         <important>false</important>
       </features>
-      <concept>Роц</concept>
+      <concept>Лен</concept>
     </shapeitem>
     <shapeitem>
       <id>7</id>
@@ -412,7 +412,7 @@
         <valuename>5</valuename>
         <important>false</important>
       </features>
-      <concept>Роц</concept>
+      <concept>Лен</concept>
     </shapeitem>
     <shapeitem>
       <id>8</id>
@@ -483,7 +483,7 @@
     </conceptitem>
     <conceptitem>
       <id>9</id>
-      <conceptname>Роц</conceptname>
+      <conceptname>Лен</conceptname>
       <value>Зелёный</value>
       <value>Большой</value>
     </conceptitem>

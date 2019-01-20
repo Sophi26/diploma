@@ -994,7 +994,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     border: rgba(3, 3, 33, .5) 1px solid;
     position: absolute;
     left: 14%;
-    top: 793px;
+    top: 840px;
 }
 
 #select button {
@@ -1013,6 +1013,14 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     cursor: pointer;
 }
 
+#func-block {
+    margin: 0;
+    font-size: 13pt;
+    position: absolute;
+    right: 15.9%;
+    top: 378px;
+}
+
 #actions {
     margin: 0;
     padding: 0;
@@ -1021,7 +1029,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     border: rgba(3, 3, 33, .5) 1px solid;
     position: absolute;
     right: 14%;
-    top: 388px;
+    top: 413px;
 }
 
 #ok-btn {
@@ -1092,7 +1100,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     margin: 0;
     padding: 0;
     width: 500px;
-    height: 58px;
+    height: 108px;
     position: absolute;
     left: 14%;
     top: 195px;
@@ -1104,7 +1112,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
     padding: 0;
     position: absolute;
     left: 14%;
-    top: 273px;
+    top: 318px;
     text-align: center;
 }
 

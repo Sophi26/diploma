@@ -1,8 +1,13 @@
-#task-text p:first-child {
+#task-text p {
+    font-size: 13pt;
+    line-height: 1.6;
+}
+
+#task-text p {
     margin: 0;
 }
 
-#task-concept {
+.task-concept {
     color: #1492E6;
     display: inline-block;
 }

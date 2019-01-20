@@ -22,12 +22,21 @@ class FieldTable extends React.Component {
                         const view = this.props.shapes[k].shape.icon.attrs.viewBox.split(' ');
                         const x = Number(view[0]) + Number(view[2]) / 2;
                         const y = Number(view[1]) + Number(view[3]) / 2;
-                        svg = <div className="draggable-table" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
-                                <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
-                                    <path fill={this.props.shapes[k].shape.icon.childs.attrs.fill} d={this.props.shapes[k].shape.icon.childs.attrs.d} />
-                                    <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.shapes[k].shape.concept !== undefined ? this.props.shapes[k].shape.concept : ''}</text>
-                                </svg>
-                            </div>;
+                        if (this.props.shapes[k].shape.icon.childs.name === 'path') {
+                            svg = <div className="draggable-table" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
+                                    <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
+                                        <path fill={this.props.shapes[k].shape.icon.childs.attrs.fill} stroke={this.props.shapes[k].shape.icon.childs.attrs.stroke} strokeWidth={this.props.shapes[k].shape.icon.childs.attrs.strokeWidth} d={this.props.shapes[k].shape.icon.childs.attrs.d} />
+                                        <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.shapes[k].shape.concept !== undefined ? this.props.shapes[k].shape.concept : ''}</text>
+                                    </svg>
+                                </div>;
+                        } else {
+                            svg = <div className="draggable-table" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
+                                    <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
+                                        <circle fill={this.props.shapes[k].shape.icon.childs.attrs.fill} stroke={this.props.shapes[k].shape.icon.childs.attrs.stroke} strokeWidth={this.props.shapes[k].shape.icon.childs.attrs.strokeWidth} cx={this.props.shapes[k].shape.icon.childs.attrs.cx} cy={this.props.shapes[k].shape.icon.childs.attrs.cy} r={this.props.shapes[k].shape.icon.childs.attrs.r} />
+                                        <text x={x} y={y} alignmentBaseline="middle" textAnchor="middle">{this.props.shapes[k].shape.concept !== undefined ? this.props.shapes[k].shape.concept : ''}</text>
+                                    </svg>
+                                </div>;
+                        }
                         break;
                     }
                 }

@@ -29,4 +29,10 @@
     <valuename>4</valuename>
     <valuename>5</valuename>
   </featureitem>
+  <featureitem>
+    <featurename>Обводка</featurename>
+    <id>5</id>
+    <valuename>Тонкая</valuename>
+    <valuename>Толстая</valuename>
+  </featureitem>
 </features>

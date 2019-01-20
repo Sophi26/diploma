@@ -3,7 +3,11 @@
     margin-top: 20px;
     margin-left: 30px;
     margin-right: 30px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
+    height: 702px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .shape-flex-block {

@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <concepts>
   <conceptitem>
-    <id>1</id>
-    <conceptname>Бат</conceptname>
-    <value>Квадрат</value>
-    <value>Красный</value>
-  </conceptitem>
-  <conceptitem>
-    <id>2</id>
-    <conceptname>Дек</conceptname>
-    <value>Треугольник</value>
-    <value>Красный</value>
-  </conceptitem>
-  <conceptitem>
-    <id>3</id>
-    <conceptname>Пак</conceptname>
-    <value>Круг</value>
-    <value>Красный</value>
-  </conceptitem>
-  <conceptitem>
     <id>4</id>
     <conceptname>Локи</conceptname>
     <value>Круг</value>
@@ -41,18 +23,6 @@
     <conceptname>Зод</conceptname>
     <value>Квадрат</value>
     <value>4</value>
-  </conceptitem>
-  <conceptitem>
-    <id>8</id>
-    <conceptname>Бат</conceptname>
-    <value>Красный</value>
-    <value>Маленький</value>
-  </conceptitem>
-  <conceptitem>
-    <id>9</id>
-    <conceptname>Роц</conceptname>
-    <value>Зелёный</value>
-    <value>Большой</value>
   </conceptitem>
   <conceptitem>
     <id>10</id>
@@ -103,12 +73,6 @@
     <id>17</id>
   </conceptitem>
   <conceptitem>
-    <conceptname>Там</conceptname>
-    <value>Маленький</value>
-    <value>Треугольник</value>
-    <id>18</id>
-  </conceptitem>
-  <conceptitem>
     <conceptname>Алаб</conceptname>
     <value>Большой</value>
     <value>Алый</value>
@@ -125,5 +89,35 @@
     <value>Маленький</value>
     <value>4</value>
     <id>21</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Лен</conceptname>
+    <value>Зелёный</value>
+    <value>Большой</value>
+    <id>22</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Роц</conceptname>
+    <value>Большой</value>
+    <value>Тонкая</value>
+    <id>23</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Муп</conceptname>
+    <value>Большой</value>
+    <value>Толстая</value>
+    <id>24</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Дек</conceptname>
+    <value>Маленький</value>
+    <value>Толстая</value>
+    <id>25</id>
+  </conceptitem>
+  <conceptitem>
+    <conceptname>Бат</conceptname>
+    <value>Маленький</value>
+    <value>Тонкая</value>
+    <id>26</id>
   </conceptitem>
 </concepts>
