@@ -10,7 +10,7 @@
 }
 
 .sample-shape-flex-box:first-child {
-    margin-left: 0;
+    margin-left: 5px;
 }
 
 .sample-shape-flex-box svg {

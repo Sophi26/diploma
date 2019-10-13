@@ -1119,3 +1119,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
 #sample-list {
     margin: 20px 0 60px 0;
 }
+
+#ok-user-list {
+    margin: 0 0 0 20px;
+}

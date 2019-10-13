@@ -3,6 +3,8 @@ const { BrowserWindow } = require('electron');
 const { ipcMain } = require('electron');
 const { shell } = require('electron');
 
+app.server = require(__dirname + '/server')();
+
 let mainWindow = null;
 
 app.on('window-all-closed', () => {
@@ -15,6 +17,8 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 1440,
         height: 960,
+        resizable: false,
+        fullscreenable: false
         // autoHideMenuBar: true
     });
     mainWindow.loadURL('http://127.0.0.1:8081/');

@@ -72,7 +72,8 @@ function main(store) {
                     const act = endExperiment();
                     store.dispatch(act);
 
-                    document.getElementById("f-add-hyp").value = "Ваше мнение...";
+                    // document.getElementById("f-add-hyp").value = "Ваше мнение...";
+                    document.getElementById("f-add-hyp").value = "";
 
                     modal_shadow.style.display = 'none';
                     hyp_window.style.display = 'none';
