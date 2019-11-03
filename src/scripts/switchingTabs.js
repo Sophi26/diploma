@@ -2,7 +2,8 @@ import { initPlay } from '../actions/SwitchingTabsActions';
 
 function main(store) {
 
-    document.getElementById("tab1").style.display = 'block';
+    // document.getElementById("tab1").style.display = 'block';
+    document.getElementById("tab5").style.display = 'block';
 
     const listTabs = document.querySelectorAll("#tabs li");
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import './style.css';
+import { userSelect } from '../../../actions/PlayEditorActions';
 
 class UserList extends React.Component {
 
@@ -91,4 +92,22 @@ class UserList extends React.Component {
     }
 }
 
-export default UserList;
+// export default UserList;
+export default connect(
+    state => {
+        return {
+            shapes: state.userlist,
+            test_id: state.testid
+        };
+    },
+    dispatch => {
+        return {
+            actions: {
+                onUserSelect: (fig) => {
+                    const action = userSelect(fig);
+                    dispatch(action);
+                },
+            }
+        }
+    }
+)(UserList);

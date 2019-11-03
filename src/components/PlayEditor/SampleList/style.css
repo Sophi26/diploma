@@ -1,16 +1,11 @@
 .sample-shape-flex-box {
-    /* margin-left: 15px; */
-    margin-left: 0;
+    margin: 0;
     width: 100px;
     height: 100px;
     text-align: center;
     line-height: 100px;
     display: inline-block;
     vertical-align: top;
-}
-
-.sample-shape-flex-box:first-child {
-    margin-left: 5px;
 }
 
 .sample-shape-flex-box svg {

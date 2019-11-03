@@ -71,7 +71,7 @@
         <div id="creation">
             <div id="navigating-tabs">
                 <ul id="tabs">
-                    <li class="left-tabs"><a href="#tab1">Фигуры</a></li>
+                    <li class="active-tab left-tabs"><a href="#tab1">Фигуры</a></li>
                     <li class="left-tabs"><a href="#tab2">Поле</a></li>
                     <li class="left-tabs"><a href="#tab3">Подкрепление</a></li>
                     <div id="view-tabs">
@@ -82,7 +82,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="active-tab right-tabs">
+                        <li class="right-tabs">
                             <a id="play-icon" href="#tab5">
                                 <svg width="36px" height="36px" viewBox="0 0 24 24">
                                     <path fill="rgb(3, 3, 33)" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5L16,12L10,7.5V16.5Z" />
@@ -236,26 +236,17 @@
 
                 <div id="tab5" class="tabs-content">
                     <div id="play">
-                        <div id="taskdiv">
-                            <p class="header-window">Задание</p>
-                            <div id="criterion"></div>
-                        </div>
-                      
-                        <div id="example-list">
-                            <p class="header-window">Образцы</p>
-                            <div id="sample-list"></div>
-                        </div>
+                        <div id="criterion"></div>
 
                         <div id="grid"></div>
 
                         <div id="select">
-                            <p class="header-window">Выбранные</p>
-                            <div id="user-selist"></div>
+                            <div id="sample-list"></div>
                             <button id="select-btn">Готово</button>
                         </div>
 
                         <!-- <p id="func-block">Здесь вы можете «потрогать» фигуру</p> -->
-                        <!--<div id="actions">
+                        <div id="actions">
                             <div id="ok-btn">
                                 <button id="yes-btn">
                                     <svg width="24px" height="24px" viewBox="0 0 24 24">
@@ -284,7 +275,7 @@
                             </div>
 
                             <div id="active-fig"></div>
-                        </div>-->
+                        </div>
 
                         <div id="hypothesis">
                             <div class="modal-shadow"></div>
