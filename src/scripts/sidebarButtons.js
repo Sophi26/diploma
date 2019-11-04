@@ -32,6 +32,32 @@ function main(store) {
 
                     let expFlexBlock = document.createElement("div");
                     expFlexBlock.setAttribute('class', 'experiment');
+                    expFlexBlock.addEventListener('click', () => {
+                        document.getElementById("exp-name").textContent = result[i].slice(0, -4);
+                        fetch("/api/open", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                filename: result[i],
+                            }),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((data) => {
+
+                            const action = openExp(data);
+                            store.dispatch(action);
+
+                            document.getElementById("start").style.display = 'none';
+                            document.getElementById("creation").style.display = 'block';
+                            document.getElementById("f-width").value = data.experiment.field.width;
+                            document.getElementById("f-height").value = data.experiment.field.height;
+                        })
+                        .catch();
+                    });
                     let nameBlock = document.createElement("div");
                     nameBlock.setAttribute('class', 'name-block');
                     let expName = document.createElement("p");
@@ -239,6 +265,32 @@ function main(store) {
 
                     let expFlexBlock = document.createElement("div");
                     expFlexBlock.setAttribute('class', 'experiment');
+                    expFlexBlock.addEventListener('click', () => {
+                        document.getElementById("exp-name").textContent = result[i].slice(0, -4);
+                        fetch("/api/open", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                filename: result[i],
+                            }),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((data) => {
+
+                            const action = openExp(data);
+                            store.dispatch(action);
+
+                            document.getElementById("start").style.display = 'none';
+                            document.getElementById("creation").style.display = 'block';
+                            document.getElementById("f-width").value = data.experiment.field.width;
+                            document.getElementById("f-height").value = data.experiment.field.height;
+                        })
+                        .catch();
+                    });
                     let nameBlock = document.createElement("div");
                     nameBlock.setAttribute('class', 'name-block');
                     let expName = document.createElement("p");

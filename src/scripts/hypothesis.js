@@ -24,79 +24,71 @@ function main(store) {
 
     btn.addEventListener('click', () => {
 
-                const action = endSelection();
-                store.dispatch(action);
+        const action = endSelection();
+        store.dispatch(action);
 
-                modal_shadow.style.display = 'block';
-                ok_window.style.display = 'block';
+        modal_shadow.style.display = 'block';
+        ok_window.style.display = 'block';
 
-                render( < Provider store = { store } >
-                    <
-                    OkList / >
-                    <
-                    /Provider>, document.getElementById("ok-user-list"));
-                });
+        render( <Provider store={store}><OkList /></Provider>, document.getElementById("ok-user-list"));
+    });
 
-            cancleHypBtn.addEventListener('click', () => {
+    cancleHypBtn.addEventListener('click', () => {
 
-                const action = cancleSelection();
-                store.dispatch(action);
+        const action = cancleSelection();
+        store.dispatch(action);
 
-                ok_window.style.display = 'none';
-                modal_shadow.style.display = 'none';
-            });
+        ok_window.style.display = 'none';
+        modal_shadow.style.display = 'none';
+    });
 
-            let next = 0; hypBtn.addEventListener('click', () => {
+    let next = 0;
+    hypBtn.addEventListener('click', () => {
 
-                    next = 0;
-                    const action = okSelection();
-                    store.dispatch(action);
+        next = 0;
+        const action = okSelection();
+        store.dispatch(action);
 
-                    ok_window.style.display = 'none';
-                    hyp_window.style.display = 'block';
+        ok_window.style.display = 'none';
+        hyp_window.style.display = 'block';
 
-                    render( < Provider store = { store } >
-                        <
-                        HypList / >
-                        <
-                        /Provider>, document.getElementById("hyp-user-list"));
-                    });
+        render( <Provider store={store}><HypList /></Provider>, document.getElementById("hyp-user-list"));
+    });
 
-                hyp_ok_btn.addEventListener('click', () => {
+    hyp_ok_btn.addEventListener('click', () => {
 
-                    ++next;
+        ++next;
 
-                    const action = nextSample(next);
-                    store.dispatch(action);
+        const action = nextSample(next);
+        store.dispatch(action);
 
-                    const act = endExperiment();
-                    store.dispatch(act);
+        const act = endExperiment();
+        store.dispatch(act);
 
-                    // document.getElementById("f-add-hyp").value = "Ваше мнение...";
-                    document.getElementById("f-add-hyp").value = "";
+        // document.getElementById("f-add-hyp").value = "Ваше мнение...";
+        document.getElementById("f-add-hyp").value = "";
 
-                    modal_shadow.style.display = 'none';
-                    hyp_window.style.display = 'none';
-                });
+        modal_shadow.style.display = 'none';
+        hyp_window.style.display = 'none';
+    });
 
-                hyp_cancle_btn.addEventListener('click', () => {
+    hyp_cancle_btn.addEventListener('click', () => {
 
-                    const action = cancleHypothesis();
-                    store.dispatch(action);
+        const action = cancleHypothesis();
+        store.dispatch(action);
 
-                    modal_shadow.style.display = 'none';
-                    hyp_window.style.display = 'none';
-                });
+        modal_shadow.style.display = 'none';
+        hyp_window.style.display = 'none';
+    });
 
-                modal_shadow.addEventListener('click', () => {
+    modal_shadow.addEventListener('click', () => {
 
-                    modal_shadow.style.display = 'none';
-                    ok_window.style.display = 'none';
-                    hyp_window.style.display = 'none';
-                });
-            }
+        modal_shadow.style.display = 'none';
+        ok_window.style.display = 'none';
+        hyp_window.style.display = 'none';
+    });
+}
 
-            export {
-                main as
-                default,
-            };
+export {
+    main as default,
+};

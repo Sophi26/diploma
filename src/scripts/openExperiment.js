@@ -35,6 +35,38 @@ function main(store) {
         });
     }
 
+    const exps_div = document.querySelectorAll(".experiment");
+
+    for (let i = 0; i < exps_div.length; i++) {
+
+        exps_div[i].addEventListener('click', () => {
+
+            fetch("/api/open", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        filename: document.getElementById("exp-name").textContent + '.xml',
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+
+                    const action = openExp(data);
+                    store.dispatch(action);
+
+                    document.getElementById("start").style.display = 'none';
+                    document.getElementById("creation").style.display = 'block';
+                    document.getElementById("f-width").value = data.experiment.field.width;
+                    document.getElementById("f-height").value = data.experiment.field.height;
+                })
+                .catch();
+        });
+    }
+
     const input = document.getElementById("upload-file");
     input.addEventListener('change', () => {
         const file_name = input.files[0].name.substr(0, input.files[0].name.length - 4);

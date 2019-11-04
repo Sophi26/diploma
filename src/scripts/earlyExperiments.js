@@ -19,6 +19,9 @@ function main() {
 
                 let expFlexBlock = document.createElement("div");
                 expFlexBlock.setAttribute('class', 'experiment');
+                expFlexBlock.addEventListener('click', () => {
+                    document.getElementById("exp-name").textContent = result[i].slice(0, -4);
+                });
                 let nameBlock = document.createElement("div");
                 nameBlock.setAttribute('class', 'name-block');
                 let expName = document.createElement("p");

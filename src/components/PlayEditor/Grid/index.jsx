@@ -20,13 +20,13 @@ class Grid extends React.Component {
                 for(let k = 0; k < this.props.shapes.length; ++k) { 
                     if(Number(this.props.shapes[k].x) === i && Number(this.props.shapes[k].y) === j) {
                         if (this.props.shapes[k].shape.icon.childs.name === 'path') {
-                            svg = <div style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-play" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
+                            svg = <div id={this.props.shapes[k].shape.id} style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-play" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
                                     <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
                                         <path fill={this.props.shapes[k].shape.icon.childs.attrs.fill} stroke={this.props.shapes[k].shape.icon.childs.attrs.stroke} strokeWidth={this.props.shapes[k].shape.icon.childs.attrs.strokeWidth} d={this.props.shapes[k].shape.icon.childs.attrs.d} />
                                     </svg>
                                 </div>;
                         } else {
-                            svg = <div style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-play" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
+                            svg = <div id={this.props.shapes[k].shape.id} style={{display: this.props.shapes[k].shape.hidden ? 'none' : 'block'}} className="draggable-play" onDragStart={e => this.onDragStart(e, this.props.shapes[k].shape)} draggable>
                                     <svg width={this.props.shapes[k].shape.icon.attrs.width} height={this.props.shapes[k].shape.icon.attrs.height} viewBox={this.props.shapes[k].shape.icon.attrs.viewBox}>
                                         <circle fill={this.props.shapes[k].shape.icon.childs.attrs.fill} stroke={this.props.shapes[k].shape.icon.childs.attrs.stroke} strokeWidth={this.props.shapes[k].shape.icon.childs.attrs.strokeWidth} cx={this.props.shapes[k].shape.icon.childs.attrs.cx} cy={this.props.shapes[k].shape.icon.childs.attrs.cy} r={this.props.shapes[k].shape.icon.childs.attrs.r} />
                                     </svg>

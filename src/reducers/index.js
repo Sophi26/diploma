@@ -751,7 +751,10 @@ export default function featureList(state, action = {}) {
                 if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
                     if (state.playfieldshapes[i].shape.hidden)
                         ++nx;
-                    else break;
+                    else {
+                        // var next_fig_id = state.playfieldshapes[i].shape.id;
+                        break;
+                    }
                 }
             }
             if (nx === action.payload) {
@@ -761,6 +764,14 @@ export default function featureList(state, action = {}) {
                     }
                 }
             }
+
+            // let targetOffset = $("#sample-list").offset();
+            // $("#" + next_fig_id).css('position', 'absolute');
+            // $("#" + next_fig_id).animate({
+            //     top: -1 * targetOffset.top,
+            //     left: -1 * targetOffset.left
+            // }, 1000, "swing");
+
             $.ajax({
                 url: "/api/opennextsample",
                 type: "POST",
@@ -983,9 +994,7 @@ export default function featureList(state, action = {}) {
                     message: 'Эксперимент завершен! Вам не удалось найти верно все фигуры:(',
                     detail: 'Правильный ответ находится в нижней части экрана'
                 };
-                dialog.showMessageBox(null, options, (response) => {
-
-                });
+                dialog.showMessageBox(null, options, (response) => {});
                 fetch("/api/endexperiment", {
                         method: "POST",
                         body: JSON.stringify({
