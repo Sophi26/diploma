@@ -37,7 +37,7 @@ class HypList extends React.Component {
                     {userShapes}
                 </div>
                 <p>
-                    По каким признакам вы отбирали фигуры?
+                    Какие игрушки на языке чужого народа называются «{this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname}»?
                 </p>
             </div>
         );

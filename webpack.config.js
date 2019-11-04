@@ -2,7 +2,8 @@ const Path = require("path");
 
 module.exports = {
     entry: {
-        main: Path.join(__dirname, 'src', 'index.js'),
+        // main: Path.join(__dirname, 'src', 'index.js'),
+        main: ['babel-polyfill', Path.join(__dirname, 'src', 'index.js')],
     },
     target: 'electron-renderer',
     output: {

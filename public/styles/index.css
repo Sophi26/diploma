@@ -699,9 +699,21 @@ input.cmn-toggle-round-flat:checked+label:after {
     cursor: pointer;
 }
 
+.modal-shadow-dialog-electron {
+    background: rgb(3, 3, 33);
+    opacity: .3;
+    width: 100%;
+    /* height: 960px; */
+    height: 100%;
+    /* position: absolute; */
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
 .modal-shadow {
-    background: #000;
-    opacity: 0.3;
+    background: rgba(3, 3, 33, .3);
     width: 100%;
     /* height: 960px; */
     height: 100%;
@@ -1085,8 +1097,9 @@ input#cmn-toggle-round-flat-1:checked+label:after {
 }
 
 #hyp-window input {
-    margin: 10px 20px 0 20px;
-    width: 380px;
+    margin: 10px 0 0 20px;
+    /* width: 380px; */
+    width: 92%;
 }
 
 #taskdiv {

@@ -752,7 +752,7 @@ export default function featureList(state, action = {}) {
                     if (state.playfieldshapes[i].shape.hidden)
                         ++nx;
                     else {
-                        // var next_fig_id = state.playfieldshapes[i].shape.id;
+                        var next_fig_id = state.playfieldshapes[i].shape.id;
                         break;
                     }
                 }
@@ -765,12 +765,12 @@ export default function featureList(state, action = {}) {
                 }
             }
 
-            // let targetOffset = $("#sample-list").offset();
-            // $("#" + next_fig_id).css('position', 'absolute');
-            // $("#" + next_fig_id).animate({
-            //     top: -1 * targetOffset.top,
-            //     left: -1 * targetOffset.left
-            // }, 1000, "swing");
+            let targetOffset = $("#sample-list").offset();
+            $("#" + next_fig_id).css('position', 'absolute');
+            $("#" + next_fig_id).animate({
+                top: targetOffset.top - $("#" + next_fig_id).offset().top,
+                left: targetOffset.left - $("#" + next_fig_id).offset().left
+            }, 1000, "linear");
 
             $.ajax({
                 url: "/api/opennextsample",
@@ -803,11 +803,26 @@ export default function featureList(state, action = {}) {
                     }
                 }
                 check_next = 1;
+                const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options = {
                     type: 'info',
-                    message: 'Эксперимент завершен! Поздравляю, вам удалось найти верно все фигуры:)'
+                    message: 'Эксперимент завершен! Поздравляем, вам удалось найти верно все игрушки, которые имеют название «' + state.samplelist[0].concept + '»!'
                 };
-                dialog.showMessageBox(null, options, (response) => {});
+                modal_shadow.style.display = 'block';
+                modal_shadow.style.opacity = .3;
+                $(modal_shadow).animate({
+                    opacity: .8
+                }, 1000, "linear");
+                dialog.showMessageBox(null, options, (response) => {
+                    modal_shadow.style.display = 'none';
+                    const drag_play_td = document.querySelectorAll(".draggable-play");
+                    for (let i = 0; i < drag_play_td.length; ++i) {
+                        drag_play_td[i].setAttribute("draggable", false);
+                        drag_play_td[i].classList.remove("draggable-play");
+                    }
+                    document.getElementById("select-btn").setAttribute("disabled", true);
+                    document.getElementById("select-btn").style.backgroundColor = "rgba(3, 3, 33, .5)";
+                });
                 $.ajax({
                     url: "/api/endexperiment",
                     type: "POST",
@@ -989,12 +1004,27 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.END_EXPERIMENT:
             if (state.samplelist.length === state.opening.sequence.length) {
+                const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options = {
                     type: 'info',
-                    message: 'Эксперимент завершен! Вам не удалось найти верно все фигуры:(',
-                    detail: 'Правильный ответ находится в нижней части экрана'
+                    message: 'Эксперимент завершен! К сожалению, вам не удалось найти все игрушки, которые имеют название «' + state.samplelist[0].concept + '»!',
+                    detail: 'Игрушки, которые вам нужно было найти, выставлены в поле «Образцы». Они носят название «' + state.samplelist[0].concept + '».'
                 };
-                dialog.showMessageBox(null, options, (response) => {});
+                modal_shadow.style.display = 'block';
+                modal_shadow.style.opacity = .3;
+                $(modal_shadow).animate({
+                    opacity: .8
+                }, 1000, "linear");
+                dialog.showMessageBox(null, options, (response) => {
+                    modal_shadow.style.display = 'none';
+                    const drag_play_td = document.querySelectorAll(".draggable-play");
+                    for (let i = 0; i < drag_play_td.length; ++i) {
+                        drag_play_td[i].setAttribute("draggable", false);
+                        drag_play_td[i].classList.remove("draggable-play");
+                    }
+                    document.getElementById("select-btn").setAttribute("disabled", true);
+                    document.getElementById("select-btn").style.backgroundColor = "rgba(3, 3, 33, .5)";
+                });
                 fetch("/api/endexperiment", {
                         method: "POST",
                         body: JSON.stringify({
@@ -1015,12 +1045,20 @@ export default function featureList(state, action = {}) {
                     .catch();
                 return state;
             } else if (!check_next) {
+                const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options_next = {
-                    type: 'info',
-                    message: 'Продолжение эксперимента! Вы ещё не нашли все нужные фигуры:(',
-                    detail: 'В поле в нижней части экрана добавился еще один образец'
+                    type: 'error',
+                    message: 'Вы ошиблись! На поле еще остались фигуры с названием «' + state.samplelist[0].concept + '»!',
+                    detail: 'Попробуйте ещё раз! Найдите все игрушки с названием «' + state.samplelist[0].concept + '», но уже на основе двух известных вам фигурок-образцов.'
                 };
-                dialog.showMessageBox(null, options_next, (response) => {});
+                modal_shadow.style.display = 'block';
+                modal_shadow.style.opacity = .3;
+                $(modal_shadow).animate({
+                    opacity: .6
+                }, 1000, "swing");
+                dialog.showMessageBox(null, options_next, (response) => {
+                    modal_shadow.style.display = 'none';
+                });
             }
             check_next = 0;
             return state;
