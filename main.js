@@ -17,8 +17,8 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         width: 1440,
         height: 960,
-        resizable: false,
-        fullscreenable: false
+        // resizable: false,
+        // fullscreenable: false
         // autoHideMenuBar: true
     });
     mainWindow.loadURL('http://127.0.0.1:8081/');
