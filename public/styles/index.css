@@ -301,6 +301,7 @@ h1 {
     border: rgba(3, 3, 33, .6) 1px solid;
     position: relative;
     background-color: rgba(3, 3, 33, .1);
+    cursor: pointer;
 }
 
 .name-block {

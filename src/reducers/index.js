@@ -765,12 +765,12 @@ export default function featureList(state, action = {}) {
                 }
             }
 
-            let targetOffset = $("#sample-list").offset();
-            $("#" + next_fig_id).css('position', 'absolute');
-            $("#" + next_fig_id).animate({
-                top: targetOffset.top - $("#" + next_fig_id).offset().top,
-                left: targetOffset.left - $("#" + next_fig_id).offset().left
-            }, 1000, "linear");
+            // let targetOffset = $("#sample-list").offset();
+            // $("#" + next_fig_id).css('position', 'absolute');
+            // $("#" + next_fig_id).animate({
+            //     top: targetOffset.top - $("#" + next_fig_id).offset().top,
+            //     left: targetOffset.left - $("#" + next_fig_id).offset().left
+            // }, 1000, "linear");
 
             $.ajax({
                 url: "/api/opennextsample",
@@ -812,15 +812,16 @@ export default function featureList(state, action = {}) {
                 modal_shadow.style.opacity = .3;
                 $(modal_shadow).animate({
                     opacity: .8
-                }, 1000, "linear");
+                }, 500, "linear");
                 dialog.showMessageBox(null, options, (response) => {
                     modal_shadow.style.display = 'none';
                     const drag_play_td = document.querySelectorAll(".draggable-play");
                     for (let i = 0; i < drag_play_td.length; ++i) {
                         drag_play_td[i].setAttribute("draggable", false);
-                        drag_play_td[i].classList.remove("draggable-play");
+                        drag_play_td[i].classList.remove("draggable-play");   
                     }
                     document.getElementById("select-btn").setAttribute("disabled", true);
+                    document.getElementById("select-btn").style.cursor = "default";
                     document.getElementById("select-btn").style.backgroundColor = "rgba(3, 3, 33, .5)";
                 });
                 $.ajax({
@@ -1014,15 +1015,16 @@ export default function featureList(state, action = {}) {
                 modal_shadow.style.opacity = .3;
                 $(modal_shadow).animate({
                     opacity: .8
-                }, 1000, "linear");
+                }, 500, "linear");
                 dialog.showMessageBox(null, options, (response) => {
                     modal_shadow.style.display = 'none';
                     const drag_play_td = document.querySelectorAll(".draggable-play");
                     for (let i = 0; i < drag_play_td.length; ++i) {
                         drag_play_td[i].setAttribute("draggable", false);
-                        drag_play_td[i].classList.remove("draggable-play");
+                        drag_play_td[i].classList.remove("draggable-play");    
                     }
                     document.getElementById("select-btn").setAttribute("disabled", true);
+                    document.getElementById("select-btn").style.cursor = "default";
                     document.getElementById("select-btn").style.backgroundColor = "rgba(3, 3, 33, .5)";
                 });
                 fetch("/api/endexperiment", {
@@ -1055,7 +1057,7 @@ export default function featureList(state, action = {}) {
                 modal_shadow.style.opacity = .3;
                 $(modal_shadow).animate({
                     opacity: .6
-                }, 1000, "swing");
+                }, 500, "swing");
                 dialog.showMessageBox(null, options_next, (response) => {
                     modal_shadow.style.display = 'none';
                 });
