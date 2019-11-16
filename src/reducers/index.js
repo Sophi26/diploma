@@ -747,23 +747,39 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.OPEN_NEXT_SAMPLE:
             let nx = action.payload;
-            for (let i = 0; i < state.playfieldshapes.length; ++i) {
-                if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
-                    if (state.playfieldshapes[i].shape.hidden)
+            let index = 0;
+            while (index < state.playfieldshapes.length) {
+                if (state.playfieldshapes[index].shape.id === state.opening.sequence[nx].id) {
+                    if (state.playfieldshapes[index].shape.hidden) {
                         ++nx;
-                    else {
-                        var next_fig_id = state.playfieldshapes[i].shape.id;
-                        break;
-                    }
-                }
+                        index=0;
+                    } else break;
+                } else ++index;
             }
-            if (nx === action.payload) {
-                for (let i = 1; i < state.samplelist.length; ++i) {
-                    if (state.samplelist[i].id === state.opening.sequence[nx].id) {
-                        ++nx;
-                    }
-                }
+            index = 1;
+            while (index < state.samplelist.length) {
+                if (state.samplelist[index].id === state.opening.sequence[nx].id) {
+                    ++nx;
+                    index=1;
+                } else ++index;
             }
+            // for (let i = 0; i < state.playfieldshapes.length; ++i) {
+            //     if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
+            //         if (state.playfieldshapes[i].shape.hidden)
+            //             ++nx;
+            //         else {
+            //             var next_fig_id = state.playfieldshapes[i].shape.id;
+            //             break;
+            //         }
+            //     }
+            // }
+            // if (nx === action.payload) {
+            //     for (let i = 1; i < state.samplelist.length; ++i) {
+            //         if (state.samplelist[i].id === state.opening.sequence[nx].id) {
+            //             ++nx;
+            //         }
+            //     }
+            // }
 
             // let targetOffset = $("#sample-list").offset();
             // $("#" + next_fig_id).css('position', 'absolute');
