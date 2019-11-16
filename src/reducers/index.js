@@ -747,21 +747,36 @@ export default function featureList(state, action = {}) {
 
         case PlayTypes.OPEN_NEXT_SAMPLE:
             let nx = action.payload;
+            // console.log(nx);
             let index = 0;
             while (index < state.playfieldshapes.length) {
                 if (state.playfieldshapes[index].shape.id === state.opening.sequence[nx].id) {
                     if (state.playfieldshapes[index].shape.hidden) {
+                        if (nx === state.opening.sequence.length - 1) break;
                         ++nx;
                         index=0;
                     } else break;
                 } else ++index;
             }
-            index = 1;
-            while (index < state.samplelist.length) {
-                if (state.samplelist[index].id === state.opening.sequence[nx].id) {
-                    ++nx;
-                    index=1;
-                } else ++index;
+            if (nx === action.payload) {
+                index = 1;
+                while (index < state.samplelist.length) {
+                    if (state.samplelist[index].id === state.opening.sequence[nx].id) {
+                        if (nx === state.opening.sequence.length - 1) break;
+                        ++nx;
+                        let jndex = 0;
+                        while (jndex < state.playfieldshapes.length) {
+                            if (state.playfieldshapes[jndex].shape.id === state.opening.sequence[nx].id) {
+                                if (state.playfieldshapes[jndex].shape.hidden) {
+                                    if (nx === state.opening.sequence.length - 1) break;
+                                    ++nx;
+                                    jndex=0;
+                                } else ++jndex;
+                            } else ++jndex;
+                        }
+                        index=1;
+                    } else ++index;
+                }
             }
             // for (let i = 0; i < state.playfieldshapes.length; ++i) {
             //     if (state.playfieldshapes[i].shape.id === state.opening.sequence[nx].id) {
