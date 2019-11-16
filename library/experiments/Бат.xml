@@ -687,7 +687,7 @@
         <childs>
           <name>path</name>
           <attrs>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>2</strokeMiterlimit>
@@ -757,7 +757,7 @@
             <cx>688</cx>
             <cy>252</cy>
             <r>40</r>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
@@ -823,7 +823,7 @@
         <childs>
           <name>path</name>
           <attrs>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
@@ -1498,7 +1498,7 @@
             <cx>913</cx>
             <cy>182</cy>
             <r>15</r>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
@@ -1564,7 +1564,7 @@
         <childs>
           <name>path</name>
           <attrs>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
@@ -1631,7 +1631,7 @@
         <childs>
           <name>path</name>
           <attrs>
-            <fill>#0000A0</fill>
+            <fill>#2075FF</fill>
             <stroke>#000</stroke>
             <strokeLinecap>square</strokeLinecap>
             <strokeMiterlimit>3</strokeMiterlimit>
