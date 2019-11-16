@@ -1,4 +1,5 @@
 import { initPlay } from '../actions/SwitchingTabsActions';
+import hypothesis from './hypothesis';
 
 function main(store) {
 
@@ -44,6 +45,16 @@ function main(store) {
 
                 const action = initPlay(data.test_id);
                 store.dispatch(action);
+
+                const drag_play_td = document.querySelectorAll(".draggable-play");
+                for (let i = 0; i < drag_play_td.length; ++i) {
+                    drag_play_td[i].setAttribute("draggable", true);   
+                }
+                // document.getElementById("select-btn").setAttribute("disabled", false);
+                document.getElementById("select-btn").removeAttribute("disabled");
+                document.getElementById("select-btn").style.cursor = "pointer";
+                document.getElementById("select-btn").style.backgroundColor = "rgba(3, 3, 33, .85)";
+                // hypothesis(store);
             })
             .catch();
     });

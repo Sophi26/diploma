@@ -16,6 +16,7 @@ header {
     height: 80px;
     background-color: rgba(3, 3, 33, .85);
     line-height: 80px;
+    position: relative;
 }
 
 h1 {
@@ -773,9 +774,9 @@ input.cmn-toggle-round-flat:checked+label:after {
     width: 75%;
     color: rgb(3, 3, 33);
     background-color: #FAFAFF;
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: normal;
-    letter-spacing: 0.1em;
+    /* letter-spacing: 0.1em; */
     border: rgba(3, 3, 33, .5) .5px solid;
     border-radius: 2px;
 }
@@ -1082,11 +1083,11 @@ input#cmn-toggle-round-flat-1:checked+label:after {
 }
 
 #hyp-window {
-    top: 30%;
+    top: 28%;
     left: 30%;
     width: 40%;
     /* height: 339px; */
-    height: 359px;
+    height: 390px;
 }
 
 #ok-window p {
@@ -1094,7 +1095,7 @@ input#cmn-toggle-round-flat-1:checked+label:after {
 }
 
 #hyp-window p {
-    margin: 10px 0 0 20px;
+    margin: 15px 0 0 20px;
 }
 
 #hyp-window input {

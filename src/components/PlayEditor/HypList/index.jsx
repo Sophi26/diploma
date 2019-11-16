@@ -31,13 +31,15 @@ class HypList extends React.Component {
 
         const task = this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname;
 
+        // document.getElementById("f-add-hyp").setAttribute("placeholder", 'Например, «' + this.props.openingseq.expconcept.conceptname + '» — это красные фигуры с толстым контуром');        
+        
         return(
             <div id="hyp-w">
                 <div id="hyp-shapes-flex-block">
                     {userShapes}
                 </div>
                 <p>
-                    Какие игрушки на языке чужого народа называются «{this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname}»?
+                    Какие игрушки на языке чужого народа называются «{this.props.openingseq.expconcept === undefined ? '' : this.props.openingseq.expconcept.conceptname}»? Перечислите их общие признаки:
                 </p>
             </div>
         );

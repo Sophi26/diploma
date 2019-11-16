@@ -52,6 +52,8 @@ function main(store) {
         ok_window.style.display = 'none';
         hyp_window.style.display = 'block';
 
+        document.getElementById("f-add-hyp").focus();
+
         render( <Provider store={store}><HypList /></Provider>, document.getElementById("hyp-user-list"));
     });
 
@@ -67,6 +69,8 @@ function main(store) {
 
         // document.getElementById("f-add-hyp").value = "Ваше мнение...";
         document.getElementById("f-add-hyp").value = "";
+
+        document.getElementById("f-add-hyp").blur();
 
         modal_shadow.style.display = 'none';
         hyp_window.style.display = 'none';

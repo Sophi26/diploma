@@ -805,8 +805,9 @@ export default function featureList(state, action = {}) {
                 check_next = 1;
                 const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options = {
-                    type: 'info',
-                    message: 'Эксперимент завершен! Поздравляем, вам удалось найти верно все игрушки, которые имеют название «' + state.samplelist[0].concept + '»!'
+                    type: 'none',
+                    message: 'Эксперимент завершен! Поздравляем, вам удалось найти верно все игрушки, которые имеют название «' + state.samplelist[0].concept + '»!',
+                    detail: ' '
                 };
                 modal_shadow.style.display = 'block';
                 modal_shadow.style.opacity = .3;
@@ -817,8 +818,9 @@ export default function featureList(state, action = {}) {
                     modal_shadow.style.display = 'none';
                     const drag_play_td = document.querySelectorAll(".draggable-play");
                     for (let i = 0; i < drag_play_td.length; ++i) {
-                        drag_play_td[i].setAttribute("draggable", false);
-                        drag_play_td[i].classList.remove("draggable-play");   
+                        // drag_play_td[i].setAttribute("draggable", false);
+                        // drag_play_td[i].classList.remove("draggable-play");
+                        drag_play_td[i].removeAttribute("draggable");   
                     }
                     document.getElementById("select-btn").setAttribute("disabled", true);
                     document.getElementById("select-btn").style.cursor = "default";
@@ -1007,9 +1009,9 @@ export default function featureList(state, action = {}) {
             if (state.samplelist.length === state.opening.sequence.length) {
                 const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options = {
-                    type: 'info',
+                    type: 'none',
                     message: 'Эксперимент завершен! К сожалению, вам не удалось найти все игрушки, которые имеют название «' + state.samplelist[0].concept + '»!',
-                    detail: 'Игрушки, которые вам нужно было найти, выставлены в поле «Образцы». Они носят название «' + state.samplelist[0].concept + '».'
+                    detail: 'Все игрушки, которые вам нужно было найти, находятся в поле «Образцы». Они носят название «' + state.samplelist[0].concept + '».'
                 };
                 modal_shadow.style.display = 'block';
                 modal_shadow.style.opacity = .3;
@@ -1020,8 +1022,9 @@ export default function featureList(state, action = {}) {
                     modal_shadow.style.display = 'none';
                     const drag_play_td = document.querySelectorAll(".draggable-play");
                     for (let i = 0; i < drag_play_td.length; ++i) {
-                        drag_play_td[i].setAttribute("draggable", false);
-                        drag_play_td[i].classList.remove("draggable-play");    
+                        // drag_play_td[i].setAttribute("draggable", false);
+                        // drag_play_td[i].classList.remove("draggable-play");
+                        drag_play_td[i].removeAttribute("draggable");    
                     }
                     document.getElementById("select-btn").setAttribute("disabled", true);
                     document.getElementById("select-btn").style.cursor = "default";
@@ -1049,15 +1052,15 @@ export default function featureList(state, action = {}) {
             } else if (!check_next) {
                 const modal_shadow = document.querySelector(".modal-shadow-dialog-electron");
                 const options_next = {
-                    type: 'error',
+                    type: 'none',
                     message: 'Вы ошиблись! На поле еще остались фигуры с названием «' + state.samplelist[0].concept + '»!',
-                    detail: 'Попробуйте ещё раз! Найдите все игрушки с названием «' + state.samplelist[0].concept + '», но уже на основе двух известных вам фигурок-образцов.'
+                    detail: 'Попробуйте ещё раз! Найдите все игрушки с названием «' + state.samplelist[0].concept + '», но уже на основании большего количества известных вам фигурок-образцов.'
                 };
                 modal_shadow.style.display = 'block';
                 modal_shadow.style.opacity = .3;
                 $(modal_shadow).animate({
                     opacity: .6
-                }, 500, "swing");
+                }, 500, "linear");
                 dialog.showMessageBox(null, options_next, (response) => {
                     modal_shadow.style.display = 'none';
                 });
