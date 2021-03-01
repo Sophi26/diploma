@@ -30,6 +30,7 @@ deploy:
   file:
     - "dist/diploma-1.0.0-mac.zip"
     - "dist/diploma-1.0.0.dmg"
+    - "dist/diploma-1.0.0.dmg.blockmap"
   skip_cleanup: true
   on:
     tags: false
