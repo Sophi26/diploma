@@ -9,8 +9,8 @@
         "build:scripts": "webpack",
         "postinstall": "npm run build:scripts",
         "server": "node server.js",
-        "build": "electron-builder build --mac --win --publish never",
-        "deploy": "electron-builder build --mac --win --publish always"
+        "build": "electron-builder build --mac --publish never",
+        "deploy": "electron-builder build --mac --publish always"
     },
     "repository": {
         "type": "git",
