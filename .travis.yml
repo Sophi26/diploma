@@ -16,8 +16,7 @@ cache:
     - $HOME/.cache/electron-builder
 
 script:
-  - |
-    npm run build
+  - npm run build
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
@@ -26,8 +25,9 @@ branches:
     - master
 
 deploy:
-  provider: pages
+  provider: releases
+  api_key: $GITHUB_API_KEY
+  file: "test"
   skip_cleanup: true
-  github_token: $GITHUB_API_KEY # Set in travis-ci.org dashboard
   on:
-    branch: master
+    tags: false
