@@ -7,6 +7,7 @@ matrix:
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - CSC_IDENTITY_AUTO_DISCOVERY=false
 
 cache:
   directories:
@@ -21,5 +22,12 @@ before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
 branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  only:
+    - master
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_API_KEY # Set in travis-ci.org dashboard
+  on:
+    branch: master
