@@ -27,7 +27,9 @@ branches:
 deploy:
   provider: releases
   api_key: $GITHUB_API_KEY
-  file: "test"
+  file:
+    - "dist/diploma-1.0.0-mac.zip"
+    - "dist/diploma-1.0.0.dmg"
   skip_cleanup: true
   on:
     tags: false
