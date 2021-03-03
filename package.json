@@ -77,7 +77,7 @@
     "build": {
         "appId": "com.diploma.vygotsky",
         "mac": {
-            "category": "public.app-category.productivity",
+            "category": "public.app-category.psychology",
             "target": [
                 "dmg",
                 "zip"

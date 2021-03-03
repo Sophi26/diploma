@@ -21,7 +21,8 @@ app.on('ready', () => {
         // fullscreenable: false
         // autoHideMenuBar: true
         webPreferences: {
-            contextIsolation: true
+            enableRemoteModule: true,
+            nodeIntegration: true
         }
     });
     mainWindow.loadURL('http://127.0.0.1:8081/');
