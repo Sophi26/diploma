@@ -6,8 +6,6 @@
     "scripts": {
         "test": "jshint main.js",
         "start": "electron .",
-        "build:scripts": "webpack",
-        "postinstall": "npm run build:scripts",
         "server": "node server.js",
         "pack": "electron-builder --dir",
         "dist": "electron-builder --publish never"
