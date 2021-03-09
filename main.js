@@ -20,10 +20,10 @@ app.on('ready', () => {
         // resizable: false,
         // fullscreenable: false
         // autoHideMenuBar: true
-        webPreferences: {
-            enableRemoteModule: true,
-            nodeIntegration: true
-        }
+        // webPreferences: {
+        //     enableRemoteModule: true,
+        //     nodeIntegration: true
+        // }
     });
     mainWindow.loadURL('http://127.0.0.1:8081/');
     mainWindow.on('closed', () => {

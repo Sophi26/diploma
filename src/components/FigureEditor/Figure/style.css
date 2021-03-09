@@ -30,8 +30,9 @@
 }
 
 .fig {
-    margin: 0 0 0 -5px;
+    /* margin: 0 0 0 -5px; */
     float: left;
+    width: 280px;
 }
 
 .fig svg {
