@@ -50,7 +50,7 @@
         "electron-osx-sign": "0.5.0",
         "electron-updater": "4.3.5",
         "express": "4.16.3",
-        "express-fileupload": "0.4.0",
+        "express-fileupload": "1.1.10",
         "file-saver": "1.3.8",
         "form-data": "2.3.2",
         "fs-extra": "7.0.0",
