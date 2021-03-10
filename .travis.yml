@@ -1,13 +1,11 @@
 matrix:
   include:
-    - os: osx
-      osx_image: xcode10.2
+    - os: linux
       language: node_js
       node_js: "10"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-        - CSC_IDENTITY_AUTO_DISCOVERY=false
 
 cache:
   directories:
@@ -28,7 +26,7 @@ deploy:
   provider: releases
   api_key: $GITHUB_API_KEY
   file:
-    - "dist/diploma-1.0.0-mac.zip"
+    - "dist/diploma-1.0.0.zip"
   skip_cleanup: true
   on:
     tags: false

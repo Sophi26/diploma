@@ -76,8 +76,7 @@
     },
     "build": {
         "appId": "com.diploma.vygotsky",
-        "mac": {
-            "category": "public.app-category.psychology",
+        "linux": {
             "target": [
                 "zip"
             ]
