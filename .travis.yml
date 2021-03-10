@@ -3,20 +3,9 @@ matrix:
     - os: linux
       language: node_js
       node_js: "10"
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-cache:
-  directories:
-    - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
 
 script:
   - npm run dist
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
 
 branches:
   only:
