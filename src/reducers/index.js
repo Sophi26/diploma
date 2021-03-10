@@ -1,4 +1,5 @@
 const { remote } = require("electron");
+const { BrowserWindow } = require("electron");
 const { dialog } = remote;
 
 import $ from 'jquery';
