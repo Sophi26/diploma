@@ -10,7 +10,7 @@
         "postinstall": "npm run build:scripts",
         "server": "node server.js",
         "pack": "electron-builder --dir",
-        "dist": "electron-builder --publish never"
+        "dist": "electron-builder"
     },
     "repository": {
         "type": "git",
