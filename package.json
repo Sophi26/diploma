@@ -32,7 +32,7 @@
         "babel-preset-node6-es6": "11.2.5",
         "babel-preset-react": "6.24.1",
         "css-loader": "0.28.11",
-        "electron": "3.1.0",
+        "electron": "15.5.5",
         "electron-builder": "22.9.1",
         "electron-notarize": "1.0.0",
         "electron-packager": "13.1.1",
